@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Kampagnenplanung</title>
+
     <script>(() => {
         const KEY = "theme";
         const saved = localStorage.getItem(KEY);
@@ -13,11 +14,12 @@
     })();</script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 </head>
 <body>
-<div class="container-fluid">
 
-    <div class="d-md-none bg-tertiary p-2">
+<div class="bg-tertiary p-2 sticky-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
         <button class="btn btn-outline-secondary btn-sm"
                 type="button"
                 data-bs-toggle="offcanvas"
@@ -25,23 +27,15 @@
                 aria-controls="mobileSidebar">
             <i class="bi bi-list"></i> Menü
         </button>
+
+
     </div>
+</div>
 
+
+<div class="container-fluid mt-3">
     <div class="row">
-
-        <nav class="d-none d-md-block col-md-3 bg-tertiary p-3">
-            <ul>
-                <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a></li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a></li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Preformance prüfen</a></li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
-            </ul>
-        </nav>
-
-        <main class="col-12 col-md-9">
+        <main class="col-12">
 
             <div class="container mt-3 d-flex justify-content-end">
                 <div class="form-check form-switch m-0">
@@ -52,68 +46,301 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-9">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-8 p-4">
+                    <div class="accordion" id="campaign">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp1">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp1-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp1-body">Zielvorhaben wählen
+                                </button>
+                            </h2>
+                            <div id="camp1-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp1"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+                                    <p>Wähle zuerst, ob du mit einem Zielvorhaben startest (Umsatz, Leads, Website-Traffic, App, Bekanntheit, lokale Besuche) – oder „Ohne Vorgaben“.</p>
+                                    <p class="border"><b><u>Tipp:</u></b> „Ohne Vorgaben“ gibt dir maximale Kontrolle über Untertypen/Einstellungen. Gut, wenn du genau weißt, was du tust. Mit Zielen führt dich Google stärker durch einen Standard-Pfad. (Beide Wege sind ok; „ohne Vorgaben“ ist flexibler.)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp2">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp2-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp2-body">Kampagnentyp auswählen
+                                </button>
+                            </h2>
+                            <div id="camp2-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp2"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
 
-                    <div class="row text-start">
-                        <div class="col-4"><b>Phase:</b></div>
-                        <div class="col-4"><b>Worum es geht:</b></div>
-                        <div class="col-4"><b>Worauf zu achten ist:</b></div>
-                    </div>
-                    <div class="row text-start">
-                        <div class="col-4 border">Zielsetzung & Planung</div>
-                        <div class="col-4 border">Welche Ziele verfolgst du? Umsatz, Leads, Sichtbarkeit?</div>
-                        <div class="col-4 border">Ziele konkret machen („5 Anfragen pro Woche“, nicht „mehr Besucher“)</div>
-                    </div>
-                    <div class="row text-start">
-                        <div class="col-4 border">Budget & Erwartungen festlegen</div>
-                        <div class="col-4 border">Wie viel willst du täglich/monatlich ausgeben?Welche Ziele verfolgst du? Umsatz, Leads, Sichtbarkeit?</div>
-                        <div class="col-4 border">Budget realistisch wählen – zu wenig = keine Daten, zu viel = Risiko</div>
-                    </div>
-                    <div class="row text-start">
-                        <div class="col-4 border">Kampagnentyp & Ausrichtung wählen</div>
-                        <div class="col-4 border">Suchnetzwerk, Display, Performance Max etc.</div>
-                        <div class="col-4 border">Für Einsteiger oft mit Suchkampagne anfangen; zu viele Kanäle auf einmal vermeiden</div>
-                    </div>
-                    <div class="row text-start">
-                        <div class="col-4 border">Keyword-Strategie & Zielgruppen</div>
-                        <div class="col-4 border">Welche Keywords willst du schalten? Wer ist deine Zielgruppe?</div>
-                        <div class="col-4 border">Long-Tail nutzen, negative Keywords setzen, Zielgruppenfilter (Standort, Sprache)</div>
-                    </div>
-                    <div class="row text-start">
-                        <div class="col-4 border">Anzeigentexte entwerfen</div>
-                        <div class="col-4 border">Überschrift, Beschreibung, Call-to-Action</div>
-                        <div class="col-4 border">Relevanz zur Suchanfrage, Keywords in Text, überzeugender Nutzen, mehrere Varianten</div>
-                    </div>
-                    <div class="row text-start">
-                        <div class="col-4 border">Landingpage wählen / optimieren</div>
-                        <div class="col-4 border">Wohin führt der Klick?</div>
-                        <div class="col-4 border">Inhalt passend zur Anzeige, schnelle Ladezeit, klarer Call-to-Action, mobile Optimierung</div>
-                    </div>
-                    <div class="row text-start">
-                        <div class="col-4 border">Tracking & Messung einrichten</div>
-                        <div class="col-4 border">Conversion-Tracking, Analytics, ggf. Tag-Manager</div>
-                        <div class="col-4 border">Nur so weißt du, welche Anzeigen/KWs wirklich bringen</div>
-                    </div>
-                    <div class="row text-start">
-                        <div class="col-4 border">Gebotsstrategie festlegen</div>
-                        <div class="col-4 border">Manuell, automatisiert (Smart Bidding), Ziel-CPA, Ziel-ROAS etc.</div>
-                        <div class="col-4 border">Bei neuem Konto oft mit einfachen Strategien starten, später automatisierte testen</div>
-                    </div>
-                    <div class="row text-start">
-                        <div class="col-4 border">Start & Beobachtung</div>
-                        <div class="col-4 border">Kampagne starten, erste Daten sammeln</div>
-                        <div class="col-4 border">Erste Tage beobachten, große Ausreißer kontrollieren</div>
-                    </div>
-                    <div class="row text-start">
-                        <div class="col-4 border">Optimierung & Anpassung</div>
-                        <div class="col-4 border">Was funktioniert gut, was schlecht?</div>
-                        <div class="col-4 border">Keywords pausieren, Budgets verschieben, Texte testen, Ausschlüsse setzen</div>
-                    </div>
-                    <div class="row text-start">
-                        <div class="col-4 border">Skalieren / weiterentwickeln</div>
-                        <div class="col-4 border">Wenn Rahmen passt → mehr Budget, mehr Varianten, neue Kampagnentypen</div>
-                        <div class="col-4 border">Nur wachsen, wenn die Basis sauber läuft</div>
+                                    <p>
+                                        Wähle zuerst, ob du mit einem Zielvorhaben startest (Umsatz, Leads, Website-Traffic, App, Bekanntheit, lokale Besuche) – oder „Ohne Vorgaben“.
+                                        Tipp: „Ohne Vorgaben“ gibt dir maximale Kontrolle über Untertypen/Einstellungen. Gut, wenn du genau weißt, was du tust. Mit Zielen führt dich Google stärker durch einen Standard-Pfad. (Beide Wege sind ok; „ohne Vorgaben“ ist flexibler.)
+                                    </p>
+                                    <h6>Kampagnentypen</h6>
+                                    <ul>
+                                        <li><b>Suchkampagnen:</b> Textanzeigen in der Google-Suche, präzise steuerbar über Keywords/Region/Zeit. Empfehlung für den Einstieg.</li>
+                                        <li><b>Demand Gen (Discovery):</b> Bild/Video in Feeds (YouTube-Start, Discover, Gmail). Reichweite/Upper Funnel.</li>
+                                        <li><b>Display:</b> Banner im Google-Display-Netzwerk. Sichtbarkeit/Remarketing, geringere Intent.</li>
+                                        <li><b>Shopping:</b> Produktanzeigen mit Bild/Preis in Suche & Shopping-Tab. E-Commerce.</li>
+                                        <li><b>Video:</b> YouTube-Ads (vor/während/neben Videos). Branding/Storytelling.</li>
+                                        <li><b>App:</b> App-Installationen & In-App-Aktionen, stark automatisiert.</li>
+                                        <li><b>Performance Max:</b> Ein Kampagnentyp für alle Kanäle (Suche/Display/YouTube/Discover/Maps/Gmail), sehr KI-getrieben, wenig Hebel.</li>
+                                    </ul>
+                                    <p class="border"><u><b>Tipp:</b></u> Starte mit Suchkampagnen. Die Nutzer suchen aktiv, du bekommst den höchsten Intent und hast feine Kontrolle (Keywords, Region, Zeit).</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp3">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp3-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp3-body">Kampagnennamen & Ziel-URL
+                                </button>
+                            </h2>
+                            <div id="camp3-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp3"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>Gib die URL der Zielseite an und wähle einen aussagekräftigen Namen (Schema empfiehlt sich, z. B. DE-Suche-Marke-Produkt-Stadt-YYYY-MM).</p>
+                                    <h6><b><u>Pro-Hinweise:</u></b></h6>
+                                    <ul>
+                                        <li>Name sollte Ziel/Typ/Region enthalten → bessere Auswertbarkeit & Team-Klarheit.</li>
+                                        <li>Für mehrere Märkte/Sprachen früh Namenskonvention festlegen.</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp4">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp4-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp4-body">Gebotsstrategie (Bidding)
+                                </button>
+                            </h2>
+                            <div id="camp4-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp4"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>Ohne belastbares Conversion-Tracking lieber einfach starten (z. B. Klicks maximieren mit CPC-Limit) und später auf Ziel-CPA/Ziel-ROAS wechseln, wenn Daten stabil sind.
+                                        <b>Hinweis:</b> Google pusht Smart-Bidding – funktioniert gut mit verlässlichen Conversions; ohne diese Daten lieber vorsichtig.</p>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp5">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp5-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp5-body">Netzwerke (Google-Suche vs. Suchnetzwerk-Partner)
+                                </button>
+                            </h2>
+                            <div id="camp5-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp5"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <ul>
+                                        <li>In klassischen Suchkampagnen: Display-Netzwerk deaktivieren.</li>
+                                        <li>Suchnetzwerk-Partner: für den Start eher deaktivieren (Kontrolle/Qualität), später gezielt testen. (Die Einstellung findest du in den Kampagneneinstellungen → Netzwerke.)</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp6">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp6-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp6-body">Standorte & Sprachen
+                                </button>
+                            </h2>
+                            <div id="camp6-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp6"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>Nur die Regionen/Sprachen, in denen du wirklich liefern kannst. Bei lokalen Services granular starten (z. B. Stadt + Umkreis), später ausweiten.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp7">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp7-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp7-body">EU-Hinweis: politische Inhalte
+                                </button>
+                            </h2>
+                            <div id="camp7-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp7"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <div>Google führt im EWR neue Beschränkungen/Abfragen zu politischer Werbung ein (2025). Du wirst ggf. gefragt, ob du politische Inhalte in der EU ausspielst.</div>
+                                    <ul>
+                                        <li>Wenn nein, Option entsprechend auswählen → reduziert Rückfragen.</li>
+                                        <li><b><u>Achtung:</u></b> Änderungen/Neue Abfragen können Kampagnen pausieren, wenn nicht bestätigt. Mails im Blick behalten.</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp8">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp8-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp8-body">Zielgruppen
+                                </button>
+                            </h2>
+                            <div id="camp8-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp8"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>Segmente kannst du jetzt oder später hinzufügen. Für Suchkampagnen gern „Beobachten“ statt „Ausrichten“, um erst Daten zu sammeln.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp9">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp9-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp9-body">Weitere Einstellungen (Anzeigenrotation, Start/Ende, Zeitplan, URL-Optionen, Feeds)
+                                </button>
+                            </h2>
+                            <div id="camp9-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp9"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>Anzeigenrotation (gleichmäßig/optimieren), Start-/Enddatum, Werbezeitplaner, URL-Optionen (Tracking), Seitenfeeds – nice-to-have, aber kein Blocker für den Start.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp10">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp10-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp10-body">KI/Text-Automatik (AI Max/ automatisch erstelle Assets)
+                                </button>
+                            </h2>
+                            <div id="camp10-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp10"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>„AI Max / Text-Customizing“ (früher „automatisch erstellte Assets“) kann zusätzliche Anzeigentexte generieren. Kann Reichweite/Ad-Strength erhöhen, erfordert aber Kontrolle. Du kannst es aktivieren oder später testen.</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp11">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp11-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp11-body">Keywords & Assets
+                                </button>
+                            </h2>
+                            <div id="camp11-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp11"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                   <p>Diesen Schritt kannst du im Wizard überspringen und auf deiner Keywords/Anzeigen-Seite sauber ausarbeiten (du hast das ja getrennt).</p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp12">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp12-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp12-body">Budget & Überprüfung
+                                </button>
+                            </h2>
+                            <div id="camp12-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp12"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>Budget erstmal konservativ, damit du Daten sammelst, dann schrittweise erhöhen. Final prüfst du alle Einstellungen. (Kannst du bei „Publish“ bündeln.)</p>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,25 +350,21 @@
     </div>
 </div>
 
-
-
-
 <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="mobileSidebarLabel">Navigation</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Schließen"></button>
     </div>
     <div class="offcanvas-body">
-        <ul>
+        <ul class="list-unstyled m-0">
             <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Preformance prüfen</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Performance prüfen</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
         </ul>
-
     </div>
 </div>
 

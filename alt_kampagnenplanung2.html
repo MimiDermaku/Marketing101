@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kampagnenplanung</title>
+    <script>(() => {
+        const KEY = "theme";
+        const saved = localStorage.getItem(KEY);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initial = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-bs-theme", initial);
+    })();</script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="d-md-none bg-tertiary p-2">
+        <button class="btn btn-outline-secondary btn-sm"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#mobileSidebar"
+                aria-controls="mobileSidebar">
+            <i class="bi bi-list"></i> Menü
+        </button>
+    </div>
+
+    <div class="row">
+
+        <nav class="d-none d-md-block col-md-3 bg-tertiary p-3">
+            <ul>
+                <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
+                <li class="nav-item mt-2"><a class="nav-link active" href="alt_kampagnenplanung2.html">Kampagnenplanung</a></li>
+                <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a></li>
+                <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
+                <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
+                <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Performance prüfen</a></li>
+                <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
+            </ul>
+        </nav>
+
+        <main class="col-12 col-md-9">
+
+            <div class="container mt-3 d-flex justify-content-end">
+                <div class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" id="themeSwitch" role="switch">
+                    <label class="form-check-label" for="themeSwitch">
+                        <span id="themeIcon">🌙</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-9">
+
+                    <div class="row text-start">
+                        <div class="col-4"><b>Phase:</b></div>
+                        <div class="col-4"><b>Worum es geht:</b></div>
+                        <div class="col-4"><b>Worauf zu achten ist:</b></div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-4 border">Zielsetzung & Planung</div>
+                        <div class="col-4 border">Welche Ziele verfolgst du? Umsatz, Leads, Sichtbarkeit?</div>
+                        <div class="col-4 border">Ziele konkret machen („5 Anfragen pro Woche“, nicht „mehr Besucher“)</div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-4 border">Budget & Erwartungen festlegen</div>
+                        <div class="col-4 border">Wie viel willst du täglich/monatlich ausgeben?Welche Ziele verfolgst du? Umsatz, Leads, Sichtbarkeit?</div>
+                        <div class="col-4 border">Budget realistisch wählen – zu wenig = keine Daten, zu viel = Risiko</div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-4 border">Kampagnentyp & Ausrichtung wählen</div>
+                        <div class="col-4 border">Suchnetzwerk, Display, Performance Max etc.</div>
+                        <div class="col-4 border">Für Einsteiger oft mit Suchkampagne anfangen; zu viele Kanäle auf einmal vermeiden</div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-4 border">Keyword-Strategie & Zielgruppen</div>
+                        <div class="col-4 border">Welche Keywords willst du schalten? Wer ist deine Zielgruppe?</div>
+                        <div class="col-4 border">Long-Tail nutzen, negative Keywords setzen, Zielgruppenfilter (Standort, Sprache)</div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-4 border">Anzeigentexte entwerfen</div>
+                        <div class="col-4 border">Überschrift, Beschreibung, Call-to-Action</div>
+                        <div class="col-4 border">Relevanz zur Suchanfrage, Keywords in Text, überzeugender Nutzen, mehrere Varianten</div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-4 border">Landingpage wählen / optimieren</div>
+                        <div class="col-4 border">Wohin führt der Klick?</div>
+                        <div class="col-4 border">Inhalt passend zur Anzeige, schnelle Ladezeit, klarer Call-to-Action, mobile Optimierung</div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-4 border">Tracking & Messung einrichten</div>
+                        <div class="col-4 border">Conversion-Tracking, Analytics, ggf. Tag-Manager</div>
+                        <div class="col-4 border">Nur so weißt du, welche Anzeigen/KWs wirklich bringen</div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-4 border">Gebotsstrategie festlegen</div>
+                        <div class="col-4 border">Manuell, automatisiert (Smart Bidding), Ziel-CPA, Ziel-ROAS etc.</div>
+                        <div class="col-4 border">Bei neuem Konto oft mit einfachen Strategien starten, später automatisierte testen</div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-4 border">Start & Beobachtung</div>
+                        <div class="col-4 border">Kampagne starten, erste Daten sammeln</div>
+                        <div class="col-4 border">Erste Tage beobachten, große Ausreißer kontrollieren</div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-4 border">Optimierung & Anpassung</div>
+                        <div class="col-4 border">Was funktioniert gut, was schlecht?</div>
+                        <div class="col-4 border">Keywords pausieren, Budgets verschieben, Texte testen, Ausschlüsse setzen</div>
+                    </div>
+                    <div class="row text-start">
+                        <div class="col-4 border">Skalieren / weiterentwickeln</div>
+                        <div class="col-4 border">Wenn Rahmen passt → mehr Budget, mehr Varianten, neue Kampagnentypen</div>
+                        <div class="col-4 border">Nur wachsen, wenn die Basis sauber läuft</div>
+                    </div>
+                </div>
+            </div>
+
+
+        </main>
+    </div>
+</div>
+
+
+
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="mobileSidebarLabel">Navigation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Schließen"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul>
+            <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="alt_kampagnenplanung2.html">Kampagnenplanung</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Performance prüfen</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
+        </ul>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    (() => {
+        const KEY = "theme";
+        const root = document.documentElement;
+        const sw = document.getElementById("themeSwitch");
+        const icon = document.getElementById("themeIcon");
+        if (!sw) return;
+
+        // Startzustand setzen
+        const isDark = root.getAttribute("data-bs-theme") === "dark";
+        sw.checked = isDark;
+        icon.textContent = isDark ? "🌙" : "🌞";
+
+        // Umschalten + merken
+        sw.addEventListener("change", () => {
+            const mode = sw.checked ? "dark" : "light";
+            root.setAttribute("data-bs-theme", mode);
+            localStorage.setItem(KEY, mode);
+            icon.textContent = mode === "dark" ? "🌙" : "🌞";
+        });
+    })();
+</script>
+
+</body>
+</html>

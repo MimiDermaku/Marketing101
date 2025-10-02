@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Diese Begriffe solltest du kennen!</title>
+    <title>Keyword Recherche</title>
+
     <script>(() => {
         const KEY = "theme";
         const saved = localStorage.getItem(KEY);
@@ -12,12 +13,13 @@
         document.documentElement.setAttribute("data-bs-theme", initial);
     })();</script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 </head>
 <body>
-<div class="container-fluid">
 
-    <div class="d-md-none bg-tertiary p-2">
+<div class="bg-tertiary p-2 sticky-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
         <button class="btn btn-outline-secondary btn-sm"
                 type="button"
                 data-bs-toggle="offcanvas"
@@ -26,27 +28,12 @@
             <i class="bi bi-list"></i> Menü
         </button>
     </div>
+</div>
 
+
+<div class="container-fluid mt-3">
     <div class="row">
-
-        <nav class="d-none d-md-block col-md-3 bg-tertiary p-3">
-            <ul>
-                <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a>
-                </li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword
-                    Recherche</a></li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen
-                    schreiben</a></li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Preformance
-                    prüfen</a></li>
-                <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen
-                    sollte</a></li>
-            </ul>
-        </nav>
-
-        <main class="col-12 col-md-9">
+        <main class="col-12">
 
             <div class="container mt-3 d-flex justify-content-end">
                 <div class="form-check form-switch m-0">
@@ -75,7 +62,7 @@
                                  aria-labelledby="key1"
                                  data-bs-parent="#keywords">
                                 <div class="accordion-body">
-                                    <h6>1. Google Suche (kostenlos, manuel)</h6>
+                                    <h6>1. Google Suche (kostenlos, manuell)</h6>
                                     <ul>
                                         <li>Suche nach Leistungen/Produkten, die auch angeboten werden.</li>
                                         <li>Notieren, welche Anzeigen von Mitbewerbern geschaltet werden.</li>
@@ -90,14 +77,43 @@
                                         </li>
                                     </ul>
                                     <h6>2. Google Keyword Planner (Google Ads Tool)</h6>
-
+                                    <p class="border"><u><b>Tipp:</b></u> Im Keyword Planner kannst du auch fremde Websites nach Keywords scannen.
+                                    Öffne „Neue Keywords entdecken“ → Tab „Website verwenden“ → gib die URL der Konkurrenz ein → wähle „Gesamte Website“ oder „Nur diese Seite“ → filtere nach Standort und Sprache.  So bekommst du Keyword-Ideen plus Suchvolumen, Wettbewerb und CPC – ideal, um Kandidaten zu priorisieren.</p>
                                     <ul>
                                         <li>Kostenlos nutzbar, wenn ein Google Ads Konto vorhanden ist.</li>
-                                        <li>Mitbewerber können hier eingegeben werden, das Tool zeigt die genutzen
-                                            Keywords und das dazugehörige Ranking an.
+                                        <li>Gib eine Domain oder Unterseite an – der Planner liefert Keyword-Ideen samt Suchvolumen, Wettbewerb (hoch/mittel/niedrig) und CPC. Rankings zeigt der Planner nicht; dafür bräuchtest du SEO-Tools (dazu später mehr).
                                         </li>
-                                        <li>Gleichzeitig bekommt man Informationen wie Suchvolumen, Wettbewerb
-                                            (hoch/mittel/niedrig) und CPC.
+                                        <h6>A. Planner als Such- und Setz-Tool</h6>
+                                        <ul>
+                                            <li>Man kann einzelne Keywords eingeben → Planner liefert weitere Keyword-Vorschläge mit Volumen, Wettbewerb und CPC.</li>
+                                            <li>Listen lassen sich exportieren (CSV/XLS) → Planner ist also sowohl für Ideen-Suche als auch für Kampagnen-Setup nutzbar.</li>
+                                        </ul>
+                                        <h6>B. Match-Types Übersicht</h6>
+                                        <ul>
+                                            <li>[exact] → Anzeige nur bei exakt passendem Keyword (oder sehr nahen Varianten).</li>
+                                            <li>"phrase" → Anzeige, wenn Keyword als Teil der Suchanfrage vorkommt (z. B. Wörter davor/dahinter).</li>
+                                            <li>broad → Anzeige bei vielen thematisch ähnlichen Suchanfragen (große Streuung).</li>
+                                        </ul>
+                                        <h6>C. Empfehlung pro Ad Group</h6>
+                                        <ul>
+                                            <li>Nutze pro Anzeigengruppe überwiegend Exact Match Keywords.</li>
+                                            <li>Ergänze mit einigen wenigen Phrase Matches für Flexibilität.</li>
+                                            <li>Maximal 1–2 Broad Keywords pro Anzeigengruppe – sonst riskierst du zu viel irrelevanten Traffic.</li>
+                                            <p>👉 Also: Verhältnis ungefähr</p>
+                                            <li>70–80 % Exact,</li>
+                                            <li>20–30 % Phrase,</li>
+                                            <li>max. 1–2 Broad pro Gruppe.</li>
+                                        </ul>
+                                        <h6>D. Technischer Hinweis</h6>
+                                        <ul>
+                                            <li>Die Klammern/Anführungszeichen setzt man selbst beim Eintragen: [keyword], "keyword", keyword.</li>
+                                        </ul>
+                                        <h6>E. Anzahl Keywords</h6>
+                                        <ul>
+                                            <li>Es gibt keine feste Begrenzung. Wichtig ist: pro Anzeigengruppe thematisch saubere Bündelung.</li>
+                                            <li>Benenn die Gruppe nach dem Keyword-Thema (z.B. ‚Taubenabwehr‘).</li>
+                                        </ul>
+                                        <li>Exportiere die Treffer in eine Liste und markiere pro Keyword den geplanten Match-Type (Exact/Phrase/Broad) sowie mögliche Negative Keywords.
                                         </li>
                                     </ul>
                                     <h6>3. SEO/SEA-Tools (kostenpflichtig, aber oft mit Testversion)
@@ -347,28 +363,21 @@
     </div>
 </div>
 
-
 <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="mobileSidebarLabel">Navigation</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Schließen"></button>
     </div>
     <div class="offcanvas-body">
-        <ul>
+        <ul class="list-unstyled m-0">
             <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a>
-            </li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a>
-            </li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a>
-            </li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Preformance prüfen</a>
-            </li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen
-                sollte</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Performance prüfen</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
         </ul>
-
     </div>
 </div>
 
