@@ -1,0 +1,65 @@
+Conversion Tracking:
+
+Zunächst Conversions einrichten.
+Danach auf Website einbinden. ACHTUNG: Damit Tracking Datenschutzkonform ist, z.B. Cookie Banner verwenden!
+
+-> Conversions in Ads erstellen, dann Tag Manager und Cookie Banner [bsp. Cookiebot - bei kleinen Websites dauerhaft kostenlos verwendbar]
+auf Website installieren -> am Ende Conversions über Tag Manager mit Hilfe von Cookie Banner Datenschutzkonform auf Website installieren
+
+Einstellungsmöglichkeiten:
+Conversion Name kann nachträglich geändert werden.
+Wert macht Sinn wenn man bsp. Produktverkäufe tracken möchte, bei Leads auch, wenn man weiß wieviel Umsatz durch Kontaktaufnahme generiert werden kann.
+Oder keinen Wert
+
+Zählmethode "Eine" (wenn Conversion nur einmal ausgelöst wird), außer wenn Produktverkäufe getrackt werden, denn dann kann Käufer mehrere Produkte kaufen,
+dann Alle wählen
+
+Zeitraum bis zu 90 Tage wählbar, falls Kunde erst bis zu 90 Tage später die Conversion auslöst, fällt sie noch ins Tracking, bei hochpreisigen Artikeln
+sinnvoll, sonst 30 Tage ausreichend
+
+Attribution -> Datengetrieben empofohlen, bedeutet wenn User zwei, oder dreimal auf verschiedene Anzeigen klickt und am Ende eine Conversion abschließt,
+dann berechnet Google automatisch wie wertvoll der erste und der zweite Klick war und diesen Klicks werden automatisch auch ein Teil der Conversion zugeschrieben
+
+Erweiterte Conversion sind sehr fortgeschritten, hier besteht die Möglichkeit weitere Conversions zu sammeln, indem die E-Mailadresse gehasht an Google weiter-
+geleitet wird (Anleitungen auf Youtube)
+
+Soft Conversion erstellen (um hochwertige Traffic zu erzeugen)
+ Conversion Aktionen hinzufügen -> Website -> eintragen und prüfen
+ Code kann manuell hinzugefügt werden (Google Tag Manager)
+
+ Zielkategorie sonstige?! - z.B. auch Buttonklicks zu tracken - Vermutlich Soft weil nur Interaktionen ohne Abschlüsse getrackt werden (also Verhalten)
+
+ Optimierungsmöglichkeiten -> Kann auf Kontoebene hinzugefügt werden, bedeutet das alle Kampagnen automatisch optimiert werden für alle Conversions,
+ die sich in dieser Kategorie befinden. Aber nur wenn Primäre Aktion gewählt ist. Für den Anfang: so lassen, kann später angepasst werden
+
+ Diese Conversion heißt "1 Min Engagement" weil getrackt werden soll, wenn ein User mindestens 1 Minute mit der Website interagiert
+ Kein Wert benötigt, pro Nutzer nur einmal auslösen
+
+ Dann wird Anleitung gezeigt, wie Conversion installiert werden kann, aber am Besten mit Tag Manager (Conversion ID und Label später im Tag Manager eintragen)
+
+Tagmanager Konto wird benötigt (kostenlos)
+
+Im Tagmanager Container stellen (pro Website einen) als Namen bsp. den Website Namen nutzen (Web auswählen)
+Man kann generierten Code kopieren oder einfach Tag Manager ID... wichtig nochmal der Cookie Banner
+Cookiebot (cookiebot.com) einer der größten Anbieter weltweit, wenn Website weniger als 50 Unterseiten, dann dauerhaft kostenfrei nutzbar
+
+Dashboard: Unter Domains -> Website scannen, Cookies werden automatisch im Cookiebanner hinzugefügt
+unter Configuration kann nachträglich noch angepasst werden
+unter Implementation -> Domain group ID wird für die Installation benötigt
+
+Beispiel mit WordPress Site: Backend öffnen: kostenloses Plugin installieren (Cookie-Banner-Plugin für WordPress - Cookiebot CMP by Usercentric)
+-> Aktivieren
+-> Einstellungen von Plugin: Domain group ID (von Cookiebot Konto) hinzufügen
+-> Über Plugin dann Google Tag Manager installieren
+-> auswählen, aktivieren und Tag Manager ID (im Tag Manager oben rechts in den Ecke) einfügen
+-> Empfohlen Google Consent Mode: überprüfen das Consent Mode enabled ist! so wird ein datenschutzkonformes Google Tracking über Ads Conversions eingerichtet!!!
+
+Kurze Überprüfung ob Cookie Banner eingerichtet ist, User sollte nur auswählen können, was er zulassen mag
+
+Jetzt Conversions in Tag Manager installieren
+
+
+
+
+
+
