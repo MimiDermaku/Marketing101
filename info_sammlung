@@ -29,6 +29,8 @@ Soft Conversion erstellen (um hochwertige Traffic zu erzeugen)
 
  Zielkategorie sonstige?! - z.B. auch Buttonklicks zu tracken - Vermutlich Soft weil nur Interaktionen ohne Abschlüsse getrackt werden (also Verhalten)
 
+ Aber vorsicht, besser nur kombiniert nutzen, da Google das Ziel (Nutzerverhalten) falsch bewertet. Dann besteht das Risiko, dass nur Nutzer zum Lesen auf die Seite gezogen werden
+
  Optimierungsmöglichkeiten -> Kann auf Kontoebene hinzugefügt werden, bedeutet das alle Kampagnen automatisch optimiert werden für alle Conversions,
  die sich in dieser Kategorie befinden. Aber nur wenn Primäre Aktion gewählt ist. Für den Anfang: so lassen, kann später angepasst werden
 
@@ -54,9 +56,54 @@ Beispiel mit WordPress Site: Backend öffnen: kostenloses Plugin installieren (C
 -> auswählen, aktivieren und Tag Manager ID (im Tag Manager oben rechts in den Ecke) einfügen
 -> Empfohlen Google Consent Mode: überprüfen das Consent Mode enabled ist! so wird ein datenschutzkonformes Google Tracking über Ads Conversions eingerichtet!!!
 
-Kurze Überprüfung ob Cookie Banner eingerichtet ist, User sollte nur auswählen können, was er zulassen mag
+Kurze Überprüfung ob Cookie Banner eingerichtet ist, User sollte nur auswählen können, was er zulassen mag. (Hier nochmal genau nachsehen -> Concent für Marketing bzw. alles auswählen)
 
 Jetzt Conversions in Tag Manager installieren
+
+Über Tag Manager kann man die Tags für Conversiontracking einrichten, was genau getrackt werden soll. Goodle Ads conversion,
+eine Conversion auf Facebook oder ein Event in Google Analytics. Über Trigger kann man einstellen, wann der Tag ausgelöst wird.
+
+Zuerst Trigger erstellen (im Google Ads Konto sind bsp. folgende 3 Conversions hinterlegt: -
+Lead-Formular senden, 1 Min Engagement und Buttonklick) für jede Conversion muss ein Trigger erstellt werden,
+der diese Conversion auf der Website auslöst
+
+1-Min-Engagement (im Tag Manager auf Trigger erstellen) in der Konfiguration dann den Timer nutzen
+-> die Zeit wird in Millisekunden angegeben, dass heisst es sind 60.000 Millisekunden für 1 Min
+-> Limit auf eins dadurch wird Trigger nur einmal ausgelöst
+-> Bedingungen: da auf der kompletten Seite aktiv sein soll, Page URL / stimmt mit Regex überein / .* (bedeutet das Trigger
+auf der kompletten Website aktiv ist)
+-> Trigger Name bsp. Timer - 60 Sekunden -> speichern
+
+Buttonklick (bisschen komplexer, da zunächst genereischen Klicktrigger erstellt werden muss)
+-> TriggerKonfiguration - Alle Elemente, da bei allen Klicks ausgelöst werden soll (Name bsp. Klick Trigger)
+-> dann auf Variablen unterhalb Trigger (links im Menü) -> dann über konfigurieren oben rechts Haken bei allen Klicks
+-> darüber kann man im Vorschaumodus auf der Website, die Klicks besser identifizieren
+(nachträglich anpassbar - damit Trigger nur bei bestimmten Button-Klick ausgelöst wird)
+-> Vorschaumodus kann über den Button oben rechts im Tag Manager erreicht werden
+-> hier Namen der Websit eiengeben und verbinden...
+-> Site öffnet sich in neuem Tab/Fenster und im Tag Manager im Vorschau Modus kann man links den Seitenaufruf anschauen
+später wenn Tags eingerichtet sind, kann hier überprüft werden, ob Tag richtig ausgelöst wurde
+-> weiter findet man dort verschiedene Events die auf der Siete ausgelöst werden
+-> zum Testen kann man nun auf der Seite auf einen Button klicken, der getrackt werden soll
+-> Man kann den Klick im Vorschaumodus nachvollziehen und un´ter dem Tab Variablen finden sich verschiedene Elemente.
+Hier kann man, wenn man zuvor den gewünschten Button geklickt hat, den genauen Namen ansehen und dann in einer genaueren Konfig
+des Triggers, den Trigger so einstellen, dass er künftig nur noch beim Klicken dieses Buttons ausgelöst wird.
+-> Hierzu dann wieder in den Trigger und von Alle Klicks zu Einigen umstellen. / Click Text / enthält / "Kontakt" -> Trigger Name anpassen
+
+Kontaktanfragen tracken (es gibt verschiedene Möglichkeiten) Einfachste:
+-> Auf Website das Plugin contact form 7 verwenden (klären ob das hier geht)
+-> bei diesem Formular ein weiteres kostenloses Plugin GTM4WP (Integration für Contact Form 7 Plugin) darüber kann man
+Kontaktanfragen über Website sehr einfach zu tracken (brauchts da noch Google Ads oder den Tag Manager?)
+Dies fernab von Google... auf WP Plugin aktivieren (Integration Haken setzen für Form - dadurch wird automatisch Event erstellt
+über welches Kontaktanfragen getrackt werden können)
+-> Kann dann wieder im Vorschaumodus überprüft werden -> Event wird dann unter Seitenaufruf angezeigt ??? (Ablauf nicht ganz klar)
+Kontaktformular -> ausfüllen, absenden / Vorschaumodus -> Name irgendwas mit submitted...
+Namen von Event dann als Trigger für Conversion verwenden
+-> Tag Manager -> Triiger Konfig -> Benutzerdefiniertes Ereignis -> In Ereignisname reinkopieren -> Name bsp. Contact Form / - Submitted
+
+Weitere
+-> Neu -> Trigger Konfig ->
+
 
 
 
