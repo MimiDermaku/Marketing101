@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kampagnenplanung</title>
+    <title>Vorlage</title>
 
     <script>(() => {
         const KEY = "theme";
@@ -27,8 +27,6 @@
                 aria-controls="mobileSidebar">
             <i class="bi bi-list"></i> Menü
         </button>
-
-
     </div>
 </div>
 
@@ -36,15 +34,6 @@
 <div class="container-fluid mt-3">
     <div class="row">
         <main class="col-12">
-
-            <div class="container mt-3 d-flex justify-content-end">
-                <div class="form-check form-switch m-0">
-                    <input class="form-check-input" type="checkbox" id="themeSwitch" role="switch">
-                    <label class="form-check-label" for="themeSwitch">
-                        <span id="themeIcon">🌙</span>
-                    </label>
-                </div>
-            </div>
 
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-8 p-4">
@@ -65,15 +54,18 @@
                                  aria-labelledby="camp1"
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
-                                    <p>Wähle zuerst, ob du mit einem Zielvorhaben startest (Umsatz, Leads, Website-Traffic, App, Bekanntheit, lokale Besuche) – oder „Ohne Vorgaben“.</p>
+                                    <p>Wähle zuerst, ob du mit einem Zielvorhaben startest (Umsatz, Leads,
+                                        Website-Traffic, App, Bekanntheit, lokale Besuche) – oder „Ohne Vorgaben“.</p>
                                     <div class="card bg-transparent border-light text-light">
                                         <div class="card-header">
                                             Tipp:
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-text">„Ohne Vorgaben“ gibt dir maximale Kontrolle über Untertypen/Einstellungen.
+                                            <p class="card-text">„Ohne Vorgaben“ gibt dir maximale Kontrolle über
+                                                Untertypen/Einstellungen.
                                                 Gut, wenn du genau weißt, was du tust.
-                                                Mit Zielen führt dich Google stärker durch einen Standard-Pfad. (Beide Wege sind ok; „ohne Vorgaben“ ist flexibler.)</p>
+                                                Mit Zielen führt dich Google stärker durch einen Standard-Pfad. (Beide
+                                                Wege sind ok; „ohne Vorgaben“ ist flexibler.)</p>
                                         </div>
                                     </div>
                                 </div>
@@ -96,36 +88,101 @@
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
 
-                                    <p>
-                                        Wähle zuerst, ob du mit einem Zielvorhaben startest (Umsatz, Leads, Website-Traffic, App, Bekanntheit, lokale Besuche) – oder „Ohne Vorgaben“.</p>
-                                    <div class="card bg-transparent border-light text-light">
-                                        <div class="card-header">
-                                            Tipp:
+                                    <div class="row g-4">
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Suchkampagnen
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">Textanzeigen in Google Search, präzise
+                                                        steuerbar über Keywords/Region/Zeit. Super für den Start!</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/such.png" alt="">
+                                            </div>
                                         </div>
-                                        <div class="card-body">
-                                            <p class="card-text">„Ohne Vorgaben“ gibt dir maximale Kontrolle über Untertypen/Einstellungen.
-                                                Gut, wenn du genau weißt, was du tust.
-                                                Mit Zielen führt dich Google stärker durch einen Standard-Pfad. (Beide Wege sind ok; „ohne Vorgaben“ ist flexibler.)</p>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Demand Gen (Discovery)
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">Bild/Video in Feeds (YouTube-Start, Discover,
+                                                        Gmail). Reichweite/Upper Funnel.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/demand.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Display
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">Banner im Google-Display-Netzwerk.
+                                                        Sichtbarkeit/Remarketing, geringere Intent.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/display.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Shopping
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">Produktanzeigen mit Bild/Preis in Suche &
+                                                        Shopping-Tab. E-Commerce.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/shopping.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Video
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">YouTube-Ads (vor/während/neben Videos).
+                                                        Branding/Storytelling.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/video.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    App
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">App-Installationen & In-App-Aktionen, stark
+                                                        automatisiert.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/app.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Performance Max
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">Ein Kampagnentyp für alle besagten Kanäle, sehr
+                                                        KI-getrieben, wenig Hebel.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/performance.png" alt="">
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <h6 class="mt-3">Kampagnentypen</h6>
-                                    <ul>
-                                        <li><b>Suchkampagnen:</b> Textanzeigen in der Google-Suche, präzise steuerbar über Keywords/Region/Zeit. Empfehlung für den Einstieg.</li>
-                                        <li><b>Demand Gen (Discovery):</b> Bild/Video in Feeds (YouTube-Start, Discover, Gmail). Reichweite/Upper Funnel.</li>
-                                        <li><b>Display:</b> Banner im Google-Display-Netzwerk. Sichtbarkeit/Remarketing, geringere Intent.</li>
-                                        <li><b>Shopping:</b> Produktanzeigen mit Bild/Preis in Suche & Shopping-Tab. E-Commerce.</li>
-                                        <li><b>Video:</b> YouTube-Ads (vor/während/neben Videos). Branding/Storytelling.</li>
-                                        <li><b>App:</b> App-Installationen & In-App-Aktionen, stark automatisiert.</li>
-                                        <li><b>Performance Max:</b> Ein Kampagnentyp für alle Kanäle (Suche/Display/YouTube/Discover/Maps/Gmail), sehr KI-getrieben, wenig Hebel.</li>
-                                    </ul>
-
-                                    <div class="card bg-transparent border-light text-light">
+                                    <div class="card bg-transparent border-light text-light mt-3">
                                         <div class="card-header">
                                             Tipp:
                                         </div>
-                                        <div class="card-body">
-                                            <p class="card-text">Starte mit Suchkampagnen. Die Nutzer suchen aktiv, du bekommst den höchsten Intent und hast feine Kontrolle (Keywords, Region, Zeit).</p>
+                                        <div class="card-body flex-grow-1">
+                                            <p class="card-text">Starte mit Suchkampagnen. Die Nutzer suchen aktiv, du
+                                                bekommst den höchsten Intent und hast feine Kontrolle (Keywords, Region,
+                                                Zeit).</p>
                                         </div>
                                     </div>
                                 </div>
@@ -148,23 +205,35 @@
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
 
-                                    <p>Gib die URL der Zielseite an und wähle einen aussagekräftigen Namen (Schema empfiehlt sich, z. B. DE-Suche-Marke-Produkt-Stadt-YYYY-MM).</p>
+                                    <p>Gib die URL der Zielseite an und wähle einen aussagekräftigen Namen.</p>
 
                                     <div class="card bg-transparent border-light text-light">
                                         <div class="card-header">
-                                            Pro-Hinweise:
+                                            Um Reports schnell filtern zu können sollte er die 4 Unterscheidungsmerkmale
+                                            in fester Reihenfolge enthalten
                                         </div>
                                         <div class="card-body">
-                                            <p class="card-text"><ul>
-                                            <li>Name sollte Ziel/Typ/Region enthalten → bessere Auswertbarkeit & Team-Klarheit.</li>
-                                            <li>Für mehrere Märkte/Sprachen früh Namenskonvention festlegen.</li>
-                                        </ul></p>
+                                            <h6 class="card-title">
+                                                [Kampagnen-Typ] - [Zielgruppe/Produkt] - [Strategie] - [Geolokation]</h6>
+                                            <p class="card-text"><u>Beispiele:</u>
+                                            <ul>
+                                                <li>Kampagnentyp: SUCH (Search), DIS (Display), PMAX (Performance Max),
+                                                    SHOP (Shopping)
+                                                </li>
+                                                <li>Zielgruppe/Produkt: NEUKUNDEN, SCHUHE, BRAND, REMARKETING</li>
+                                                <li>Strategie: TCPA, TROAS (Ziel-ROAS), MANUELL, MAX-KLICKS</li>
+                                                <li>Geolokation: DE, BERLIN, DACH, EU-W (Westeuropa)</li>
+                                            </ul>
+                                            </p>
+                                        </div>
+                                        <div class="card-footer">
+                                            Start-Tipp: Über wichtigstes Ziel und Produkt nachdenken! Was ist der
+                                            einzige Wert, den jeder Report sofort anzeigen soll?
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp4">
                                 <button
@@ -182,13 +251,23 @@
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
 
-                                    <p>Ohne belastbares Conversion-Tracking lieber einfach starten (z. B. Klicks maximieren mit CPC-Limit) und später auf Ziel-CPA/Ziel-ROAS wechseln, wenn Daten stabil sind.
-                                        <b>Hinweis:</b> Google pusht Smart-Bidding – funktioniert gut mit verlässlichen Conversions; ohne diese Daten lieber vorsichtig.</p>
-
+                                    <p>Ohne belastbares Conversion-Tracking lieber einfach starten (z. B. Klicks
+                                        maximieren mit CPC-Limit) und später auf Ziel-CPA/Ziel-ROAS wechseln, wenn Daten
+                                        stabil sind.
+                                    </p>
+                                    <div class="card bg-transparent border-light text-light">
+                                        <div class="card-header">
+                                            Hinweis:
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="card-text">Google pusht Smart-Bidding –
+                                                funktioniert gut mit verlässlichen Conversions; ohne diese Daten lieber
+                                                vorsichtig sein.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp5">
                                 <button
@@ -208,7 +287,11 @@
 
                                     <ul>
                                         <li>In klassischen Suchkampagnen: Display-Netzwerk deaktivieren.</li>
-                                        <li>Suchnetzwerk-Partner: für den Start eher deaktivieren (Kontrolle/Qualität), später gezielt testen. (Die Einstellung findest du in den Kampagneneinstellungen → Netzwerke.)</li>
+                                        <li>Suchnetzwerk-Partner: für den Start eher deaktivieren
+                                            (Kontrolle/Qualität),
+                                            später gezielt testen. (Die Einstellung findest du in den
+                                            Kampagneneinstellungen → Netzwerke.)
+                                        </li>
                                     </ul>
 
                                 </div>
@@ -231,7 +314,8 @@
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
 
-                                    <p>Nur die Regionen/Sprachen, in denen du wirklich liefern kannst. Bei lokalen Services granular starten (z. B. Stadt + Umkreis), später ausweiten.</p>
+                                    <p>Nur die Regionen/Sprachen, in denen du wirklich liefern kannst. Bei lokalen
+                                        Services granular starten (z. B. Stadt + Umkreis), später ausweiten.</p>
 
                                 </div>
                             </div>
@@ -253,10 +337,16 @@
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
 
-                                    <div>Google führt im EWR neue Beschränkungen/Abfragen zu politischer Werbung ein (2025). Du wirst ggf. gefragt, ob du politische Inhalte in der EU ausspielst.</div>
+                                    <div>Google führt im EWR neue Beschränkungen/Abfragen zu politischer Werbung ein
+                                        (2025). Du wirst ggf. gefragt, ob du politische Inhalte in der EU
+                                        ausspielst.
+                                    </div>
                                     <ul>
                                         <li>Wenn nein, Option entsprechend auswählen → reduziert Rückfragen.</li>
-                                        <li><b><u>Achtung:</u></b> Änderungen/Neue Abfragen können Kampagnen pausieren, wenn nicht bestätigt. Mails im Blick behalten.</li>
+                                        <li><b><u>Achtung:</u></b> Änderungen/Neue Abfragen können Kampagnen
+                                            pausieren,
+                                            wenn nicht bestätigt. Mails im Blick behalten.
+                                        </li>
                                     </ul>
 
                                 </div>
@@ -279,7 +369,8 @@
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
 
-                                    <p>Segmente kannst du jetzt oder später hinzufügen. Für Suchkampagnen gern „Beobachten“ statt „Ausrichten“, um erst Daten zu sammeln.</p>
+                                    <p>Segmente kannst du jetzt oder später hinzufügen. Für Suchkampagnen gern
+                                        „Beobachten“ statt „Ausrichten“, um erst Daten zu sammeln.</p>
 
                                 </div>
                             </div>
@@ -292,7 +383,9 @@
                                         data-bs-toggle="collapse"
                                         data-bs-target="#camp9-body"
                                         aria-expanded="true"
-                                        aria-controls="camp9-body">Weitere Einstellungen (Anzeigenrotation, Start/Ende, Zeitplan, URL-Optionen, Feeds)
+                                        aria-controls="camp9-body">Weitere Einstellungen (Anzeigenrotation,
+                                    Start/Ende,
+                                    Zeitplan, URL-Optionen, Feeds)
                                 </button>
                             </h2>
                             <div id="camp9-body"
@@ -301,7 +394,10 @@
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
 
-                                    <p>Anzeigenrotation (gleichmäßig/optimieren), Start-/Enddatum, Werbezeitplaner, URL-Optionen (Tracking), Seitenfeeds – nice-to-have, aber kein Blocker für den Start.</p>
+                                    <p>Anzeigenrotation (gleichmäßig/optimieren), Start-/Enddatum, Werbezeitplaner,
+                                        URL-Optionen (Tracking), Seitenfeeds – nice-to-have, aber kein Blocker für
+                                        den
+                                        Start.</p>
 
                                 </div>
                             </div>
@@ -314,7 +410,8 @@
                                         data-bs-toggle="collapse"
                                         data-bs-target="#camp10-body"
                                         aria-expanded="true"
-                                        aria-controls="camp10-body">KI/Text-Automatik (AI Max/ automatisch erstelle Assets)
+                                        aria-controls="camp10-body">KI/Text-Automatik (AI Max/ automatisch erstelle
+                                    Assets)
                                 </button>
                             </h2>
                             <div id="camp10-body"
@@ -323,7 +420,9 @@
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
 
-                                    <p>„AI Max / Text-Customizing“ (früher „automatisch erstellte Assets“) kann zusätzliche Anzeigentexte generieren. Kann Reichweite/Ad-Strength erhöhen, erfordert aber Kontrolle. Du kannst es aktivieren oder später testen.</p>
+                                    <p>„AI Max / Text-Customizing“ (früher „automatisch erstellte Assets“) kann
+                                        zusätzliche Anzeigentexte generieren. Kann Reichweite/Ad-Strength erhöhen,
+                                        erfordert aber Kontrolle. Du kannst es aktivieren oder später testen.</p>
 
                                 </div>
                             </div>
@@ -345,7 +444,8 @@
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
 
-                                    <p>Diesen Schritt kannst du im Wizard überspringen und auf deiner Keywords/Anzeigen-Seite sauber ausarbeiten (du hast das ja getrennt).</p>
+                                    <p>Diesen Schritt kannst du im Wizard überspringen und auf deiner
+                                        Keywords/Anzeigen-Seite sauber ausarbeiten (du hast das ja getrennt).</p>
 
                                 </div>
                             </div>
@@ -367,7 +467,9 @@
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
 
-                                    <p>Budget erstmal konservativ, damit du Daten sammelst, dann schrittweise erhöhen. Final prüfst du alle Einstellungen. (Kannst du bei „Publish“ bündeln.)</p>
+                                    <p>Budget erstmal konservativ, damit du Daten sammelst, dann schrittweise
+                                        erhöhen.
+                                        Final prüfst du alle Einstellungen. (Kannst du bei „Publish“ bündeln.)</p>
 
                                 </div>
                             </div>
@@ -375,6 +477,8 @@
                     </div>
                 </div>
             </div>
+
+
 
 
         </main>

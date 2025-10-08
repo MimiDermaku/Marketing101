@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Anzeige schreiben</title>
+
+    <script>(() => {
+        const KEY = "theme";
+        const saved = localStorage.getItem(KEY);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initial = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-bs-theme", initial);
+    })();</script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="bg-tertiary p-2 sticky-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <button class="btn btn-outline-secondary btn-sm"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#mobileSidebar"
+                aria-controls="mobileSidebar">
+            <i class="bi bi-list"></i> Menü
+        </button>
+    </div>
+</div>
+
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <main class="col-12">
+
+            <div class="container mt-3 d-flex justify-content-end">
+                <div class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" id="themeSwitch" role="switch">
+                    <label class="form-check-label" for="themeSwitch">
+                        <span id="themeIcon">🌙</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-8 p-4">
+                    <div class="accordion" id="ad">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="ad1">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#ad1-body"
+                                        aria-expanded="true"
+                                        aria-controls="ad1-body">Quick-Facts (damit du weißt, worauf du zielst)
+                                </button>
+                            </h2>
+                            <div id="ad1-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="cad1amp1"
+                                 data-bs-parent="#ad">
+                                <div class="accordion-body">
+
+                                   <ul>
+                                       <li>Format: Responsive Search Ads (RSA).</li>
+                                       <li>Maximal: 15 Headlines & 4 Beschreibungen pro Anzeige; Headline 30 Zeichen, Beschreibung 90 Zeichen; mindestens 3 Headlines & 2 Beschreibungen notwendig.</li>
+                                       <li>Pinning: Nur wenn zwingend (rechtlich/Brand). Zu viel Pinning verschlechtert „Ad Strength“/Variationen.</li>
+                                       <li>Assets (Erweiterungen): Nutze mehrere Asset-Typen (z. B. Sitelinks, Callouts, Structured Snippets, Promotions); ≥4 Asset-Typen empfohlen, wenn passend.</li>
+                                   </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="ad">
+                            <button
+                                    class="accordion-button"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#ad2-body"
+                                    aria-expanded="true"
+                                    aria-controls="ad2-body">Struktur & Mengenempfehlungen pro Anzeigengruppe
+                            </button>
+                        </h2>
+                        <div id="ad2-body"
+                             class="accordion-collapse collapse"
+                             aria-labelledby="ad2"
+                             data-bs-parent="#ad">
+                            <div class="accordion-body">
+
+                        <p><b><u>Ziel:</u></b> 8–10 Headlines total (von max. 15) + 2–3 Beschreibungen (von max. 4).</p>
+                                <p>Verteilung Headlines (Richtwert, neutral):</p>
+                                <h6><b>1. Keyword + CTA (3-5 Stück)</b></h6>
+                                <p>- Enthält dein Haupt-Keyword/Thema + klare Handlungsaufforderung.</p>
+                                <p>- – Beispiele (Platzhalter):/p>
+                                <ul>
+                                <li>{Keyword} jetzt anfragen</li>
+                                <li>{Keyword} – Angebot sichern</li>
+                                <li>{Keyword} für {Region} buchen</li>
+                            </ul>
+                                <h6><b>2. Differenzierer/Beweis</b> (3-5 Stück)</h6>
+                                <p>– Was hebt dich ab? Vorteile, Merkmale, Social-Proof, Zertifikate.</p>
+                                <ul>
+                                    <li>Zertifiziert & geprüft</li>
+                                    <li>Schnelle Umsetzung – Termin in 48 h</li>
+                                    <li>Über {Zahl} erfolgreiche Projekte</li>
+                                </ul>
+                                <h6><b>3. Risikominderer/Qualifizierer</b> (1-2 Stück)</h6>
+                                <p>– z. B. „Festpreise“, „Vor-Ort-Service“, „Transparente Kosten“</p>
+
+
+
+
+                                <h6 class="mt-3"><b>Headline-Ideen (max. 30 Zeichen)</b></h6>
+                                <p>Hier brauchst du klare, aktive Sprache + Keyword.</p>
+                                <ul>
+                                    <li>Taubenabwehr vom Profi</li>
+                                    <li>Effektiver Taubenschutz</li>
+                                    <li>Taubenfrei mit System</li>
+                                    <li>Netze & Spikes vom Fachmann</li>
+                                    <li>Kostenlose Beratung vor Ort</li>
+                                    <li>Schnelle Montage im Rhein-Main-Gebiet</li>
+                                    <li>Nachhaltiger Schutz ohne Gift</li>
+                                    <li>Ihr Dach – taubenfrei & sauber</li>
+                                    <li>Jetzt Termin vereinbaren</li>
+                                    <li>Zertifizierter Fachbetrieb</li>
+                                </ul>
+                                <p>Tipp: Mixe Varianten mit „emotionalen“ (z. B. „Ihr Dach taubenfrei!“) und „technischen“ Headlines („Netze & Spikes vom Profi“).
+                                    So deckst du verschiedene Suchintentionen ab.</p>
+
+
+                                <h6 class="mt-3">Description-Beispiele (max. 90 Zeichen)</h6>
+                                <p>Hier darf’s etwas fließender sein, aber immer mit Call-to-Action.</p>
+                                <ul>
+                                    <li>Wir schützen Gebäude dauerhaft vor Tauben – sicher, sauber, professionell.</li>
+                                    <li>Jetzt kostenlosen Vor-Ort-Termin sichern und Taubenprobleme lösen.</li>
+                                    <li>Montage, Reinigung und Wartung – alles aus einer Hand.</li>
+                                    <li>Taubenfrei ohne Chemie. Fachgerechte Systeme mit Garantie.</li>
+                                    <li>Rufen Sie an oder fragen Sie online Ihr individuelles Angebot an.</li>
+                                    <li>Effektive Lösungen für Dach, Balkon & Fassaden – seit über 10 Jahren Erfahrung.</li>
+                                    <li>Zuverlässiger Schutz gegen Taubendreck, Lärm & Schäden.</li>
+                                    <li>Professionelle Taubenabwehr für Firmen & Privatkunden.</li>
+                                </ul>
+                                <p>Tipp: Verwende 1× Nutzenversprechen + 1× Call-to-Action pro Textzeile.</p>
+
+
+                                <h6 class="mt-3">Call-to-Action-Formulierungen (CTR-Booster)</h6>
+
+                                <ul>
+                                    <li>Jetzt Angebot anfordern</li>
+                                    <li>Heute beraten lassen</li>
+                                    <li>Vor-Ort-Besichtigung gratis</li>
+                                    <li>Direkt anrufen – wir helfen</li>
+                                    <li>Jetzt Termin sichern</li>
+
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="ad">
+                            <button
+                                    class="accordion-button"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#ad3-body"
+                                    aria-expanded="true"
+                                    aria-controls="ad3-body">Vorlagen (neutral, mit Platzhaltern)
+                            </button>
+                        </h2>
+                        <div id="ad3-body"
+                             class="accordion-collapse collapse"
+                             aria-labelledby="ad3"
+                             data-bs-parent="#ad">
+                            <div class="accordion-body">
+
+                            <h6><b>Headline-Buckets</b> wähle und variiere:</h6>
+                                <ul>
+                                    <li><b>Keyword + CTA:</b>
+                                        <ul><li>„{Keyword} jetzt anfragen“ · „{Keyword} online buchen“ · „{Keyword} – Angebot anfordern“</li></ul></li>
+                                    <li><b>Vorteil/Differenzierung:</b>
+                                    <ul><li>„Schnelle Terminvergabe“ · „Geprüfte Qualität“ · „Transparente Preise“ · „{Leistung} vom Profi“</li></ul></li>
+                                    <li><b>Risikomiderer/Qualifizierer:</b>
+                                    <ul><li>„Kostenfreie Erstberatung“ · „Vor-Ort-Service in {Region}“ · „Ohne langfristige Bindung“</li></ul></li>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="camp1">
+                            <button
+                                    class="accordion-button"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#camp1-body"
+                                    aria-expanded="true"
+                                    aria-controls="camp1-body">Zielvorhaben wählen
+                            </button>
+                        </h2>
+                        <div id="camp1-body"
+                             class="accordion-collapse collapse"
+                             aria-labelledby="camp1"
+                             data-bs-parent="#campaign">
+                            <div class="accordion-body">
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="camp1">
+                            <button
+                                    class="accordion-button"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#camp1-body"
+                                    aria-expanded="true"
+                                    aria-controls="camp1-body">Zielvorhaben wählen
+                            </button>
+                        </h2>
+                        <div id="camp1-body"
+                             class="accordion-collapse collapse"
+                             aria-labelledby="camp1"
+                             data-bs-parent="#campaign">
+                            <div class="accordion-body">
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="mobileSidebarLabel">Navigation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Schließen"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="list-unstyled m-0">
+            <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Performance prüfen</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    (() => {
+        const KEY = "theme";
+        const root = document.documentElement;
+        const sw = document.getElementById("themeSwitch");
+        const icon = document.getElementById("themeIcon");
+        if (!sw) return;
+
+        // Startzustand setzen
+        const isDark = root.getAttribute("data-bs-theme") === "dark";
+        sw.checked = isDark;
+        icon.textContent = isDark ? "🌙" : "🌞";
+
+        // Umschalten + merken
+        sw.addEventListener("change", () => {
+            const mode = sw.checked ? "dark" : "light";
+            root.setAttribute("data-bs-theme", mode);
+            localStorage.setItem(KEY, mode);
+            icon.textContent = mode === "dark" ? "🌙" : "🌞";
+        });
+    })();
+</script>
+
+</body>
+</html>
