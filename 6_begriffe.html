@@ -33,114 +33,106 @@
 
 <div class="container-fluid mt-3">
     <div class="row">
-        <main class="col-12">
+        <main class="container my-5">
 
-            <div class="container mt-3 d-flex justify-content-end">
-                <div class="form-check form-switch m-0">
-                    <input class="form-check-input" type="checkbox" id="themeSwitch" role="switch">
-                    <label class="form-check-label" for="themeSwitch">
-                        <span id="themeIcon">🌙</span>
-                    </label>
-                </div>
-            </div>
+            <h2 class="mb-4">Google Ads Glossar</h2>
+            <input type="text" id="glossarSearch" class="form-control mb-4" placeholder="Begriff suchen...">
 
-            <h6 class="mb-3">Struktur & Organisation</h6>
-            <ul>
-                <li><b>Konto</b> <i class="bi bi-arrow-right"></i> Das übergeordnete Ads-Konto (mit Rechnungsdaten).</li>
-                <li><b>Kampagne</b> <i class="bi bi-arrow-right"></i> Erhält Budget, Laufzeit, Ziel (z.B. Leads, Umsatz, Reichweite).</li>
-                <li><b>Anzeigengruppe</b> <i class="bi bi-arrow-right"></i> Gruppiert Anzeigen & Keywords zu einem Thema.</li>
-                <li><b>Anzeige</b> <i class="bi bi-arrow-right"></i> Text- oder Bildanzeige, die User sehen.</li>
-                <li><b>Landingpage</b> <i class="bi bi-arrow-right"></i> Zielseite auf die die Anzeige führt.</li>
-                <p class="mt-2"><u>Ziel:</u> Eine klare Handlung (Formular, Kauf, Anmeldung) vom Kunden zu erhalten.</p>
-            </ul>
-            <hr>
-            <h6 class="mb-3">Keywords & Ausrichtung</h6>
-            <ul>
-                <li><b>Keyword</b> <i class="bi bi-arrow-right"></i> Suchbegriff, auf den man bietet.</li>
-                <li><b>Keyword-Optionen</b> (Match Types):</li>
+            <div id="glossar">
+
+                <h5 class="mb-4"><u>Struktur & Organisation</u></h5>
                 <ul>
-                    <li>Broad Match <i class="bi bi-arrow-right"></i> weit gefasst, viele Varianten, oft ungenau</li>
-                    <li>Phrase Match "keyword" <i class="bi bi-arrow-right"></i> Suchanfragen, die den Begriff enthalten.</li>
-                    <li>Exact Match [keyword] <i class="bi bi-arrow-right"></i> nur <i>exakt</i> dieser Begriff</li>
+                    <li><b>Konto</b> <i class="bi bi-arrow-right"></i> Das übergeordnete Ads-Konto (mit Rechnungsdaten).</li>
+                    <li><b>Kampagne</b> <i class="bi bi-arrow-right"></i> Erhält Budget, Laufzeit, Ziel (z.B. Leads, Umsatz, Reichweite).</li>
+                    <li><b>Anzeigengruppe</b> <i class="bi bi-arrow-right"></i> Gruppiert Anzeigen & Keywords zu einem Thema.</li>
+                    <li><b>Anzeige</b> <i class="bi bi-arrow-right"></i> Text- oder Bildanzeige, die User sehen.</li>
+                    <li><b>Landingpage</b> <i class="bi bi-arrow-right"></i> Zielseite, auf die die Anzeige führt.</li>
                 </ul>
-                <li><b>Negative Keywords</b> <i class="bi bi-arrow-right"></i> Begriffe, auf die man <i>nicht</i> erscheinen will (z.B. "gratis").</li>
-                <li><b>Suchanfragebericht</b> <i class="bi bi-arrow-right"></i> Liste, welche echten Suchbegriffe die Aufrufe ausgelöst haben.</li>
-            </ul>
-            <hr>
-            <h6 class="mb-3">Budget, Gebote & Kosten</h6>
-            <ul>
-                <li><b>Budget (täglich)</b> <i class="bi bi-arrow-right"></i> Maximalbetrag pro Kampagne pro Tag.</li>
-                <li><b>CPC (Cost per Click)</b> <i class="bi bi-arrow-right"></i> Preis pro Klick</li>
-                <li><b>CPM (Cost per Mille)</b> <i class="bi bi-arrow-right"></i> Kosten pro 1.000 Impressionen.</li>
-                <li><b>CPA (Cost per Acquisition)</b> <i class="bi bi-arrow-right"></i> Kosten pro Conversion.</li>
-                <li><b>CPL</b> <i class="bi bi-arrow-right"></i> Kosten pro Lead.</li>
+                <p class="mt-2"><u>Ziel:</u> Eine klare Handlung (Formular, Kauf, Anmeldung) vom Kunden zu erhalten.</p>
+
+                <h5 class="mb-4"><u>Keywords & Ausrichtung</u></h5>
+                <ul>
+                    <li><b>Keyword</b> <i class="bi bi-arrow-right"></i> Suchbegriff, auf den man bietet.</li>
+                    <li><b>Keyword-Optionen</b> (Match Types):
+                        <ul class="mt-2">
+                            <li>Broad Match <i class="bi bi-arrow-right"></i> weit gefasst, viele Varianten, oft ungenau</li>
+                            <li>Phrase Match "keyword" <i class="bi bi-arrow-right"></i> Suchanfragen, die den Begriff enthalten.</li>
+                            <li>Exact Match [keyword] <i class="bi bi-arrow-right"></i> nur <i>exakt</i> dieser Begriff</li>
+                        </ul>
+                    </li>
+                    <li><b>Negative Keywords</b> <i class="bi bi-arrow-right"></i> Begriffe, auf die man <i>nicht</i> erscheinen will (z.B. „gratis“).</li>
+                    <li><b>Suchanfragebericht</b> <i class="bi bi-arrow-right"></i> Liste, welche echten Suchbegriffe die Aufrufe ausgelöst haben.</li>
+                </ul>
+
+                <h5 class="mb-4"><u>Budget, Gebote & Kosten</u></h5>
+                <ul>
+                    <li><b>Budget (täglich)</b> <i class="bi bi-arrow-right"></i> Maximalbetrag pro Kampagne pro Tag.</li>
+                    <li><b>CPC (Cost per Click)</b> <i class="bi bi-arrow-right"></i> Preis pro Klick.</li>
+                    <li><b>CPM (Cost per Mille)</b> <i class="bi bi-arrow-right"></i> Kosten pro 1.000 Impressionen.</li>
+                    <li><b>CPA (Cost per Acquisition)</b> <i class="bi bi-arrow-right"></i> Kosten pro Conversion.</li>
+                    <li><b>CPL</b> <i class="bi bi-arrow-right"></i> Kosten pro Lead.</li>
+                </ul>
                 <p><u>Beispiel:</u> 500 € Ads-Budget <i class="bi bi-arrow-right"></i> 10 Leads = 50 € pro Lead.</p>
-                <li><b>ROAS (Return on As Spend)</b> <i class="bi bi-arrow-right"></i> Umsatz ÷ Werbekosten.</li>
-                <li><b>ROI (Return on Investment)</b> <i class="bi bi-arrow-right"></i> Gewinn ÷ Kosten.</li>
+                <ul>
+                    <li><b>ROAS (Return on Ad Spend)</b> <i class="bi bi-arrow-right"></i> Umsatz ÷ Werbekosten.</li>
+                    <li><b>ROI (Return on Investment)</b> <i class="bi bi-arrow-right"></i> Gewinn ÷ Kosten.</li>
+                </ul>
                 <p><u>Beispiel:</u> Ads kosten 1.000 €, generieren 5.000 € Umsatz = ROI 400 %.</p>
-            </ul>
 
-            <h6 class="mb-3">Anzeigenmetriken & Qualität</h6>
-            <ul>
-                <li><b>Impressionen</b> <i class="bi bi-arrow-right"></i> Anzeige wurde eingeblendet.</li>
-                <li><b>CTR (Click Through Rate)</b> <i class="bi bi-arrow-right"></i> Klicks ÷ Impressionen</li>
-                <li><b>Qualitätsfaktor</b> <i class="bi bi-arrow-right"></i> Googles Wertung für ein Keyword (1-10), basiert auf Relevanz, CTR und Landingpage.</li>
-                <li><b>Ad Rank (Anzeigenrang)</b> <i class="bi bi-arrow-right"></i> Bestimmt die Anzeigenposition (Gebot x Qualitätsfaktor).</li>
-            </ul>
-            <hr>
-          <h6 class="mb-3">Kampangenarten</h6>
+                <h5 class="mb-4"><u>Anzeigenmetriken & Qualität</u></h5>
+                <ul>
+                    <li><b>Impressionen</b> <i class="bi bi-arrow-right"></i> Anzeige wurde eingeblendet.</li>
+                    <li><b>CTR (Click Through Rate)</b> <i class="bi bi-arrow-right"></i> Klicks ÷ Impressionen.</li>
+                    <li><b>Qualitätsfaktor</b> <i class="bi bi-arrow-right"></i> Googles Wertung für ein Keyword (1–10), basiert auf Relevanz, CTR und Landingpage.</li>
+                    <li><b>Ad Rank (Anzeigenrang)</b> <i class="bi bi-arrow-right"></i> Bestimmt die Anzeigenposition (Gebot × Qualitätsfaktor).</li>
+                </ul>
 
-            <ul>
-                <li><b>Suchnetzwerk (Search Ads)</b> <i class="bi bi-arrow-right"></i> Textanzeigen bei Google-Suchergebnissen.</li>
-                <li><b>Displaynetzwerk (Displaykampagne)</b> <i class="bi bi-arrow-right"></i> Banneranzeige auf Websites (Google Display Netzwerk).</li>
-                <li><b>Shopping Ads (Shoppingkampagne)</b> <i class="bi bi-arrow-right"></i> Produktanzeige mit Bild/Preis.</li>
-                <li><b>Performance Max (Googles All-in-One)</b> <i class="bi bi-arrow-right"></i> Automatisierte Kampagne über alle Kanäle.</li>
-                <p><u>Für den Einstieg:</u> Suchkampagnen <i class="bi bi-arrow-right"></i> da viel Kontrolle über Keywords.</p>
-            </ul>
-            <hr>
-            <h6 class="mb-3">Conversion & Leads</h6>
-            <ul>
-                <li><b>Conversion</b> <i class="bi bi-arrow-right"></i> Definierte gewünschte Handlung (Kauf, Formular, Anruf).</li>
-                <p>Kann ein <b>Lead</b> sein, aber auch: Kauf, Anmeldung, Download.</p>
-                <li><b>Lead</b> <i class="bi bi-arrow-right"></i> Ein qualifizierter Kontakt.</li>
-                <p>Beispiel: Jemand füllt ein Kontaktformular aus, ruft an oder trägt seine E-Mail ein.</p>
-                <li><b>MQL (Marketing Qualified Lead)</b> <i class="bi bi-arrow-right"></i> Ein Lead, den der Vertrieb als kaufbereit einstuft (z.B. Newsletter-Anmeldung).</li>
-                <li><b>SQL (Sales Qualified Lead)</b> <i class="bi bi-arrow-right"></i> Ein Lead, den der Vertrieb als kaufbereit einstuft (z.B. jemand, der ein Angebot angefragt hat).</li>
-                <li><b>Conversion Rate (CR)</b> <i class="bi bi-arrow-right"></i> Conversions ÷ Klicks.</li>
+                <h5 class="mb-4"><u>Kampagnenarten</u></h5>
+                <ul>
+                    <li><b>Suchnetzwerk (Search Ads)</b> <i class="bi bi-arrow-right"></i> Textanzeigen bei Google-Suchergebnissen.</li>
+                    <li><b>Displaynetzwerk (Displaykampagne)</b> <i class="bi bi-arrow-right"></i> Banneranzeigen auf Websites (Google Display Netzwerk).</li>
+                    <li><b>Shopping Ads (Shoppingkampagne)</b> <i class="bi bi-arrow-right"></i> Produktanzeigen mit Bild/Preis.</li>
+                    <li><b>Performance Max (Googles All-in-One)</b> <i class="bi bi-arrow-right"></i> Automatisierte Kampagne über alle Kanäle.</li>
+                </ul>
+                <p><u>Für den Einstieg:</u> Suchkampagnen <i class="bi bi-arrow-right"></i> viel Kontrolle über Keywords.</p>
+
+                <h5 class="mb-4"><u>Conversion & Leads</u></h5>
+                <ul>
+                    <li><b>Conversion</b> <i class="bi bi-arrow-right"></i> Definierte gewünschte Handlung (Kauf, Formular, Anruf).</li>
+                    <li><b>Lead</b> <i class="bi bi-arrow-right"></i> Ein qualifizierter Kontakt.</li>
+                    <li><b>MQL (Marketing Qualified Lead)</b> <i class="bi bi-arrow-right"></i> Marketing-qualifizierter Lead (z.B. Newsletter-Anmeldung).</li>
+                    <li><b>SQL (Sales Qualified Lead)</b> <i class="bi bi-arrow-right"></i> Vertriebs-qualifizierter Lead (z.B. jemand, der ein Angebot angefragt hat).</li>
+                    <li><b>Conversion Rate (CR)</b> <i class="bi bi-arrow-right"></i> Conversions ÷ Klicks.</li>
+                </ul>
                 <p><u>Beispiel:</u> 100 Klicks <i class="bi bi-arrow-right"></i> 5 Leads = 5 % Conversion Rate.</p>
-            </ul>
-            <hr>
 
-            <h6 class="mb-3">Optimierung & Tests</h6>
+                <h5 class="mb-4"><u>Optimierung & Tests</u></h5>
+                <ul>
+                    <li><b>Conversion-Tracking</b> <i class="bi bi-arrow-right"></i> Misst, ob User die gewünschte Handlung ausführen.</li>
+                    <li><b>Remarketing</b> <i class="bi bi-arrow-right"></i> Nutzer erneut ansprechen, die schon auf der Website waren.</li>
+                    <li><b>A/B-Test (Experimente)</b> <i class="bi bi-arrow-right"></i> Zwei Varianten vergleichen (z.B. Anzeigentexte, Landingpages).</li>
+                    <li><b>CTA (Call to Action)</b> <i class="bi bi-arrow-right"></i> Handlungsaufforderung, z.B. „Jetzt kaufen“, „Kostenlos anfragen“, „Angebot anfordern“.</li>
+                </ul>
 
-            <ul>
-                <li><b>Conversion-Tracking</b> <i class="bi bi-arrow-right"></i> Misst, ob User die gewünschte Handlung ausführen.</li>
-                <li><b>Remarketing</b> <i class="bi bi-arrow-right"></i> Nutzer erneut ansprechen, die schon auf der Website waren.</li>
-                <li><b>A/B-Test (Experimente)</b> <i class="bi bi-arrow-right"></i> Zwei Varianten vergleichen (z.B. Anzeigentexte, Landingpages).</li>
-                <li><b>CTA (Call to Action)</b> <i class="bi bi-arrow-right"></i> Handlungsaufforderung, z.B. "Jetzt kaufen", "Kostenlos anfragen", "Angebot anfordern".</li>
-            </ul>
-            <hr>
-
-            <h6 class="mb-3">Marketing-Strategie & Funnel</h6>
-
-            <ul>
-                <li>Funnel (Marketing-Trichter) = Stufen im Kaufprozess.</li>
+                <h5 class="mb-4"><u>Marketing-Strategie & Funnel</u></h5>
+                <ul>
+                    <li><b>Funnel (Marketing-Trichter)</b> <i class="bi bi-arrow-right"></i> Stufen im Kaufprozess:</li>
+                </ul>
                 <ol>
                     <li>Awareness (Nutzer werden auf Marke aufmerksam)</li>
                     <li>Consideration (Nutzer informieren sich und vergleichen)</li>
                     <li>Conversion (Nutzer wird Lead oder Kunde)</li>
                 </ol>
-            </ul>
 
-            <hr>
+                <p><b><u>Das bedeutet:</u></b> Es muss klar definiert werden, was eine Conversion ist (z.B. Anruf, Kauf, Formular).</p>
+                <p><b>Dann messen:</b></p>
+                <ul>
+                    <li>Wie viele Leads kommen rein</li>
+                    <li>Was kostet ein Lead</li>
+                    <li>Wie viele Leads werden zu echten Kunden</li>
+                </ul>
 
-            <p><b><u>Das bedeutet:</u></b> es muss klar für den Kunden definiert werden, was eine Conversion ist (z.B. Anruf, Kauf, Formular).</p>
-            <p><b>Dann messen:</b>
-            <ul>
-            <li>wie viele Leads kommen rein</li>
-            <li>was kostet ein Lead</li>
-            <li>wie viele Leads werden zu echten Kunden</li>
-        </ul></p>
+            </div>
 
         </main>
     </div>
@@ -165,6 +157,26 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    (function () {
+        const input = document.getElementById('glossarSearch');
+        if (!input) return;
+
+        // Alle Text-Elemente, die durchsucht werden sollen
+        const elements = document.querySelectorAll('#glossar li, #glossar p, #glossar h6, #glossar ol li');
+
+        input.addEventListener('input', function () {
+            const q = this.value.trim().toLowerCase();
+            elements.forEach(el => {
+                const text = el.textContent.toLowerCase();
+                el.style.display = text.includes(q) || q === "" ? "" : "none";
+            });
+        });
+    })();
+</script>
+
+
 
 <script>
     (() => {
