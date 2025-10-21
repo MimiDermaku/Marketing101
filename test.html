@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Diese Begriffe solltest du kennen!</title>
+    <title>Performance überprüfen</title>
 
     <script>(() => {
         const KEY = "theme";
@@ -13,8 +13,8 @@
         document.documentElement.setAttribute("data-bs-theme", initial);
     })();</script>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -34,109 +34,401 @@
 <div class="container-fluid mt-3">
     <div class="row">
         <main class="col-12">
-            <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-8 p-4">
 
-                    <h2 class="mb-4">Google Ads Glossar</h2>
-                    <input type="text" id="glossarSearch" class="form-control mb-4" placeholder="Begriff suchen...">
-
-                    <div id="glossar">
-
-                        <h5 class="mb-4"><u>Struktur & Organisation</u></h5>
-                        <ul>
-                            <li><b>Konto</b> <i class="bi bi-arrow-right"></i> Das übergeordnete Ads-Konto (mit Rechnungsdaten).</li>
-                            <li><b>Kampagne</b> <i class="bi bi-arrow-right"></i> Erhält Budget, Laufzeit, Ziel (z.B. Leads, Umsatz, Reichweite).</li>
-                            <li><b>Anzeigengruppe</b> <i class="bi bi-arrow-right"></i> Gruppiert Anzeigen & Keywords zu einem Thema.</li>
-                            <li><b>Anzeige</b> <i class="bi bi-arrow-right"></i> Text- oder Bildanzeige, die User sehen.</li>
-                            <li><b>Landingpage</b> <i class="bi bi-arrow-right"></i> Zielseite, auf die die Anzeige führt.</li>
-                        </ul>
-                        <p class="mt-2"><u>Ziel:</u> Eine klare Handlung (Formular, Kauf, Anmeldung) vom Kunden zu erhalten.</p>
-
-                        <h5 class="mb-4"><u>Keywords & Ausrichtung</u></h5>
-                        <ul>
-                            <li><b>Keyword</b> <i class="bi bi-arrow-right"></i> Suchbegriff, auf den man bietet.</li>
-                            <li><b>Keyword-Optionen</b> (Match Types):
-                                <ul class="mt-2">
-                                    <li>Broad Match <i class="bi bi-arrow-right"></i> weit gefasst, viele Varianten, oft ungenau</li>
-                                    <li>Phrase Match "keyword" <i class="bi bi-arrow-right"></i> Suchanfragen, die den Begriff enthalten.</li>
-                                    <li>Exact Match [keyword] <i class="bi bi-arrow-right"></i> nur <i>exakt</i> dieser Begriff</li>
-                                </ul>
-                            </li>
-                            <li><b>Negative Keywords</b> <i class="bi bi-arrow-right"></i> Begriffe, auf die man <i>nicht</i> erscheinen will (z.B. „gratis“).</li>
-                            <li><b>Suchanfragebericht</b> <i class="bi bi-arrow-right"></i> Liste, welche echten Suchbegriffe die Aufrufe ausgelöst haben.</li>
-                        </ul>
-
-                        <h5 class="mb-4"><u>Budget, Gebote & Kosten</u></h5>
-                        <ul>
-                            <li><b>Budget (täglich)</b> <i class="bi bi-arrow-right"></i> Maximalbetrag pro Kampagne pro Tag.</li>
-                            <li><b>CPC (Cost per Click)</b> <i class="bi bi-arrow-right"></i> Preis pro Klick.</li>
-                            <li><b>CPM (Cost per Mille)</b> <i class="bi bi-arrow-right"></i> Kosten pro 1.000 Impressionen.</li>
-                            <li><b>CPA (Cost per Acquisition)</b> <i class="bi bi-arrow-right"></i> Kosten pro Conversion.</li>
-                            <li><b>CPL</b> <i class="bi bi-arrow-right"></i> Kosten pro Lead.</li>
-                        </ul>
-                        <p><u>Beispiel:</u> 500 € Ads-Budget <i class="bi bi-arrow-right"></i> 10 Leads = 50 € pro Lead.</p>
-                        <ul>
-                            <li><b>ROAS (Return on Ad Spend)</b> <i class="bi bi-arrow-right"></i> Umsatz ÷ Werbekosten.</li>
-                            <li><b>ROI (Return on Investment)</b> <i class="bi bi-arrow-right"></i> Gewinn ÷ Kosten.</li>
-                        </ul>
-                        <p><u>Beispiel:</u> Ads kosten 1.000 €, generieren 5.000 € Umsatz = ROI 400 %.</p>
-
-                        <h5 class="mb-4"><u>Anzeigenmetriken & Qualität</u></h5>
-                        <ul>
-                            <li><b>Impressionen</b> <i class="bi bi-arrow-right"></i> Anzeige wurde eingeblendet.</li>
-                            <li><b>CTR (Click Through Rate)</b> <i class="bi bi-arrow-right"></i> Klicks ÷ Impressionen.</li>
-                            <li><b>Qualitätsfaktor</b> <i class="bi bi-arrow-right"></i> Googles Wertung für ein Keyword (1–10), basiert auf Relevanz, CTR und Landingpage.</li>
-                            <li><b>Ad Rank (Anzeigenrang)</b> <i class="bi bi-arrow-right"></i> Bestimmt die Anzeigenposition (Gebot × Qualitätsfaktor).</li>
-                        </ul>
-
-                        <h5 class="mb-4"><u>Kampagnenarten</u></h5>
-                        <ul>
-                            <li><b>Suchnetzwerk (Search Ads)</b> <i class="bi bi-arrow-right"></i> Textanzeigen bei Google-Suchergebnissen.</li>
-                            <li><b>Displaynetzwerk (Displaykampagne)</b> <i class="bi bi-arrow-right"></i> Banneranzeigen auf Websites (Google Display Netzwerk).</li>
-                            <li><b>Shopping Ads (Shoppingkampagne)</b> <i class="bi bi-arrow-right"></i> Produktanzeigen mit Bild/Preis.</li>
-                            <li><b>Performance Max (Googles All-in-One)</b> <i class="bi bi-arrow-right"></i> Automatisierte Kampagne über alle Kanäle.</li>
-                        </ul>
-                        <p><u>Für den Einstieg:</u> Suchkampagnen <i class="bi bi-arrow-right"></i> viel Kontrolle über Keywords.</p>
-
-                        <h5 class="mb-4"><u>Conversion & Leads</u></h5>
-                        <ul>
-                            <li><b>Conversion</b> <i class="bi bi-arrow-right"></i> Definierte gewünschte Handlung (Kauf, Formular, Anruf).</li>
-                            <li><b>Lead</b> <i class="bi bi-arrow-right"></i> Ein qualifizierter Kontakt.</li>
-                            <li><b>MQL (Marketing Qualified Lead)</b> <i class="bi bi-arrow-right"></i> Marketing-qualifizierter Lead (z.B. Newsletter-Anmeldung).</li>
-                            <li><b>SQL (Sales Qualified Lead)</b> <i class="bi bi-arrow-right"></i> Vertriebs-qualifizierter Lead (z.B. jemand, der ein Angebot angefragt hat).</li>
-                            <li><b>Conversion Rate (CR)</b> <i class="bi bi-arrow-right"></i> Conversions ÷ Klicks.</li>
-                        </ul>
-                        <p><u>Beispiel:</u> 100 Klicks <i class="bi bi-arrow-right"></i> 5 Leads = 5 % Conversion Rate.</p>
-
-                        <h5 class="mb-4"><u>Optimierung & Tests</u></h5>
-                        <ul>
-                            <li><b>Conversion-Tracking</b> <i class="bi bi-arrow-right"></i> Misst, ob User die gewünschte Handlung ausführen.</li>
-                            <li><b>Remarketing</b> <i class="bi bi-arrow-right"></i> Nutzer erneut ansprechen, die schon auf der Website waren.</li>
-                            <li><b>A/B-Test (Experimente)</b> <i class="bi bi-arrow-right"></i> Zwei Varianten vergleichen (z.B. Anzeigentexte, Landingpages).</li>
-                            <li><b>CTA (Call to Action)</b> <i class="bi bi-arrow-right"></i> Handlungsaufforderung, z.B. „Jetzt kaufen“, „Kostenlos anfragen“, „Angebot anfordern“.</li>
-                        </ul>
-
-                        <h5 class="mb-4"><u>Marketing-Strategie & Funnel</u></h5>
-                        <ul>
-                            <li><b>Funnel (Marketing-Trichter)</b> <i class="bi bi-arrow-right"></i> Stufen im Kaufprozess:</li>
-                        </ul>
-                        <ol>
-                            <li>Awareness (Nutzer werden auf Marke aufmerksam)</li>
-                            <li>Consideration (Nutzer informieren sich und vergleichen)</li>
-                            <li>Conversion (Nutzer wird Lead oder Kunde)</li>
-                        </ol>
-
-                        <p><b><u>Das bedeutet:</u></b> Es muss klar definiert werden, was eine Conversion ist (z.B. Anruf, Kauf, Formular).</p>
-                        <p><b>Dann messen:</b></p>
-                        <ul>
-                            <li>Wie viele Leads kommen rein</li>
-                            <li>Was kostet ein Lead</li>
-                            <li>Wie viele Leads werden zu echten Kunden</li>
-                        </ul>
-
-                    </div>
+            <div class="container mt-3 d-flex justify-content-end">
+                <div class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" id="themeSwitch" role="switch">
+                    <label class="form-check-label" for="themeSwitch">
+                        <span id="themeIcon">🌙</span>
+                    </label>
                 </div>
             </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-8 p-4">
+                    <h2 class="mb-3">Performance prüfen: Schluss mit Fragezeichen!</h2>
+                    <p>Dieser Abschnitt zeigt, wie du Kampagnendaten liest, Probleme erkennst und gezielte Anweisungen
+                        zur Optimierung ableiten kannst. Schluss mit blindem Vertrauen – jetzt übernimmst du die
+                        Kontrolle!</p>
+
+                    <div class="accordion" id="performance">
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="perf1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#perf1-body" aria-expanded="true" aria-controls="perf1-body">
+                                    Dein Performance-Dashboard: Die wichtigsten Kennzahlen interpretieren
+                                </button>
+                            </h2>
+                            <div id="perf1-body" class="accordion-collapse collapse" aria-labelledby="perf1"
+                                 data-bs-parent="#performance">
+                                <div class="accordion-body">
+
+                                    <div id="slides-with-indicators" class="carousel slide" data-bs-ride="false">
+                                        <div class="position-absolute top-0 end-0 mt-2 me-2 z-3">
+                                        <span class="badge rounded-pill bg-info text-white px-3 py-2">
+                                        <i class="bi bi-arrows-angle-left me-1"></i>
+                                        Wischen / Klicken um alle Infos zu erhalten
+                                        </span>
+                                        </div>
+                                        <div class="carousel-indicators">
+                                            <button class="active"
+                                                    type="button"
+                                                    data-bs-target="#slides-with-indicators"
+                                                    data-bs-slide-to="0"
+                                                    aria-current="true"
+                                                    aria-label="Slide 1">
+                                            </button>
+                                            <button type="button"
+                                                    data-bs-target="#slides-with-indicators"
+                                                    data-bs-slide-to="1"
+                                                    aria-label="Slide 2">
+                                            </button>
+                                            <button type="button"
+                                                    data-bs-target="#slides-with-indicators"
+                                                    data-bs-slide-to="2"
+                                                    aria-label="Slide 3">
+                                            </button>
+                                            <button type="button"
+                                                    data-bs-target="#slides-with-indicators"
+                                                    data-bs-slide-to="3"
+                                                    aria-label="Slide 4">
+                                            </button>
+                                        </div>
+
+
+                                        <div class="carousel-inner" style="min-height: 550px;">
+
+                                            <div class="carousel-item active">
+                                                <div class="d-flex h-100 justify-content-center py-3">
+                                                    <div class="card bg-transparent border-light text-light w-100">
+                                                        <div class="card-header">
+                                                            Conversion Rate (CR): Der Effizienz-Monitor
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p class="card-text">Die CR misst die Effizienz deiner
+                                                                Landingpage
+                                                                und Ad-Relevanz. Bei einer niedrigen CR lautet deine
+                                                                Handlungsanweisung: "Landingpage optimieren" oder
+                                                                "Anzeigentexte
+                                                                auf Relevanz prüfen".</p>
+                                                            <div class="bg-secondary-subtle border rounded p-3 text-muted text-center">
+                                                                <img class="card-img-bottom" src="images/cr_down.png"
+                                                                     alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="carousel-item">
+                                                <div class="d-flex h-100 justify-content-center py-3">
+                                                    <div class="card bg-transparent border-light text-light w-100">
+                                                        <div class="card-header">
+                                                            Qualitätsfaktor (QS): Googles Qualitäts-Ranking verstehen
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p class="card-text">Ein hoher QS spart dir Geld und
+                                                                verbessert
+                                                                die
+                                                                Anzeigenposition. Bei niedrigem QS lautet deine
+                                                                Handlungsanweisung: "Keyword-Relevanz zum Ad-Text
+                                                                erhöhen"
+                                                                oder
+                                                                "Landingpage auf Nutzererfahrung prüfen".</p>
+                                                            <div class="bg-secondary-subtle border rounded p-3 text-muted text-center">
+                                                                <img class="card-img-bottom"
+                                                                     src="images/quality_score.png"
+                                                                     alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="carousel-item">
+                                                <div class="d-flex h-100 justify-content-center py-3">
+                                                    <div class="card bg-transparent border-light text-light w-100">
+                                                        <div class="card-header">
+                                                            ROAS / CPA: Der finanzielle Return
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p class="card-text">Das ist dein direkter Indikator für
+                                                                Rentabilität. Ohne diese Zahl ist jede Kampagne blind.
+                                                                Bei
+                                                                schlechtem ROAS/hohem CPA lautet die Handlungsanweisung:
+                                                                "Budget
+                                                                neu verteilen" oder "Gebotsstrategie anpassen".</p>
+                                                            <div class="bg-secondary-subtle border rounded p-3 text-muted text-center">
+                                                                <img class="card-img-bottom" src="images/cr_down.png"
+                                                                     alt="">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item">
+                                                <div class="d-flex h-100 justify-content-center py-3">
+                                                    <div class="card bg-warning-subtle border-warning text-light w-100">
+                                                        <div class="card-header border-warning">
+                                                            <b><u>Wichtiger Tipp</u></b>: Warum Anzeigen lahmgelegt
+                                                            werden
+                                                            (Low-Impression-Keywords)
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p class="card-text">Wenn dein ROAS/CPA schlecht ist,
+                                                                liefern
+                                                                die
+                                                                automatischen Gebotsstrategien von Google oft keine
+                                                                Anzeigen
+                                                                mehr für bestimmte Keywords aus. Das passiert aus zwei
+                                                                Hauptgründen:</p>
+
+                                                            <h6>1. Zu restriktive Blockierung (Ausschließende
+                                                                Keywords)</h6>
+                                                            <p><b>Das Problem:</b> Du hast zu viele oder zu weit
+                                                                gefasste
+                                                                <b>Ausschließende Keywords (Negative Keywords)</b>
+                                                                hinterlegt.
+                                                                Diese blockieren dann versehentlich Suchanfragen, die
+                                                                eigentlich
+                                                                relevant und kaufkräftig wären.</p>
+                                                            <p><b>Die Folge:</b> Die Kampagne schränkt ihre Reichweite
+                                                                unnötig
+                                                                ein, obwohl sie profitablen Traffic finden könnte.</p>
+
+                                                            <h6>2. Geringer Qualitätsfaktor (Irrelevanz)</h6>
+                                                            <p><b>Das Problem:</b> Bestimmte Keywords haben einen <b>sehr
+                                                                niedrigen Qualitätsfaktor (QS)</b>, weil deine Anzeige
+                                                                und/oder
+                                                                Landingpage irrelevant dafür sind.</p>
+                                                            <p><b>Die Folge:</b> Google verlangt extrem hohe
+                                                                Klickpreise,
+                                                                damit
+                                                                du überhaupt angezeigt wirst. Die Gebotsstrategie
+                                                                erkennt
+                                                                dies
+                                                                als unprofitabel und <b>stoppt die Auslieferung</b>, um
+                                                                das
+                                                                Budget
+                                                                nicht zu verschwenden. Die Anzeige wird quasi
+                                                                "lahmgelegt",
+                                                                da
+                                                                die Kosten für eine Auslieferung zu hoch wären, um das
+                                                                ROAS-Ziel
+                                                                zu erreichen.</p>
+
+                                                            <p class="mt-3"><b>Deine Handlungsanweisung:</b> Überprüfe
+                                                                den
+                                                                <b>Suchanfragenbericht</b> auf versehentliche Blockaden
+                                                                und
+                                                                optimiere den <b>Qualitätsfaktor</b> der
+                                                                unterperformenden
+                                                                Keywords, um die Kosten zu senken.</p>
+                                                            <img class="card-img-bottom" src="images/eingeschraenkt.png"
+                                                                 alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button class="carousel-control-prev"
+                                                type="button"
+                                                data-bs-target="#slides-with-indicators"
+                                                data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Zurück</span>
+                                        </button>
+
+                                        <button class="carousel-control-next"
+                                                type="button"
+                                                data-bs-target="#slides-with-indicators"
+                                                data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Weiter</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="perf2">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#perf2-body" aria-expanded="true"
+                                            aria-controls="perf2-body">
+                                        Deep Dive in den Qualitätsfaktor (QS): Technische Optimierung als Hebel
+                                    </button>
+                                </h2>
+                                <div id="perf2-body" class="accordion-collapse collapse" aria-labelledby="perf2"
+                                     data-bs-parent="#performance">
+                                    <div class="accordion-body">
+
+                                        <h5>QS-Komponenten und deine Befehle</h5>
+                                        <ul>
+                                            <li><b>Erwartete Klickrate (eCTR)</b>: Wie gut passen Ad-Text und Keyword
+                                                zusammen?
+                                            </li>
+                                            <li><b>Anzeigenrelevanz</b>: Wie relevant ist deine Anzeige zur Suchanfrage?
+                                            </li>
+                                            <li><b>Landingpage-Erfahrung</b>: Ladezeit, mobile Optimierung,
+                                                Inhaltspassung
+                                                zur Anzeige.
+                                            </li>
+                                        </ul>
+
+                                        <h5 class="mt-4">Deine Handlungsempfehlungen an die Agentur (technischer
+                                            Check)</h5>
+                                        <div class="card bg-transparent border-light text-light mt-3">
+                                            <div class="card-body">
+                                                <ul>
+                                                    <li>"Ladezeiten der Landingpage unter 2 Sekunden sicherstellen."
+                                                    </li>
+                                                    <li>"Mobile Usability (responsive Design) der Zielseiten prüfen."
+                                                    </li>
+                                                    <li>"Call-to-Action (CTA) in Ad und auf Landingpage
+                                                        synchronisieren."
+                                                    </li>
+                                                    <li>"Inhalte der Landingpage direkt auf beworbenes Keyword
+                                                        ausrichten."
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="bg-secondary-subtle border rounded p-3 text-muted text-center mt-3">
+                                            **🖼 Platzhalter-Grafik:** Checkliste für Landingpage-Optimierung (Ladezeit,
+                                            Mobile, CTA, Relevanz).
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="perf3">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#perf3-body" aria-expanded="true"
+                                            aria-controls="perf3-body">
+                                        Performance-Analyse: Debugge deine Kampagne mit Szenarien
+                                    </button>
+                                </h2>
+                                <div id="perf3-body" class="accordion-collapse collapse" aria-labelledby="perf3"
+                                     data-bs-parent="#performance">
+                                    <div class="accordion-body">
+
+                                        <div class="card bg-transparent border-light text-light mt-3">
+                                            <div class="card-header">
+                                                Szenario A: Hohe Klicks, niedrige Conversions (schlechte CR)
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text"><b>Potenzielles Problem</b>: Traffic kommt,
+                                                    konvertiert aber nicht (Keywords zu breit, Landingpage schlecht,
+                                                    Angebot unklar).</p>
+                                                <p class="card-text"><b>Dein Debugging-Ansatz</b>: "Suchanfragenbericht
+                                                    prüfen (Negative Keywords hinzufügen)",
+                                                    "Landingpage-Heatmaps/User-Flows anfordern", "Angebotskommunikation
+                                                    in der Ad vs. Landingpage abgleichen".</p>
+                                                <div class="bg-secondary-subtle border rounded p-3 text-muted text-center mt-3">
+                                                    **🖼 Platzhalter-Grafik:** Trichter, bei dem oben viel Traffic
+                                                    reinkommt, aber unten nur wenig rauskommt.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card bg-transparent border-light text-light mt-3">
+                                            <div class="card-header">
+                                                Szenario B: Wenige Klicks, gute Conversions (bei den wenigen Klicks)
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text"><b>Potenzielles Problem</b>: Deine Zielgruppe ist
+                                                    richtig, aber du erreichst nicht genug Leute (zu niedriges Budget,
+                                                    Gebotsstrategie limitiert).</p>
+                                                <p class="card-text"><b>Dein Debugging-Ansatz:</b> "Budgeterhöhung
+                                                    vorschlagen", "Gebotsstrategie anpassen (z.B. auf 'Klicks
+                                                    maximieren' testen)", "Anzeigenvarianten mit stärkeren CTAs
+                                                    entwickeln".</p>
+                                                <div class="bg-secondary-subtle border rounded p-3 text-muted text-center mt-3">
+                                                    **🖼 Platzhalter-Grafik:** Kleines Nadelöhr mit wenigen Klicks, aber
+                                                    einer hohen Conversion-Rate danach.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card bg-transparent border-light text-light mt-3">
+                                            <div class="card-header">
+                                                Suchanfragenbericht (SQT) als Keyword-Goldgrube
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">Hier siehst du die *echten* Suchbegriffe der User.
+                                                    Das ist entscheidend, um die Relevanz deiner Kampagne zu
+                                                    steuern.</p>
+                                                <ul>
+                                                    <li>Finde neue, profitable Keywords (Positive Keywords).</li>
+                                                    <li>Finde irrelevante Suchanfragen (Negative Keywords).</li>
+                                                </ul>
+                                                <div class="bg-secondary-subtle border rounded p-3 text-muted text-center mt-3">
+                                                    **🖼 Platzhalter-Grafik:** Tabelle mit Suchanfragen, daneben
+                                                    "Hinzufügen als Keyword" oder "Hinzufügen als Negativ-Keyword".
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="perf4">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#perf4-body" aria-expanded="true"
+                                            aria-controls="perf4-body">
+                                        Die Bid-Strategien im Detail: Wann wählst du was?
+                                    </button>
+                                </h2>
+                                <div id="perf4-body" class="accordion-collapse collapse" aria-labelledby="perf4"
+                                     data-bs-parent="#performance">
+                                    <div class="accordion-body">
+
+                                        <p>Verstehe die Logik hinter jeder Strategie und wann welche am besten greift.
+                                            Der Wechsel hängt immer von deiner <b>Datenlage</b> ab.</p>
+
+                                        <ul>
+                                            <li><b>Manuelles CPC</b>: Du hast volle Kontrolle über jeden Klickpreis. Gut
+                                                für den Start oder sehr spezielle Nischen.
+                                            </li>
+                                            <li><b>Klicks maximieren</b>: Google versucht, dir so viele Klicks wie
+                                                möglich
+                                                im Rahmen deines Budgets zu bringen. Gut für Awareness oder wenn
+                                                Conversion-Tracking fehlt.
+                                            </li>
+                                            <li><b>Conversions maximieren</b>: Google optimiert auf die meisten
+                                                Conversions. Setzt <b>stabiles Conversion-Tracking</b> voraus.
+                                            </li>
+                                            <li><b>Ziel-CPA (Cost per Acquisition)</b>: Du gibst Google einen Zielpreis
+                                                pro
+                                                Conversion vor. Ideal, wenn du deine Marge kennst.
+                                            </li>
+                                            <li><b>Ziel-ROAS (Return on Ad Spend)</b>: Du gibst Google einen Zielumsatz
+                                                pro
+                                                Werbe-Euro vor. Für E-Commerce mit klaren Umsatzzielen.
+                                            </li>
+                                        </ul>
+
+                                        <div class="bg-secondary-subtle border rounded p-3 text-muted text-center mt-3">
+                                            **🖼 Platzhalter-Grafik:** Infografik, die die Bid-Strategien und ihre
+                                            Anwendungsfälle visuell darstellt (Icons für "Klicks", "Conversions",
+                                            "Umsatz").
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
         </main>
     </div>
 </div>
@@ -149,37 +441,23 @@
     <div class="offcanvas-body">
         <ul class="list-unstyled m-0">
             <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a>
+            </li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a>
+            </li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a>
+            </li>
             <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Performance prüfen</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Performance prüfen</a>
+            </li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen
+                sollte</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="7_bonus.html">Bonus - Das aufgeräumte Konto</a></li>
         </ul>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    (function () {
-        const input = document.getElementById('glossarSearch');
-        if (!input) return;
-
-        // Alle Text-Elemente, die durchsucht werden sollen
-        const elements = document.querySelectorAll('#glossar li, #glossar p, #glossar h6, #glossar ol li');
-
-        input.addEventListener('input', function () {
-            const q = this.value.trim().toLowerCase();
-            elements.forEach(el => {
-                const text = el.textContent.toLowerCase();
-                el.style.display = text.includes(q) || q === "" ? "" : "none";
-            });
-        });
-    })();
-</script>
-
-
 
 <script>
     (() => {
