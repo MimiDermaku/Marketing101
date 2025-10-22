@@ -1,21 +1,12 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Anzeige schreiben</title>
 
-    <script>(() => {
-        const KEY = "theme";
-        const saved = localStorage.getItem(KEY);
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const initial = saved || (prefersDark ? "dark" : "light");
-        document.documentElement.setAttribute("data-bs-theme", initial);
-    })();</script>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
@@ -31,24 +22,15 @@
     </div>
 </div>
 
+
 <div class="container-fluid mt-3">
     <div class="row">
         <main class="col-12">
-
-            <div class="container mt-3 d-flex justify-content-end">
-                <div class="form-check form-switch m-0">
-                    <input class="form-check-input" type="checkbox" id="themeSwitch" role="switch">
-                    <label class="form-check-label" for="themeSwitch">
-                        <span id="themeIcon">🌙</span>
-                    </label>
-                </div>
-            </div>
 
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-8 p-4">
                     <h2 class="mb-3">Ads Texting: Die Kunst der Klick-Magie</h2>
                     <div class="accordion" id="campaign">
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp1">
                                 <button
@@ -93,10 +75,11 @@
                                     <p>Das ist der <b>Anker</b> der Ad. Er stellt die Verbindung zur Suchanfrage des
                                         Nutzers her.</p>
                                     <p><b>Pflicht:</b> Er enthält das primäre Keyword/Thema und einen klaren
-                                        Call-to-Action (CTA<i class="bi bi-info-circle text-secondary ms-1"
-                                                              data-bs-toggle="tooltip"
-                                                              data-bs-title="CTA (Call to Action):
-Aufforderung zum Handeln – z. B. „Jetzt kaufen“ oder „Angebot anfordern“."></i>).</p>
+                                        Call-to-Action (CTA
+                                        <i class="bi bi-info-circle text-secondary ms-1"
+                                           data-bs-toggle="tooltip"
+                                           data-bs-title="CTA (Call to Action): Aufforderung zum Handeln – z. B. „Jetzt kaufen“ oder „Angebot anfordern“."></i>).
+                                    </p>
 
                                     <!-- TABELLE 1: Keyword-Trigger -->
                                     <table class="table table-striped table-bordered mt-3 mx-auto">
@@ -210,7 +193,7 @@ Aufforderung zum Handeln – z. B. „Jetzt kaufen“ oder „Angebot anfordern�
                                         </tbody>
                                     </table>
 
-                                    <p><b><u>Info:</u></b> Google mischt diese Headlines durch - Je mehr gute Varianten
+                                    <p><b><u>Info:</u></b> Google mischt diese Headlines durch – je mehr gute Varianten
                                         du anbietest, desto besser kann die KI die perfekte Kombination für den
                                         jeweiligen Nutzer finden.</p>
                                 </div>
@@ -233,14 +216,10 @@ Aufforderung zum Handeln – z. B. „Jetzt kaufen“ oder „Angebot anfordern�
                                  data-bs-parent="#campaign">
                                 <div class="accordion-body">
 
-                                    <h6>Description-Assets: Der Codeblock für edine Ad (Max. 4 Zeilen, je 90
-                                        Zeichen)</h6>
+                                    <h6>Description-Assets: Der Codeblock für edine Ad (Max. 4 Zeilen, je 90 Zeichen)</h6>
                                     <p>Die Description-Zeilen (&lt;description&gt; Tags) sind dein Raum für das <b>Feature-Set</b>
-                                        deiner Anzeige.
-                                        Sie müssen flüssig, überzeugend und immer mit einem klaren Ziel formuliert sein.
-                                    </p>
-                                    <p><b>Die goldene Regel:</b> Nutze 1x Nutzerversprechen (<i>Feature</i>) + 1x
-                                        Call-to-Action (<i>Action</i>) pro Zeile.</p>
+                                        deiner Anzeige. Sie müssen flüssig, überzeugend und immer mit einem klaren Ziel formuliert sein.</p>
+                                    <p><b>Die goldene Regel:</b> Nutze 1x Nutzerversprechen (<i>Feature</i>) + 1x Call-to-Action (<i>Action</i>) pro Zeile.</p>
                                     <h6>1. Beschreibungstexte (Fluid & Feature-Driven)</h6>
                                     <p>Hier sind optimierte Beispiele, die diesen Doppel-Fokus anwenden:</p>
 
@@ -487,16 +466,14 @@ Aufforderung zum Handeln – z. B. „Jetzt kaufen“ oder „Angebot anfordern�
                                                                 <td class="text-center">Google belohnt dich, weil die
                                                                     Anzeige relevanter und informativer ist.
                                                                 </td>
-                                                                <td class="text-center"><code>Quality_Score++</code>
-                                                                </td>
+                                                                <td class="text-center"><code>Quality_Score++</code></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-center">Positionierung</td>
                                                                 <td class="text-center">Bessere Anzeigenposition bei
                                                                     gleichem Gebot.
                                                                 </td>
-                                                                <td class="text-center">
-                                                                    <code>Ranking_Position.UP()</code></td>
+                                                                <td class="text-center"><code>Ranking_Position.UP()</code></td>
                                                             </tr>
                                                             <tr>
                                                                 <td class="text-center">Bessere CTR</td>
@@ -537,9 +514,9 @@ IF (Product.status == "OUT_OF_STOCK") {
                                 </div> <!-- collapse -->
                             </div> <!-- accordion-item -->
                         </div>
-
                     </div>
                 </div>
+            </div>
         </main>
     </div>
 </div>
@@ -552,17 +529,12 @@ IF (Product.status == "OUT_OF_STOCK") {
     <div class="offcanvas-body">
         <ul class="list-unstyled m-0">
             <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a>
-            </li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a>
-            </li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a>
-            </li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Performance prüfen</a>
-            </li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen
-                sollte</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_pruefen.html">Performance prüfen</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="7_bonus.html">Bonus - Das aufgeräumte Konto</a></li>
         </ul>
     </div>
@@ -573,28 +545,6 @@ IF (Product.status == "OUT_OF_STOCK") {
     document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el=>{
         new bootstrap.Tooltip(el);
     });
-</script>
-<script>
-    (() => {
-        const KEY = "theme";
-        const root = document.documentElement;
-        const sw = document.getElementById("themeSwitch");
-        const icon = document.getElementById("themeIcon");
-        if (!sw) return;
-
-        // Startzustand setzen
-        const isDark = root.getAttribute("data-bs-theme") === "dark";
-        sw.checked = isDark;
-        icon.textContent = isDark ? "🌙" : "🌞";
-
-        // Umschalten + merken
-        sw.addEventListener("change", () => {
-            const mode = sw.checked ? "dark" : "light";
-            root.setAttribute("data-bs-theme", mode);
-            localStorage.setItem(KEY, mode);
-            icon.textContent = mode === "dark" ? "🌙" : "🌞";
-        });
-    })();
 </script>
 
 </body>

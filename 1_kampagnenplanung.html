@@ -1,5 +1,86 @@
 <!DOCTYPE html>
 <html lang="de" data-bs-theme="dark">
+<script>
+    (() => {
+        // Pro Seite eigener Key (Fortschritt nur innerhalb des aktuellen Kapitels)
+        const PAGEKEY = 'ads101_sections_' + (decodeURIComponent(location.pathname.split('/').pop() || 'index.html').toLowerCase());
+
+        // Welche Abschnitte zählen?
+        // -> Alle .accordion-collapse mit ID im sichtbaren Hauptbereich
+        const main = document.querySelector('main') || document;
+        const panels = [...main.querySelectorAll('.accordion .accordion-collapse[id]')];
+
+        // Fallback: wenn nix gefunden wurde, sauber abbrechen
+        if (!panels.length) return;
+
+        // Reihenfolge + Labels (Heading-Text, wenn vorhanden)
+        const sections = panels.map(p => {
+            // Heading-Text finden: das nächste .accordion-header davor
+            let label = '';
+            const header = p.parentElement?.querySelector('.accordion-header');
+            if (header) label = header.textContent.trim().replace(/\s+/g,' ');
+            return { id: p.id, el: p, label };
+        });
+
+        // Gelesene Abschnitte laden + auf aktuelle Seite filtern
+        const saved = JSON.parse(localStorage.getItem(PAGEKEY) || '[]');
+        const visited = new Set(saved.filter(id => sections.some(s => s.id === id)));
+
+        // UI-Elemente
+        const dotsWrap = document.getElementById('spDots');
+        const countEl  = document.getElementById('spCount');
+
+        function updateUI(){
+            const total = sections.length;
+            const done  = [...visited].length;
+            if (countEl) countEl.textContent = `${done}/${total}`;
+
+            if (dotsWrap) {
+                dotsWrap.innerHTML = '';
+                sections.forEach((s, i) => {
+                    const dot = document.createElement('span');
+                    dot.className = 'dot d-block' + (visited.has(s.id) ? ' done' : '');
+                    dot.title = `${i+1}/${total}${s.label ? ' – '+s.label : ''}`;
+                    dot.tabIndex = 0; // erreichbar per Tastatur
+                    // Klick auf Punkt -> zu Abschnitt scrollen
+                    dot.addEventListener('click', () => {
+                        const target = document.getElementById(s.id);
+                        if (target) {
+                            const acc = new bootstrap.Collapse(target, { toggle: true });
+                            target.addEventListener('shown.bs.collapse', () => {
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, { once: true });
+                        }
+                    });
+                    dotsWrap.appendChild(dot);
+                });
+            }
+        }
+
+        function save(){
+            localStorage.setItem(PAGEKEY, JSON.stringify([...visited]));
+        }
+
+        // Wenn ein Panel geöffnet wird -> als "gesehen" markieren
+        panels.forEach(p => {
+            p.addEventListener('shown.bs.collapse', () => {
+                visited.add(p.id);
+                save();
+                updateUI();
+            });
+        });
+
+        // Falls beim Laden schon etwas offen ist (z.B. erste Section), sofort zählen
+        panels.forEach(p => { if (p.classList.contains('show')) visited.add(p.id); });
+        save();
+        updateUI();
+
+        // Optional: Reset-Helfer im Debug (einfach auskommentieren, wenn nicht gewünscht)
+        // window.resetSectionProgress = () => { localStorage.removeItem(PAGEKEY); location.reload(); };
+
+    })();
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +106,6 @@
 <div class="container-fluid mt-3">
     <div class="row">
         <main class="col-12">
-
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-8 p-4">
                     <h2 class="mb-3">Ads Control: Der Bauplan für Kampagnen</h2>
@@ -70,7 +150,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp2">
                                 <button
@@ -189,7 +268,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp3">
                                 <button
@@ -231,7 +309,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp4">
                                 <button
@@ -274,7 +351,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp5">
                                 <button
@@ -313,7 +389,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp6">
                                 <button
@@ -345,7 +420,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp7">
                                 <button
@@ -378,7 +452,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp8">
                                 <button
@@ -412,7 +485,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp9">
                                 <button
@@ -447,7 +519,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp10">
                                 <button
@@ -481,7 +552,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp11">
                                 <button
@@ -516,7 +586,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="camp12">
                                 <button
@@ -556,11 +625,9 @@
                                 </div>
                             </div>
                         </div>
-
-                    </div> <!-- /#campaign -->
+                    </div>
                 </div>
             </div>
-
         </main>
     </div>
 </div>
@@ -577,7 +644,7 @@
             <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Performance prüfen</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_pruefen.html">Performance prüfen</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="7_bonus.html">Bonus - Das aufgeräumte Konto</a></li>
         </ul>
