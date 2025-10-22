@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Performance überprüfen</title>
+    <script>(() => {
+        const KEY = "theme";
+        const saved = localStorage.getItem(KEY);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initial = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-bs-theme", initial);
+    })();</script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="bg-tertiary p-2 sticky-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <button class="btn btn-outline-secondary btn-sm"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#mobileSidebar"
+                aria-controls="mobileSidebar">
+            <i class="bi bi-list"></i> Menü
+        </button>
+    </div>
+</div>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <main class="col-12">
+            <div class="container mt-3 d-flex justify-content-end">
+                <div class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" id="themeSwitch" role="switch">
+                    <label class="form-check-label" for="themeSwitch">
+                        <span id="themeIcon">🌙</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-8 p-4">
+                    <h2 class="mb-3">Performance prüfen: Schluss mit Fragezeichen!</h2>
+                    <p>Dieser Abschnitt zeigt, wie du Kampagnendaten liest, Probleme erkennst und gezielte Anweisungen
+                        zur Optimierung ableiten kannst. Schluss mit blindem Vertrauen – jetzt übernimmst du die
+                        Kontrolle!</p>
+
+                    <div class="accordion" id="performance">
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="perf1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#perf1-body" aria-expanded="true" aria-controls="perf1-body">
+                                    Dein Performance-Dashboard: Die wichtigsten Kennzahlen interpretieren
+                                </button>
+                            </h2>
+                            <div id="perf1-body" class="accordion-collapse collapse" aria-labelledby="perf1"
+                                 data-bs-parent="#performance">
+                                <div class="accordion-body">
+
+                                    <div class="row g-3 align-items-stretch">
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="card bg-transparent border-light h-100">
+                                                <div class="card-header">Conversion Rate (CR): Der Effizienz-Monitor
+                                                </div>
+                                                <div class="card-body d-flex flex-column">
+                                                    <p class="card-text">
+                                                        Die CR misst die Effizienz deiner Landingpage und Ad-Relevanz.
+                                                        Bei niedriger CR: "Landingpage optimieren" oder "Anzeigentexte
+                                                        auf Relevanz prüfen".
+                                                    </p>
+                                                    <div class="mt-auto">
+                                                        <img class="img-fluid rounded" src="images/cr_down.png"
+                                                             alt="CR-Beispiel">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="card bg-transparent border-light h-100">
+                                                <div class="card-header">Qualitätsfaktor (QS): Googles Qualitäts-Ranking
+                                                    verstehen
+                                                </div>
+                                                <div class="card-body d-flex flex-column">
+                                                    <p class="card-text">
+                                                        Hoher QS spart Geld und verbessert die Position.
+                                                        Bei niedrigem QS: "Keyword-Relevanz zum Ad-Text erhöhen" oder
+                                                        "Landingpage auf Nutzererfahrung prüfen".
+                                                    </p>
+                                                    <div class="mt-auto">
+                                                        <img class="img-fluid rounded" src="images/quality_score.png"
+                                                             alt="Quality Score">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-12 col-lg-4">
+                                            <div class="card bg-transparent border-light h-100">
+                                                <div class="card-header">ROAS / CPA: Der finanzielle Return</div>
+                                                <div class="card-body d-flex flex-column">
+                                                    <p class="card-text">
+                                                        Direkter Indikator für Rentabilität. Bei schlechtem ROAS/hohem
+                                                        CPA:
+                                                        "Budget neu verteilen" oder "Gebotsstrategie anpassen".
+                                                    </p>
+                                                    <div class="mt-auto">
+                                                        <img class="img-fluid rounded" src="images/roas.png"
+                                                             alt="ROAS/CPA">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-3 mt-1">
+                                        <div class="col-12">
+                                            <div class="card bg-transparent border-danger">
+                                                <div class="card-header border-danger">
+                                                    <b><u>Wichtiger Tipp</u></b>: Warum Anzeigen lahmgelegt werden
+                                                    (Low-Impression-Keywords)
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="card-text">
+                                                        Wenn dein ROAS oder CPA mies ist, kann’s schnell passieren, dass
+                                                        Google einfach aufhört,
+                                                        deine Anzeigen für bestimmte Keywords auszuspielen. Meist steckt
+                                                        kein böser Wille dahinter –
+                                                        sondern einer dieser Klassiker:
+                                                    </p>
+
+                                                    <h6 class="mt-2">1. Zu restriktive Blockierung (Ausschließende
+                                                        Keywords)</h6>
+                                                    <p><b>Problem:</b> Du hast’s mit den <i>Negative Keywords</i> zu gut
+                                                        gemeint.</p>
+                                                    <p><b>Folge:</b> Relevante Suchanfragen fliegen mit raus –
+                                                        Reichweite geht baden.</p>
+
+                                                    <h6 class="mt-2">2. Geringer Qualitätsfaktor (Irrelevanz)</h6>
+                                                    <p><b>Problem:</b> Google merkt, dass Anzeige und Landingpage nicht
+                                                        so richtig zum Keyword passen.</p>
+                                                    <p><b>Folge:</b> Der Qualitätsfaktor sinkt, Klickpreise steigen –
+                                                        und die automatische Strategie winkt ab:
+                                                        <i>„Zu teuer, kein Bock.“</i>
+                                                    </p>
+
+                                                    <h6 class="mt-2">3. Eingeschränkte Auslieferung (Richtlinien &
+                                                        Sensibilitätsthemen)</h6>
+                                                    <p><b>Problem:</b> Manche Keywords triggert Google gar nicht erst –
+                                                        z. B. bei Themen rund um Gewalt, Waffen,
+                                                        Sexualität oder anderen „heiklen“ Begriffen.</p>
+                                                    <p><b>Folge:</b> Die Anzeigen werden stillschweigend eingeschränkt
+                                                        oder komplett blockiert – egal, wie gut dein Setup ist.</p>
+                                                    <p><b>Tipp:</b> Im Konto prüfen, ob das Keyword als <i>„Eingeschränkt“</i>
+                                                        oder <i>„Abgelehnt“</i> markiert ist.
+                                                        Wenn ja: leicht umformulieren oder Kontext klarer machen,
+                                                        damit’s wieder durch die Richtlinienprüfung flutscht.
+                                                    </p>
+
+                                                    <p class="mt-3">
+                                                        <b>Deine Handlungsanweisung:</b> Suchanfragenbericht prüfen
+                                                        (versehentliche Blockaden),
+                                                        QS der schwachen Keywords optimieren (Kosten senken) und
+                                                        Richtlinien-Hinweise bei sensiblen Begriffen beachten.
+                                                    </p>
+
+
+                                                    <img class="img-fluid rounded" src="images/eingeschraenkt.png"
+                                                         alt="Eingeschränkte Auslieferung">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="perf2">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#perf2-body" aria-expanded="true"
+                                        aria-controls="perf2-body">
+                                    Deep Dive in den Qualitätsfaktor (QS): Technische Optimierung als Hebel
+                                </button>
+                            </h2>
+                            <div id="perf2-body" class="accordion-collapse collapse" aria-labelledby="perf2"
+                                 data-bs-parent="#performance">
+                                <div class="accordion-body">
+
+                                    <h5>QS-Komponenten und deine Befehle</h5>
+                                    <ul>
+                                        <li><b>Erwartete Klickrate (eCTR)</b>: Wie gut passen Ad-Text und Keyword
+                                            zusammen?
+                                        </li>
+                                        <li><b>Anzeigenrelevanz</b>: Wie relevant ist deine Anzeige zur Suchanfrage?
+                                        </li>
+                                        <li><b>Landingpage-Erfahrung</b>: Ladezeit, mobile Optimierung,
+                                            Inhaltspassung zur Anzeige.
+                                        </li>
+                                    </ul>
+
+                                    <h5 class="mt-4">Deine Handlungsempfehlungen (technischer Check)</h5>
+                                    <div class="card bg-transparent border-light mt-3">
+                                        <div class="card-body">
+                                            <ul>
+                                                <li>"Ladezeiten der Landingpage unter 2 Sekunden sicherstellen."
+                                                </li>
+                                                <li>"Mobile Usability (responsive Design) der Zielseiten prüfen."
+                                                </li>
+                                                <li>"Call-to-Action (CTA) in Ad und auf Landingpage
+                                                    synchronisieren."
+                                                </li>
+                                                <li>"Inhalte der Landingpage direkt auf beworbenes Keyword
+                                                    ausrichten."
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- Interaktive Checkliste statt Platzhalter -->
+                                    <div class="card mt-3" id="lpCheckliste">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Checkliste für Landingpage-Optimierung</h5>
+                                            <p class="text-muted mb-3">Ladezeit • Mobile • CTA • Relevanz</p>
+                                            <p>Hier kannst du den Fortschritt deiner Optimierung eintragen und
+                                                exportieren, oder die leere Checkliste herunterladen!</p>
+
+                                            <div id="checklist" class="row g-3">
+
+                                                <!-- 1. LADEZEIT -->
+                                                <div class="col-md-6">
+                                                    <div class="border rounded p-3 h-100">
+                                                        <h6>Ladezeit (Pagespeed)</h6>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="lz1"><label for="lz1"
+                                                                                                       class="form-check-label">Gesamt-Ladezeit
+                                                            unter 3 Sekunden (ideal &lt; 2s)</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="lz2"><label for="lz2"
+                                                                                                       class="form-check-label">Bilder
+                                                            & Videos komprimieren (WebP/AVIF)</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="lz3"><label for="lz3"
+                                                                                                       class="form-check-label">Browser-Caching
+                                                            aktivieren</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="lz4"><label for="lz4"
+                                                                                                       class="form-check-label">Unnötigen
+                                                            Code/Skripte reduzieren</label></div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- 2. MOBILE -->
+                                                <div class="col-md-6">
+                                                    <div class="border rounded p-3 h-100">
+                                                        <h6>Mobile Optimierung</h6>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="mo1"><label for="mo1"
+                                                                                                       class="form-check-label">Responsive
+                                                            Design auf allen Geräten</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="mo2"><label for="mo2"
+                                                                                                       class="form-check-label">Große,
+                                                            klickbare CTA-Buttons</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="mo3"><label for="mo3"
+                                                                                                       class="form-check-label">Gute
+                                                            Lesbarkeit ohne Zoomen</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="mo4"><label for="mo4"
+                                                                                                       class="form-check-label">Formulare
+                                                            mobilfreundlich</label></div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- 3. CTA -->
+                                                <div class="col-md-6">
+                                                    <div class="border rounded p-3 h-100">
+                                                        <h6>Call-to-Action (CTA)</h6>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="cta1"><label for="cta1"
+                                                                                                        class="form-check-label">Klarer,
+                                                            handlungsorientierter CTA-Text</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="cta2"><label for="cta2"
+                                                                                                        class="form-check-label">Kontrastreiche
+                                                            Button-Farbe</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="cta3"><label for="cta3"
+                                                                                                        class="form-check-label">Optimale
+                                                            Platzierung (Above the Fold)</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="cta4"><label for="cta4"
+                                                                                                        class="form-check-label">Nur
+                                                            eine klare Handlung pro Seite</label></div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- 4. RELEVANZ -->
+                                                <div class="col-md-6">
+                                                    <div class="border rounded p-3 h-100">
+                                                        <h6>Relevanz & Inhalt</h6>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="ri1"><label for="ri1"
+                                                                                                       class="form-check-label">Konsistenz
+                                                            zwischen Anzeige und Landingpage</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="ri2"><label for="ri2"
+                                                                                                       class="form-check-label">Übersichtliche,
+                                                            nutzerzentrierte Struktur</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="ri3"><label for="ri3"
+                                                                                                       class="form-check-label">Trust-Elemente
+                                                            (Siegel, Testimonials)</label></div>
+                                                        <div class="form-check"><input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       id="ri4"><label for="ri4"
+                                                                                                       class="form-check-label">Klare
+                                                            Kommunikation des Mehrwerts</label></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-4 text-center">
+                                                <button class="btn btn-primary me-2" id="downloadCsv">CSV
+                                                    herunterladen
+                                                </button>
+                                                <button class="btn btn-outline-secondary" id="reset">Zurücksetzen
+                                                </button>
+                                                <div class="text-muted small mt-2" id="statusText"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <script>
+                                        (() => {
+                                            const checklist = document.getElementById('checklist');
+                                            const btnCsv = document.getElementById('downloadCsv');
+                                            const btnReset = document.getElementById('reset');
+                                            const status = document.getElementById('statusText');
+
+                                            function allItems() {
+                                                const items = [...checklist.querySelectorAll('.form-check')];
+                                                return items.map(it => {
+                                                    const cat = it.closest('.border')?.querySelector('h6')?.innerText.trim() || '';
+                                                    const label = it.querySelector('label')?.innerText.trim() || '';
+                                                    const checked = it.querySelector('input')?.checked;
+                                                    return {
+                                                        category: cat,
+                                                        text: label,
+                                                        status: checked ? 'erledigt' : 'offen'
+                                                    };
+                                                });
+                                            }
+
+                                            function toCSV(rows) {
+                                                const header = ['Kategorie', 'Aufgabe', 'Status', 'Exportzeit'];
+                                                const now = new Date().toISOString();
+                                                const lines = [header.join(';')];
+                                                rows.forEach(r => {
+                                                    const vals = [r.category, r.text, r.status, now].map(v => `"${String(v).replace(/"/g, '""')}"`);
+                                                    lines.push(vals.join(';'));
+                                                });
+                                                return lines.join('\r\n');
+                                            }
+
+                                            function download(name, content) {
+                                                const blob = new Blob([content], {type: 'text/csv;charset=utf-8;'});
+                                                const url = URL.createObjectURL(blob);
+                                                const a = document.createElement('a');
+                                                a.href = url;
+                                                a.download = name;
+                                                document.body.appendChild(a);
+                                                a.click();
+                                                setTimeout(() => {
+                                                    URL.revokeObjectURL(url);
+                                                    a.remove();
+                                                }, 0);
+                                            }
+
+                                            checklist.addEventListener('change', () => updateStatus());
+                                            btnCsv.addEventListener('click', () => {
+                                                const rows = allItems();
+                                                const csv = toCSV(rows);
+                                                download('landingpage_checkliste.csv', csv);
+                                            });
+                                            btnReset.addEventListener('click', () => {
+                                                checklist.querySelectorAll('input[type=checkbox]').forEach(i => i.checked = false);
+                                                updateStatus();
+                                            });
+
+                                            function updateStatus() {
+                                                const all = checklist.querySelectorAll('input[type=checkbox]');
+                                                const done = [...all].filter(i => i.checked).length;
+                                                status.textContent = `${done}/${all.length} erledigt`;
+                                            }
+
+                                            updateStatus();
+                                        })();
+                                    </script>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="perf3">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#perf3-body" aria-expanded="true"
+                                        aria-controls="perf3-body">
+                                    Performance-Analyse: Debugge deine Kampagne
+                                </button>
+                            </h2>
+                            <div id="perf3-body" class="accordion-collapse collapse" aria-labelledby="perf3"
+                                 data-bs-parent="#performance">
+                                <div class="accordion-body">
+
+
+                                    <div class="row g-3 align-items-stretch">
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="card bg-transparent border-light h-100">
+                                                <div class="card-header">Hohe Klicks, niedrige
+                                                    Conversions (schlechte CR)
+                                                </div>
+                                                <div class="card-body d-flex flex-column">
+                                                    <p class="card-text">
+                                                    <p class="card-text"><b>Potenzielles Problem:</b> Traffic kommt,
+                                                        konvertiert aber nicht (Keywords zu breit, Landingpage
+                                                        schlecht, Angebot unklar).</p>
+                                                    <p class="card-text"><b>Debugging-Ansatz:</b>
+                                                        "Suchanfragenbericht prüfen (Negative Keywords hinzufügen)",
+                                                        "Landingpage-Heatmaps/User-Flows anfordern",
+                                                        "Angebotskommunikation in der Ad vs. Landingpage
+                                                        abgleichen".</p>
+                                                    </p>
+
+                                                </div>
+                                                <img class="card-img-bottom img-fluid" src="images/trichter.png"
+                                                     alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="card bg-transparent border-light h-100">
+                                                <div class="card-header">Wenige Klicks, gute
+                                                    Conversions
+                                                </div>
+                                                <div class="card-body d-flex flex-column">
+                                                    <p class="card-text"><b>Potenzielles Problem:</b> Zielgruppe
+                                                        passt, aber zu wenig Reichweite (Budget zu klein, Strategie
+                                                        limitiert).</p>
+                                                    <p class="card-text"><b>Debugging-Ansatz:</b> "Budgeterhöhung
+                                                        vorschlagen", "Gebotsstrategie anpassen (z. B. Klicks
+                                                        maximieren)", "Anzeigenvarianten mit stärkeren CTAs
+                                                        entwickeln".</p>
+                                                    </p>
+                                                </div>
+                                                <img class="card-img-bottom img-fluid" src="images/good_cr.png" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-12 col-lg-4">
+                                            <div class="card bg-transparent border-light h-100">
+                                                <div class="card-header">Suchanfragenbericht (Search Query Report) als
+                                                    Keyword-Goldgrube
+                                                </div>
+                                                <div class="card-body d-flex flex-column">
+                                                    <p class="card-text">
+                                                        Hier siehst du die echten Suchbegriffe der User. Das ist
+                                                        entscheidend, um die Relevanz deiner Kampagne zu
+                                                        steuern.</p>
+                                                    <ul>
+                                                        <li>Finde neue, profitable Keywords (Positive Keywords).
+                                                        </li>
+                                                        <li>Finde irrelevante Suchanfragen (Negative Keywords).</li>
+                                                        </p>
+
+                                                    </ul>
+                                                </div>
+                                                <img class="card-img-bottom img-fluid" src="images/sqr.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="perf4">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#perf4-body" aria-expanded="true"
+                                        aria-controls="perf4-body">
+                                    Die Bid-Strategien im Detail: Wann wählst du was?
+                                </button>
+                            </h2>
+                            <div id="perf4-body" class="accordion-collapse collapse" aria-labelledby="perf4"
+                                 data-bs-parent="#performance">
+                                <div class="accordion-body">
+                                    <p>Verstehe die Logik hinter jeder Strategie und wann welche am besten
+                                        greift.
+                                        Der
+                                        Wechsel hängt immer von deiner <b>Datenlage</b> ab.</p>
+                                    <ul>
+                                        <li><b>Manuelles CPC:</b> volle Kontrolle über jeden Klickpreis – gut
+                                            für
+                                            den
+                                            Start oder Nischen.
+                                        </li>
+                                        <li><b>Klicks maximieren:</b> Google bringt so viele Klicks wie möglich
+                                            im
+                                            Budgetrahmen – gut für Awareness oder ohne Tracking.
+                                        </li>
+                                        <li><b>Conversions maximieren:</b> optimiert auf die meisten Conversions
+                                            –
+                                            erfordert stabiles Tracking.
+                                        </li>
+                                        <li><b>Ziel-CPA:</b> du gibst einen Zielpreis pro Conversion vor –
+                                            ideal,
+                                            wenn
+                                            du deine Marge kennst.
+                                        </li>
+                                        <li><b>Ziel-ROAS:</b> du gibst Google einen Zielumsatz pro Werbe-Euro
+                                            vor –
+                                            ideal für E-Commerce.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <img class="img-fluid" src="images/bid_strategie.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+        </main>
+    </div>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="mobileSidebarLabel">Navigation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Schließen"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="list-unstyled m-0">
+            <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a>
+            </li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a>
+            </li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a>
+            </li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_prüfen.html">Performance prüfen</a>
+            </li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen
+                sollte</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="7_bonus.html">Bonus - Das aufgeräumte Konto</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    (() => {
+        const KEY = "theme";
+        const root = document.documentElement;
+        const sw = document.getElementById("themeSwitch");
+        const icon = document.getElementById("themeIcon");
+        if (!sw) return;
+        const isDark = root.getAttribute("data-bs-theme") === "dark";
+        sw.checked = isDark;
+        icon.textContent = isDark ? "🌙" : "🌞";
+        sw.addEventListener("change", () => {
+            const mode = sw.checked ? "dark" : "light";
+            root.setAttribute("data-bs-theme", mode);
+            localStorage.setItem(KEY, mode);
+            icon.textContent = mode === "dark" ? "🌙" : "🌞";
+        });
+    })();
+</script>
+
+</body>
+</html>

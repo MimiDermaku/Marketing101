@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="de" data-bs-theme="dark">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Goals tracken</title>
 
+    <script>(() => {
+        const KEY = "theme";
+        const saved = localStorage.getItem(KEY);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initial = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-bs-theme", initial);
+    })();</script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 
@@ -25,6 +34,15 @@
 <div class="container-fluid mt-3">
     <div class="row">
         <main class="col-12">
+
+            <div class="container mt-3 d-flex justify-content-end">
+                <div class="form-check form-switch m-0">
+                    <input class="form-check-input" type="checkbox" id="themeSwitch" role="switch">
+                    <label class="form-check-label" for="themeSwitch">
+                        <span id="themeIcon">🌙</span>
+                    </label>
+                </div>
+            </div>
 
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-8 p-4">
@@ -46,11 +64,10 @@
                                     <h5 class="mt-3">Das Setup: Der 3-Wege-Handshake</h5>
                                     <p>Damit das Tracking korrekt und DSGVO-konform läuft, brauchst du drei Komponenten:</p>
                                     <ol>
-                                        <li><b>Google Ads</b>: Hier definierst du die "Ziele" (Conversions
-                                            <i class="bi bi-info-circle text-secondary ms-1"
-                                               data-bs-toggle="tooltip"
-                                               data-bs-title="Conversions: Zielaktionen von Nutzern – z. B. Kauf, Anmeldung oder Anfrage – die den Erfolg einer Kampagne messbar machen."></i>).
-                                        </li>
+                                        <li><b>Google Ads</b>: Hier definierst du die "Ziele" (Conversions<i class="bi bi-info-circle text-secondary ms-1"
+                                                                                                             data-bs-toggle="tooltip"
+                                                                                                             data-bs-title="Conversions:
+Zielaktionen von Nutzern – z. B. Kauf, Anmeldung oder Anfrage – die den Erfolg einer Kampagne messbar machen."></i>).</li>
                                         <li><b>Google Tag Manager (GTM)</b>: Dein zentraler Code-Verwaltungs-Container.</li>
                                         <li><b>Consent-Management-Plattform (CMP/Cookie Banner)</b>: Feuert Tags nur, wenn die Erlaubnis vorliegt (Consent).</li>
                                     </ol>
@@ -79,11 +96,10 @@
                                         </tr>
                                         <tr>
                                             <td>Code-Check</td>
-                                            <td>Überprüfe im Backend, dass der Consent Mode <b>enabled</b> ist, damit Ads-Conversions
-                                                <i class="bi bi-info-circle text-secondary ms-1"
-                                                   data-bs-toggle="tooltip"
-                                                   data-bs-title="Conversions: Zielaktionen von Nutzern – z. B. Kauf, Anmeldung oder Anfrage – die den Erfolg einer Kampagne messbar machen."></i>
-                                                nur bei explizitem <b>Marketing-Consent</b> gezählt werden.</td>
+                                            <td>Überprüfe im Backend, dass der Consent Mode <b>enabled</b> ist, damit Ads-Conversions<i class="bi bi-info-circle text-secondary ms-1"
+                                                                                                                                        data-bs-toggle="tooltip"
+                                                                                                                                        data-bs-title="Conversions:
+Zielaktionen von Nutzern – z. B. Kauf, Anmeldung oder Anfrage – die den Erfolg einer Kampagne messbar machen."></i> nur bei explizitem <b>Marketing-Consent</b> gezählt werden.</td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -130,13 +146,10 @@
                                     <h5 class="mt-4">B. Erweiterte Optimierung</h5>
                                     <ul>
                                         <li><b>Attribution:</b> Wähle <b>Datengetrieben</b>. Google verteilt den Conversion-Wert automatisch auf alle relevanten Klicks.</li>
-                                        <li><b>Soft Conversions
-                                            <i class="bi bi-info-circle text-secondary ms-1"
-                                               data-bs-toggle="tooltip"
-                                               data-bs-title="Conversions: Zielaktionen von Nutzern – z. B. Kauf, Anmeldung oder Anfrage – die den Erfolg einer Kampagne messbar machen."></i> (Sekundäre Aktion):</b>
-                                            Tracke hochwertige Interaktionen (<code>1 Min Engagement</code>, <code>Buttonklicks</code>).
-                                            <b><u>ACHTUNG</u></b>: Nur als <b>Sekundäre Aktion</b> einstellen, um die Hauptoptimierung nicht zu verwässern.
-                                        </li>
+                                        <li><b>Soft Conversions<i class="bi bi-info-circle text-secondary ms-1"
+                                                                  data-bs-toggle="tooltip"
+                                                                  data-bs-title="Conversions:
+Zielaktionen von Nutzern – z. B. Kauf, Anmeldung oder Anfrage – die den Erfolg einer Kampagne messbar machen."></i> (Sekundäre Aktion):</b> Tracke hochwertige Interaktionen (<code>1 Min Engagement</code>, <code>Buttonklicks</code>). <b><u>ACHTUNG</u></b>: Nur als <b>Sekundäre Aktion</b> einstellen, um die Hauptoptimierung nicht zu verwässern.</li>
                                     </ul>
 
                                 </div>
@@ -187,19 +200,17 @@
                                     <h5 class="mt-4">2. Tags verknüpfen & Debuggen</h5>
                                     <ul>
                                         <li>Verknüpfe den erstellten <b>Trigger</b> mit dem <b>Google Ads Conversion Tag</b> (hinterlege ID und Label).</li>
-                                        <li><b>Finaler Check:</b> Teste alle Conversions
-                                            <i class="bi bi-info-circle text-secondary ms-1"
-                                               data-bs-toggle="tooltip"
-                                               data-bs-title="Conversions: Zielaktionen von Nutzern – z. B. Kauf, Anmeldung oder Anfrage – die den Erfolg einer Kampagne messbar machen."></i>
-                                            im <b>Vorschaumodus</b>, um sicherzustellen, dass die Tags korrekt auslösen, bevor du den GTM <b>veröffentlichst</b>.
-                                        </li>
+                                        <li><b>Finaler Check:</b> Teste alle Conversions<i class="bi bi-info-circle text-secondary ms-1"
+                                                                                           data-bs-toggle="tooltip"
+                                                                                           data-bs-title="Conversions:
+Zielaktionen von Nutzern – z. B. Kauf, Anmeldung oder Anfrage – die den Erfolg einer Kampagne messbar machen."></i> im <b>Vorschaumodus</b>, um sicherzustellen, dass die Tags korrekt auslösen, bevor du den GTM <b>veröffentlichst</b>.</li>
                                     </ul>
 
                                 </div>
                             </div>
                         </div>
 
-                    </div> <!-- /#goals -->
+                    </div>
                 </div>
             </div>
 
@@ -231,6 +242,28 @@
     document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el=>{
         new bootstrap.Tooltip(el);
     });
+</script>
+<script>
+    (() => {
+        const KEY = "theme";
+        const root = document.documentElement;
+        const sw = document.getElementById("themeSwitch");
+        const icon = document.getElementById("themeIcon");
+        if (!sw) return;
+
+        // Startzustand setzen
+        const isDark = root.getAttribute("data-bs-theme") === "dark";
+        sw.checked = isDark;
+        icon.textContent = isDark ? "🌙" : "🌞";
+
+        // Umschalten + merken
+        sw.addEventListener("change", () => {
+            const mode = sw.checked ? "dark" : "light";
+            root.setAttribute("data-bs-theme", mode);
+            localStorage.setItem(KEY, mode);
+            icon.textContent = mode === "dark" ? "🌙" : "🌞";
+        });
+    })();
 </script>
 
 </body>

@@ -1,0 +1,50 @@
+<style>
+    mark { padding: 0 .15em; border-radius: .2em; }
+</style>
+<script>
+    (() => {
+        const input = document.getElementById('glossarSearch');
+        if (!input) return;
+
+        // Elemente, die durchsucht werden
+        const nodes = [...document.querySelectorAll('#glossar li, #glossar p, #glossar ol li')];
+
+        // Abschnitte (Heading + zugehörige Liste direkt danach)
+        const sections = [...document.querySelectorAll('#glossar h5')].map(h => ({
+            heading: h,
+            list: h.nextElementSibling && (h.nextElementSibling.matches('ul,ol') ? h.nextElementSibling : null)
+        }));
+
+        const strip = html => html.replace(/<\/?mark>/g,''); // Markierung entfernen
+
+        function highlight(el, q){
+            el.innerHTML = strip(el.innerHTML);
+            if (!q) return;
+            const text = el.innerHTML;
+            const rx = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi');
+            el.innerHTML = text.replace(rx,'<mark>$1</mark>');
+        }
+
+        function filter(){
+            const q = input.value.trim().toLowerCase();
+
+            // Filtern + highlighten
+            nodes.forEach(el => {
+                const txt = el.textContent.toLowerCase();
+                const show = !q || txt.includes(q);
+                el.style.display = show ? '' : 'none';
+                highlight(el, q);
+            });
+
+            // Überschriften ausblenden, wenn darunter alles versteckt ist
+            sections.forEach(({heading, list}) => {
+                if (!list) return;
+                const visible = [...list.children].some(li => li.style.display !== 'none');
+                heading.style.display = visible ? '' : 'none';
+            });
+        }
+
+        input.addEventListener('input', filter);
+        filter(); // initial
+    })();
+</script>

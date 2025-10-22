@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="de" data-bs-theme="dark">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Diese Begriffe solltest du kennen!</title>
+
+    <script>(() => {
+        const KEY = "theme";
+        const saved = localStorage.getItem(KEY);
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initial = saved || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-bs-theme", initial);
+    })();</script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
@@ -21,6 +29,7 @@
         </button>
     </div>
 </div>
+
 
 <div class="container-fluid mt-3">
     <div class="row">
@@ -167,6 +176,31 @@
                 const text = el.textContent.toLowerCase();
                 el.style.display = text.includes(q) || q === "" ? "" : "none";
             });
+        });
+    })();
+</script>
+
+
+
+<script>
+    (() => {
+        const KEY = "theme";
+        const root = document.documentElement;
+        const sw = document.getElementById("themeSwitch");
+        const icon = document.getElementById("themeIcon");
+        if (!sw) return;
+
+        // Startzustand setzen
+        const isDark = root.getAttribute("data-bs-theme") === "dark";
+        sw.checked = isDark;
+        icon.textContent = isDark ? "🌙" : "🌞";
+
+        // Umschalten + merken
+        sw.addEventListener("change", () => {
+            const mode = sw.checked ? "dark" : "light";
+            root.setAttribute("data-bs-theme", mode);
+            localStorage.setItem(KEY, mode);
+            icon.textContent = mode === "dark" ? "🌙" : "🌞";
         });
     })();
 </script>
