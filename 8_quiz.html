@@ -31,95 +31,247 @@
 </div>
 
 <div class="container py-4">
-    <h1 class="h4 mb-3">Pferdi-Cademy – Mini-Quiz: Bist du ein Ads-Versteher?</h1>
+    <h1 class="h4 mb-3">Pferdi-Cademy – Teste dein Wissen</h1>
+    <p class="text-body-secondary mb-4">Mini-Quiz mit 15 Fragen. Prüfe am Ende deine Antworten – ab <strong>80&nbsp;%</strong> schaltest du dein Zertifikat frei.</p>
 
-    <!-- Name + Controls -->
-    <div class="row g-2 align-items-end mb-3">
-        <div class="col-md-6">
-            <label for="fullName" class="form-label">Dein Name für das Zertifikat</label>
-            <input id="fullName" type="text" class="form-control" placeholder="Vor- und Nachname (optional)">
-        </div>
-        <div class="col-md-6 d-flex gap-2">
-            <button id="checkBtn" type="button" class="btn btn-primary flex-grow-1">Antworten prüfen</button>
-            <button id="resetBtn" type="button" class="btn btn-outline-secondary">Zurücksetzen</button>
-            <button id="certBtn" type="button" class="btn btn-success" disabled>Zertifikat</button>
-        </div>
-        <div class="col-12">
-            <small class="text-body-secondary d-block mt-1">Hinweis: Zertifikat wird ab <strong>80 %</strong> freigeschaltet.</small>
-        </div>
-    </div>
-
-    <div id="result" class="alert d-none" role="alert"></div>
-    <div class="progress mb-3" aria-hidden="true">
-        <div id="scoreBar" class="progress-bar" style="width:0%" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
-    </div>
-
+    <!-- ===== QUIZ (15 Fragen) ===== -->
     <form id="quiz" class="vstack gap-4">
 
+        <!-- 1 -->
         <div class="card">
             <div class="card-body">
                 <p class="fw-semibold mb-3">1) Was misst die Conversion Rate (CR)?</p>
                 <div class="vstack gap-2">
-                    <label class="choice p-2">
-                        <input class="form-check-input me-2" type="radio" name="q1" value="A">
-                        Den Anteil der Klicks, die zu einer gewünschten Aktion werden.
-                    </label>
-                    <label class="choice p-2">
-                        <input class="form-check-input me-2" type="radio" name="q1" value="B">
-                        Den Anteil der Impressionen, die zu Klicks werden.
-                    </label>
-                    <label class="choice p-2">
-                        <input class="form-check-input me-2" type="radio" name="q1" value="C">
-                        Die Verteilung des Budgets je Kampagne.
-                    </label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q1" value="A"> Anteil der Klicks, die zu einer gewünschten Aktion führen.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q1" value="B"> Anteil der Impressionen, die zu Klicks werden.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q1" value="C"> Anzahl der Keywords pro Kampagne.</label>
                 </div>
                 <small class="text-body-secondary d-block mt-2" data-explain="q1"></small>
             </div>
         </div>
 
+        <!-- 2 -->
         <div class="card">
             <div class="card-body">
                 <p class="fw-semibold mb-3">2) ROAS = 5 bedeutet …</p>
                 <div class="vstack gap-2">
-                    <label class="choice p-2">
-                        <input class="form-check-input me-2" type="radio" name="q2" value="A">
-                        5 % Gewinn pro Conversion.
-                    </label>
-                    <label class="choice p-2">
-                        <input class="form-check-input me-2" type="radio" name="q2" value="B">
-                        5 € Umsatz bei 1 € Kosten.
-                    </label>
-                    <label class="choice p-2">
-                        <input class="form-check-input me-2" type="radio" name="q2" value="C">
-                        1 € Umsatz bei 5 € Kosten.
-                    </label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q2" value="A"> 5 % Gewinn pro Conversion.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q2" value="B"> 5 € Umsatz bei 1 € Kosten.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q2" value="C"> 1 € Umsatz bei 5 € Kosten.</label>
                 </div>
                 <small class="text-body-secondary d-block mt-2" data-explain="q2"></small>
             </div>
         </div>
 
+        <!-- 3 -->
         <div class="card">
             <div class="card-body">
                 <p class="fw-semibold mb-3">3) Welcher Match Type ist am restriktivsten?</p>
                 <div class="vstack gap-2">
-                    <label class="choice p-2">
-                        <input class="form-check-input me-2" type="radio" name="q3" value="A">
-                        Broad Match
-                    </label>
-                    <label class="choice p-2">
-                        <input class="form-check-input me-2" type="radio" name="q3" value="B">
-                        Phrase Match
-                    </label>
-                    <label class="choice p-2">
-                        <input class="form-check-input me-2" type="radio" name="q3" value="C">
-                        Exact Match
-                    </label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q3" value="A"> Broad Match</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q3" value="B"> Phrase Match</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q3" value="C"> Exact Match</label>
                 </div>
                 <small class="text-body-secondary d-block mt-2" data-explain="q3"></small>
             </div>
         </div>
 
+        <!-- 4 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">4) Was beeinflusst den Qualitätsfaktor (QS) am stärksten?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q4" value="A"> Relevanz von Keyword, Anzeige und Landingpage.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q4" value="B"> Das Kampagnenbudget.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q4" value="C"> Die Klickkosten der Konkurrenz.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q4"></small>
+            </div>
+        </div>
+
+        <!-- 5 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">5) Was bedeutet eine niedrige CTR?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q5" value="A"> Anzeige wird oft gezeigt, aber selten geklickt.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q5" value="B"> Anzeige ist zu teuer.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q5" value="C"> Keyword-Listen sind zu lang.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q5"></small>
+            </div>
+        </div>
+
+        <!-- 6 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">6) Warum sind Negative Keywords wichtig?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q6" value="A"> Sie erhöhen die Klickrate künstlich.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q6" value="B"> Sie verringern den Qualitätsfaktor.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q6" value="C"> Sie verhindern irrelevante Suchbegriffe.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q6"></small>
+            </div>
+        </div>
+
+        <!-- 7 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">7) Warum sollte jede Anzeigengruppe thematisch klar abgegrenzt sein?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q7" value="A"> Damit man weniger Kampagnen braucht.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q7" value="B"> Damit Keywords, Anzeigen und Zielseite perfekt zusammenpassen.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q7" value="C"> Damit der QS ignoriert wird.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q7"></small>
+            </div>
+        </div>
+
+        <!-- 8 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">8) Was ist das Ziel von A/B-Tests in Google Ads?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q8" value="A"> Zufällig Anzeigen austauschen.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q8" value="B"> Anzeigen pausieren, um Geld zu sparen.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q8" value="C"> Herausfinden, welche Anzeige besser performt.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q8"></small>
+            </div>
+        </div>
+
+        <!-- 9 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">9) Was misst das Conversion Tracking?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q9" value="A"> Ob ein Klick zu einer gewünschten Aktion führte.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q9" value="B"> Wie viele Keywords du insgesamt nutzt.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q9" value="C"> Wie viele Impressionen deine Anzeige hat.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q9"></small>
+            </div>
+        </div>
+
+        <!-- 10 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">10) Wie sollte eine gute Landingpage aufgebaut sein?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q10" value="A"> Mit möglichst vielen Menüpunkten und Infos.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q10" value="B"> Passend zur Anzeige und mit klarer Handlungsaufforderung.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q10" value="C"> Hauptsache sie sieht schön aus.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q10"></small>
+            </div>
+        </div>
+
+        <!-- 11 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">11) Wie funktioniert die Budgetverteilung in Google Ads?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q11" value="A"> Alles wird gleichmäßig verteilt.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q11" value="B"> Nur manuelle Gebote werden genutzt.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q11" value="C"> Budget wird täglich optimiert und auf erfolgreiche Kampagnen gelenkt.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q11"></small>
+            </div>
+        </div>
+
+        <!-- 12 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">12) Was ist Smart Bidding?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q12" value="A"> Automatische Gebote auf Basis von Machine Learning.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q12" value="B"> Manueller Gebotsmodus mit festen Klickpreisen.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q12" value="C"> Eine Keywordanalyse ohne Anzeigen.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q12"></small>
+            </div>
+        </div>
+
+        <!-- 13 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">13) Wozu dient der Suchbegriffe-Bericht?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q13" value="A"> Er zeigt nur Impressionen.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q13" value="B"> Er zeigt, welche Suchanfragen deine Anzeige ausgelöst haben.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q13" value="C"> Er entfernt automatisch irrelevante Keywords.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q13"></small>
+            </div>
+        </div>
+
+        <!-- 14 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">14) Was sind Anzeigenerweiterungen?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q14" value="A"> Zusätzliche Kosten für Anzeigen.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q14" value="B"> Keywordlisten, die automatisch ergänzt werden.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q14" value="C"> Zusätzliche Infos wie Sitelinks, Standort oder Anruf.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q14"></small>
+            </div>
+        </div>
+
+        <!-- 15 -->
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">15) Was tun bei einem Qualitätsfaktor unter 5?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q15" value="A"> Anzeige und Zielseite überarbeiten.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q15" value="B"> Budget verdoppeln.</label>
+                    <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q15" value="C"> Kampagne löschen.</label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q15"></small>
+            </div>
+        </div>
+
     </form>
+
+    <!-- ===== Zertifikat & Ergebnisbereich (unten) ===== -->
+    <div class="card mt-5">
+        <div class="card-body">
+            <h5 class="card-title mb-3">🏅 Dein Zertifikat</h5>
+            <p class="mb-4">
+                Für ein schickes <strong>Pferdi-Cademy-Zertifikat</strong> trage bitte deinen Namen ein
+                und klicke auf <em>„Zertifikat“</em> – sobald du mindestens <strong>80&nbsp;%</strong> erreicht hast.
+            </p>
+
+            <div class="row g-2 align-items-end mb-3">
+                <div class="col-md-6">
+                    <label for="fullName" class="form-label">Dein Name für das Zertifikat</label>
+                    <input id="fullName" type="text" class="form-control" placeholder="Vor- und Nachname (optional)">
+                </div>
+                <div class="col-md-6 d-flex gap-2">
+                    <button id="checkBtn" type="button" class="btn btn-primary flex-grow-1">
+                        Antworten prüfen
+                    </button>
+                    <button id="resetBtn" type="button" class="btn btn-outline-secondary">
+                        Zurücksetzen
+                    </button>
+                    <button id="certBtn" type="button" class="btn btn-success" disabled>
+                        Zertifikat
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ergebnisanzeige -->
+            <div id="result" class="alert d-none" role="alert"></div>
+
+            <!-- Fortschrittsbalken -->
+            <div class="progress mb-3" aria-hidden="true">
+                <div id="scoreBar" class="progress-bar" style="width:0%"
+                     aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
@@ -152,7 +304,32 @@
         // ====== Einstellungen ======
         const TEMPLATE_URL = "images/zertifikat.png"; // Vorlage 2000x1414
         const PASS_THRESHOLD = 80;
-        const ANSWERS = { q1: "A", q2: "B", q3: "C" };
+
+        // Richtige Antworten (15)
+        const ANSWERS = {
+            q1:"A", q2:"B", q3:"C", q4:"A", q5:"A",
+            q6:"C", q7:"B", q8:"C", q9:"A", q10:"B",
+            q11:"C", q12:"A", q13:"B", q14:"C", q15:"A"
+        };
+
+        // Erklärungen pro Frage (bei falscher Antwort)
+        const EXPLAINS = {
+            q1:  "CR misst, wie viele Klicks zu einer gewünschten Aktion werden (Kauf, Lead, etc.).",
+            q2:  "ROAS 5 = 5 € Umsatz pro 1 € Kosten. Je höher, desto rentabler.",
+            q3:  "Exact Match ist am restriktivsten – zeigt nur sehr passende Suchanfragen.",
+            q4:  "QS hängt stark von der Relevanz aus Keyword, Anzeige und Landingpage ab.",
+            q5:  "Niedrige CTR heißt: oft gezeigt, selten geklickt → Text/Targeting optimieren.",
+            q6:  "Negative Keywords verhindern irrelevante Suchbegriffe und sparen Budget.",
+            q7:  "Saubere Anzeigengruppen: Keywords, Anzeigen, Zielseite passen zusammen.",
+            q8:  "A/B-Tests vergleichen Varianten, um die bessere Anzeige zu finden.",
+            q9:  "Conversion Tracking zeigt, ob ein Klick eine gewünschte Aktion ausgelöst hat.",
+            q10: "Landingpage sollte zur Anzeige passen und klar zum Handeln auffordern.",
+            q11: "Budget wird täglich verteilt und oft auf erfolgreiche Kampagnen priorisiert.",
+            q12: "Smart Bidding nutzt ML, braucht aber Daten, um gut zu funktionieren.",
+            q13: "Suchbegriffe-Bericht zeigt echte Suchanfragen → neue + negative Keywords.",
+            q14: "Erweiterungen (Sitelinks, Standort, Call) erhöhen Sichtbarkeit/Klickrate.",
+            q15: "QS < 5? Relevanz erhöhen: Keywords, Anzeigen & Zielseite überarbeiten."
+        };
 
         // ====== DOM ======
         const quiz     = document.getElementById("quiz");
@@ -163,7 +340,6 @@
         const certBtn  = document.getElementById("certBtn");
         const nameInp  = document.getElementById("fullName");
 
-        // Fallbacks wenn irgendwas nicht da ist
         if (!quiz || !checkBtn || !resetBtn || !certBtn || !bar || !result) {
             console.error("DOM-Elemente fehlen – prüfe IDs.");
             return;
@@ -197,17 +373,18 @@
 
                     const label = picked.closest(".choice");
                     if (picked.value === right) {
-                        score++; label.classList.add("correct"); explain.textContent = "Richtig ✔︎";
+                        score++;
+                        label.classList.add("correct");
+                        explain.textContent = "Richtig ✔︎";
                     } else {
                         label.classList.add("wrong");
-                        explain.textContent = `Falsch – korrekt ist ${right}.`;
+                        explain.textContent = EXPLAINS[q] || `Falsch – korrekt ist ${right}.`;
                         const correct = quiz.querySelector(`input[name="${q}"][value="${right}"]`);
                         if (correct) correct.closest(".choice").classList.add("correct");
                     }
                 }
 
                 const pct = Math.round(score / total * 100);
-
                 bar.style.width = pct + "%";
                 bar.setAttribute("aria-valuenow", String(pct));
                 bar.textContent = pct + "%";
@@ -232,7 +409,7 @@
                 const img = new Image();
                 img.onload = () => resolve(img);
                 img.onerror = (e) => reject(e);
-                img.src = url;
+                img.src = url; // Netlify liefert http(s) → kein CORS-Ärger
             });
         }
 
@@ -266,7 +443,7 @@
                 return;
             }
 
-            // Name (mittig, knapp über der Linie bei y=602px → hier y=560px)
+            // Name (mittig, bei y = 608 px auf deiner Vorlage)
             const NAME_Y_PX = 608;
 
             doc.setFont("times", "bold");
@@ -286,9 +463,9 @@
         }
 
         // ====== Events ======
-        checkBtn.addEventListener("click", evaluate);
-        resetBtn.addEventListener("click", () => { quiz.reset(); clearUI(); });
-        certBtn.addEventListener("click", downloadCertificate);
+        document.getElementById("checkBtn").addEventListener("click", evaluate);
+        document.getElementById("resetBtn").addEventListener("click", () => { quiz.reset(); clearUI(); });
+        document.getElementById("certBtn").addEventListener("click", downloadCertificate);
 
         // Initial reset
         clearUI();
