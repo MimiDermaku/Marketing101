@@ -31,8 +31,8 @@
 </div>
 
 <div class="container py-4">
-    <h1 class="h4 mb-3">Pferdi-Cademy – Teste dein Wissen</h1>
-    <p class="text-body-secondary mb-4">Mini-Quiz mit 15 Fragen. Prüfe am Ende deine Antworten – ab <strong>80&nbsp;%</strong> schaltest du dein Zertifikat frei.</p>
+    <h1 class="h4 mb-3">Willkommen zur Pferdi-Cademy</h1>
+    <p class="text-body-secondary mb-4">Beantworte die 15 Fragen und überprüfe am Ende deine Antworten – ab <strong>80&nbsp;%</strong> schaltest du dein Zertifikat frei.</p>
 
     <!-- ===== QUIZ (15 Fragen) ===== -->
     <form id="quiz" class="vstack gap-4">
@@ -209,7 +209,7 @@
         <!-- 14 -->
         <div class="card">
             <div class="card-body">
-                <p class="fw-semibold mb-3">14) Was sind Anzeigenerweiterungen?</p>
+                <p class="fw-semibold mb-3">14) Was sind Anzeigenerweiterungen / Assets ?</p>
                 <div class="vstack gap-2">
                     <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q14" value="A"> Zusätzliche Kosten für Anzeigen.</label>
                     <label class="choice p-2"><input class="form-check-input me-2" type="radio" name="q14" value="B"> Keywordlisten, die automatisch ergänzt werden.</label>
@@ -237,17 +237,23 @@
     <!-- ===== Zertifikat & Ergebnisbereich (unten) ===== -->
     <div class="card mt-5">
         <div class="card-body">
-            <h5 class="card-title mb-3">🏅 Dein Zertifikat</h5>
+            <h5 class="card-title mb-3">Dein Zertifikat</h5>
+            <p>Für die Auflösung der falschen Antworten scrolle einfach wieder nach oben.</p>
             <p class="mb-4">
                 Für ein schickes <strong>Pferdi-Cademy-Zertifikat</strong> trage bitte deinen Namen ein
                 und klicke auf <em>„Zertifikat“</em> – sobald du mindestens <strong>80&nbsp;%</strong> erreicht hast.
             </p>
 
+
             <div class="row g-2 align-items-end mb-3">
                 <div class="col-md-6">
-                    <label for="fullName" class="form-label">Dein Name für das Zertifikat</label>
+                    <label for="fullName" class="form-label">
+                        Dein Name für das Zertifikat
+                        <small class="text-muted" style="font-weight: normal;">(wird nicht gespeichert – erscheint nur auf Zertifikat.)</small>
+                    </label>
                     <input id="fullName" type="text" class="form-control" placeholder="Vor- und Nachname (optional)">
                 </div>
+
                 <div class="col-md-6 d-flex gap-2">
                     <button id="checkBtn" type="button" class="btn btn-primary flex-grow-1">
                         Antworten prüfen
@@ -328,7 +334,7 @@
             q12: "Smart Bidding nutzt ML, braucht aber Daten, um gut zu funktionieren.",
             q13: "Suchbegriffe-Bericht zeigt echte Suchanfragen → neue + negative Keywords.",
             q14: "Erweiterungen (Sitelinks, Standort, Call) erhöhen Sichtbarkeit/Klickrate.",
-            q15: "QS < 5? Relevanz erhöhen: Keywords, Anzeigen & Zielseite überarbeiten."
+            q15: "Relevanz erhöhen: Keywords, Anzeigen & Zielseite überarbeiten."
         };
 
         // ====== DOM ======
