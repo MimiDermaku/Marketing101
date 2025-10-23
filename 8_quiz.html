@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pferdi-Cademy – Quiz</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+
+    <style>
+        .choice.correct { outline: 2px solid rgba(25,135,84,.6); border-radius: .5rem; }
+        .choice.wrong   { outline: 2px solid rgba(220,53,69,.6); border-radius: .5rem; }
+    </style>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="bg-body-tertiary">
+
+<div class="bg-tertiary p-2 sticky-top">
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <button class="btn btn-outline-secondary btn-sm"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#mobileSidebar"
+                aria-controls="mobileSidebar">
+            <i class="bi bi-list"></i> Menü
+        </button>
+    </div>
+</div>
+
+<div class="container py-4">
+    <h1 class="h4 mb-3">Pferdi-Cademy – Mini-Quiz: Bist du ein Ads-Versteher?</h1>
+
+    <!-- Name + Controls -->
+    <div class="row g-2 align-items-end mb-3">
+        <div class="col-md-6">
+            <label for="fullName" class="form-label">Dein Name für das Zertifikat</label>
+            <input id="fullName" type="text" class="form-control" placeholder="Vor- und Nachname (optional)">
+        </div>
+        <div class="col-md-6 d-flex gap-2">
+            <button id="checkBtn" type="button" class="btn btn-primary flex-grow-1">Antworten prüfen</button>
+            <button id="resetBtn" type="button" class="btn btn-outline-secondary">Zurücksetzen</button>
+            <button id="certBtn" type="button" class="btn btn-success" disabled>Zertifikat</button>
+        </div>
+        <div class="col-12">
+            <small class="text-body-secondary d-block mt-1">Hinweis: Zertifikat wird ab <strong>80 %</strong> freigeschaltet.</small>
+        </div>
+    </div>
+
+    <div id="result" class="alert d-none" role="alert"></div>
+    <div class="progress mb-3" aria-hidden="true">
+        <div id="scoreBar" class="progress-bar" style="width:0%" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+    </div>
+
+    <form id="quiz" class="vstack gap-4">
+
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">1) Was misst die Conversion Rate (CR)?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2">
+                        <input class="form-check-input me-2" type="radio" name="q1" value="A">
+                        Den Anteil der Klicks, die zu einer gewünschten Aktion werden.
+                    </label>
+                    <label class="choice p-2">
+                        <input class="form-check-input me-2" type="radio" name="q1" value="B">
+                        Den Anteil der Impressionen, die zu Klicks werden.
+                    </label>
+                    <label class="choice p-2">
+                        <input class="form-check-input me-2" type="radio" name="q1" value="C">
+                        Die Verteilung des Budgets je Kampagne.
+                    </label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q1"></small>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">2) ROAS = 5 bedeutet …</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2">
+                        <input class="form-check-input me-2" type="radio" name="q2" value="A">
+                        5 % Gewinn pro Conversion.
+                    </label>
+                    <label class="choice p-2">
+                        <input class="form-check-input me-2" type="radio" name="q2" value="B">
+                        5 € Umsatz bei 1 € Kosten.
+                    </label>
+                    <label class="choice p-2">
+                        <input class="form-check-input me-2" type="radio" name="q2" value="C">
+                        1 € Umsatz bei 5 € Kosten.
+                    </label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q2"></small>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <p class="fw-semibold mb-3">3) Welcher Match Type ist am restriktivsten?</p>
+                <div class="vstack gap-2">
+                    <label class="choice p-2">
+                        <input class="form-check-input me-2" type="radio" name="q3" value="A">
+                        Broad Match
+                    </label>
+                    <label class="choice p-2">
+                        <input class="form-check-input me-2" type="radio" name="q3" value="B">
+                        Phrase Match
+                    </label>
+                    <label class="choice p-2">
+                        <input class="form-check-input me-2" type="radio" name="q3" value="C">
+                        Exact Match
+                    </label>
+                </div>
+                <small class="text-body-secondary d-block mt-2" data-explain="q3"></small>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="mobileSidebarLabel">Navigation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Schließen"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="list-unstyled m-0">
+            <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_pruefen.html">Performance prüfen</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="7_bonus.html">Bonus - Das aufgeräumte Konto</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="8_quiz.html">Teste dein Wissen</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Bootstrap Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Alles erst starten, wenn der DOM sicher bereit ist
+    window.addEventListener('DOMContentLoaded', () => {
+
+        // ====== Einstellungen ======
+        const TEMPLATE_URL = "images/zertifikat.png"; // Vorlage 2000x1414
+        const PASS_THRESHOLD = 80;
+        const ANSWERS = { q1: "A", q2: "B", q3: "C" };
+
+        // ====== DOM ======
+        const quiz     = document.getElementById("quiz");
+        const result   = document.getElementById("result");
+        const bar      = document.getElementById("scoreBar");
+        const checkBtn = document.getElementById("checkBtn");
+        const resetBtn = document.getElementById("resetBtn");
+        const certBtn  = document.getElementById("certBtn");
+        const nameInp  = document.getElementById("fullName");
+
+        // Fallbacks wenn irgendwas nicht da ist
+        if (!quiz || !checkBtn || !resetBtn || !certBtn || !bar || !result) {
+            console.error("DOM-Elemente fehlen – prüfe IDs.");
+            return;
+        }
+
+        // ====== Quiz ======
+        function clearUI() {
+            quiz.querySelectorAll(".choice").forEach(l => l.classList.remove("correct","wrong"));
+            quiz.querySelectorAll("[data-explain]").forEach(s => s.textContent = "");
+            result.className = "alert d-none";
+            result.textContent = "";
+            bar.style.width = "0%";
+            bar.setAttribute("aria-valuenow", "0");
+            bar.textContent = "";
+            certBtn.disabled = true;
+        }
+
+        function evaluate() {
+            try {
+                let total = Object.keys(ANSWERS).length, score = 0;
+
+                for (const [q, right] of Object.entries(ANSWERS)) {
+                    const picked  = quiz.querySelector(`input[name="${q}"]:checked`);
+                    const explain = quiz.querySelector(`[data-explain="${q}"]`);
+                    if (!explain) continue;
+
+                    if (!picked) {
+                        explain.textContent = "Bitte eine Antwort auswählen.";
+                        continue;
+                    }
+
+                    const label = picked.closest(".choice");
+                    if (picked.value === right) {
+                        score++; label.classList.add("correct"); explain.textContent = "Richtig ✔︎";
+                    } else {
+                        label.classList.add("wrong");
+                        explain.textContent = `Falsch – korrekt ist ${right}.`;
+                        const correct = quiz.querySelector(`input[name="${q}"][value="${right}"]`);
+                        if (correct) correct.closest(".choice").classList.add("correct");
+                    }
+                }
+
+                const pct = Math.round(score / total * 100);
+
+                bar.style.width = pct + "%";
+                bar.setAttribute("aria-valuenow", String(pct));
+                bar.textContent = pct + "%";
+
+                const passed = pct >= PASS_THRESHOLD;
+                result.className = "alert " + (passed ? "alert-success" : "alert-warning");
+                result.innerHTML = `<strong>${score}/${total}</strong> richtig (${pct}%). ${
+                    passed ? "Bestanden 🎉 – Zertifikat ist freigeschaltet." : `Noch nicht bestanden (≥ ${PASS_THRESHOLD}% nötig).`
+                }`;
+
+                certBtn.disabled = !passed;
+            } catch (e) {
+                console.error("Fehler bei evaluate():", e);
+                result.className = "alert alert-danger";
+                result.textContent = "Unerwarteter Fehler beim Auswerten.";
+            }
+        }
+
+        // ====== Bild laden ======
+        function loadImage(url) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = (e) => reject(e);
+                img.src = url;
+            });
+        }
+
+        // ====== Zertifikat erzeugen ======
+        async function downloadCertificate() {
+            const name = (nameInp?.value || "Teilnehmer:in").trim();
+
+            const hasJsPDF = !!(window.jspdf && window.jspdf.jsPDF);
+            if (!hasJsPDF) {
+                alert("jsPDF fehlt. Bitte im <head> einbinden.");
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ orientation: "landscape", unit: "pt", format: "a4" });
+            const W = doc.internal.pageSize.getWidth();
+            const H = doc.internal.pageSize.getHeight();
+
+            // Design-Maße der Vorlage
+            const DESIGN_W = 2000, DESIGN_H = 1414;
+            const pxX = x => (x / DESIGN_W) * W;
+            const pxY = y => (y / DESIGN_H) * H;
+
+            // Hintergrund einfügen
+            try {
+                const bg = await loadImage(TEMPLATE_URL);
+                doc.addImage(bg, "PNG", 0, 0, W, H);
+            } catch (e) {
+                console.error("Vorlage-Load-Error:", e);
+                alert("Vorlage konnte nicht geladen werden: " + TEMPLATE_URL);
+                return;
+            }
+
+            // Name (mittig, knapp über der Linie bei y=602px → hier y=560px)
+            const NAME_Y_PX = 560;
+
+            doc.setFont("times", "bold");
+            let size = H * 0.085;     // Startgröße
+            doc.setFontSize(size);
+
+            const maxWidth = W - pxX(240); // Rand links/rechts
+            while (doc.getTextWidth(name) > maxWidth && size > 16) {
+                size -= 1;
+                doc.setFontSize(size);
+            }
+
+            doc.text(name, W/2, pxY(NAME_Y_PX), { align: "center" });
+
+            const safeFile = `pferdi-zertifikat-${name.replace(/[^\p{L}\p{N}\-_. ]+/gu, "_").trim() || "teilnehmer"}.pdf`;
+            doc.save(safeFile);
+        }
+
+        // ====== Events ======
+        checkBtn.addEventListener("click", evaluate);
+        resetBtn.addEventListener("click", () => { quiz.reset(); clearUI(); });
+        certBtn.addEventListener("click", downloadCertificate);
+
+        // Initial reset
+        clearUI();
+    });
+</script>
+</body>
+</html>
