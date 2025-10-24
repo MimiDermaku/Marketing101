@@ -7,65 +7,10 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
-
     <style>
-        /* ===== Hotspot-Overlay ===== */
-        .plan-wrap { position: relative; }
-        .plan-wrap img { width: 100%; height: auto; display: block; }
-
-        .hotspot {
-            position: absolute;
-            display: block;
-            /* unsichtbar, aber klickbar */
-            background: transparent;
-            border: none;
-            padding: 0;
-            margin: 0;
-            cursor: pointer;
-        }
-        /* Tastatur-Fokus sichtbar */
-        .hotspot:focus-visible {
-            outline: 2px dashed rgba(255,255,255,.6);
-            outline-offset: 2px;
-            border-radius: .5rem;
-        }
-        /* Optionale sanfte Hover-Markierung (kaum sichtbar) */
-        .hotspot:hover {
-            box-shadow: 0 0 0 2px rgba(255,255,255,.15) inset;
-            border-radius: .5rem;
-        }
-
-        /* Debug-Helfer: Umrisse anzeigen (aktiv per ?debug=1) */
-        .debug .hotspot {
-            background: rgba(255,255,255,.08);
-            box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset;
-        }
-
-        /* ---- Hotspot-Positionen (Prozent relativ zum Bild) ----
-           Tipp: Werte feinjustieren bis die Flächen perfekt auf deinem Pfad/Buttons sitzen.
-           left/top = Position der linken oberen Ecke; width/height = Größe der Klickfläche.
-        */
-        /* 1 Ziel */
-        .hs-ziel         { left: 2%;   top: 78%;  width: 15%; height: 12%; }
-        /* 2 Typ */
-        .hs-typ          { left: 16.5%; top: 72%;  width: 16%; height: 12%; }
-        /* 3 Name/URL */
-        .hs-name         { left: 33%;  top: 66%;  width: 16%; height: 12%; }
-        /* 4 Bidding */
-        .hs-bidding      { left: 49%;  top: 60%;  width: 16%; height: 12%; }
-        /* 5 Netzwerke */
-        .hs-netz         { left: 58%;  top: 47%;  width: 18%; height: 12%; }
-        /* 6 Geo/Sprachen */
-        .hs-geo          { left: 66.5%; top: 36%; width: 18%; height: 12%; }
-        /* 7 Zielgruppen */
-        .hs-zielgruppen  { left: 74%;  top: 26%;  width: 18%; height: 12%; }
-        /* 8 Budget/Publish (rechts am Zielpunkt) */
-        .hs-budget       { left: 80.5%; top: 15%; width: 18%; height: 14%; }
-        /* ➕ Optional (kleiner Bereich unten rechts) */
-        .hs-optional     { left: 83%;  top: 82%;  width: 13%; height: 10%; }
-
-        /* kleine Helfer */
-        .text-faint { color: var(--bs-secondary-color); }
+        /* Stepper-Buttons: kompakt & responsive */
+        #wizardNav .btn { white-space: nowrap; }
+        @media (max-width: 576px){ #wizardNav .btn span{ display:none; } } /* nur Zahlen/Icons auf XS */
     </style>
 </head>
 <body>
@@ -87,29 +32,31 @@
     <div class="row">
         <main class="col-12">
             <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-10 p-4">
+                <div class="col-md-12 col-lg-8 p-4">
                     <h2 class="mb-2">Ads Control: Der Bauplan für Kampagnen</h2>
-                    <p class="text-body-secondary mb-3">Klick auf die Bereiche im Plan öffnet ein kurzes Popup. Lesen → schließen → weiter.</p>
+                    <p class="text-body-secondary mb-3">Klick auf einen Schritt öffnet ein kompaktes Popup. Lesen → schließen → weiter.</p>
 
-                    <!-- Zentrale Grafik mit Hotspot-Overlay -->
-                    <figure class="m-0 mb-2">
-                        <div id="plan" class="plan-wrap rounded border overflow-hidden">
-                            <img src="images/kampagnenplanung.png" alt="Bauplan: Schritte der Kampagnenplanung">
+                    <!-- Zeitstrahl / Stepper (alle öffnen Modals) -->
+                    <nav id="wizardNav" class="d-flex gap-2 justify-content-between flex-wrap mb-4">
+                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlZiel"><span>1 </span>Ziel</button>
+                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlTypes"><span>2 </span>Typ</button>
+                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlName"><span>3 </span>Name/URL</button>
+                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlBidding"><span>4 </span>Bidding</button>
+                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlNetz"><span>5 </span>Netzwerke</button>
+                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlGeo"><span>6 </span>Geo/Sprachen</button>
+                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlZielgruppen"><span>7 </span>Zielgruppen</button>
+                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlBudget"><span>8 </span>Budget/Publish</button>
+                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlOptional"><span>➕ </span>Optional</button>
+                    </nav>
 
-                            <!-- Hotspots (unsichtbare Buttons) -->
-                            <button class="hotspot hs-ziel"        data-bs-toggle="modal" data-bs-target="#mdlZiel"        title="Ziel definieren"><span class="visually-hidden">Ziel</span></button>
-                            <button class="hotspot hs-typ"         data-bs-toggle="modal" data-bs-target="#mdlTypes"       title="Kampagnentyp wählen"><span class="visually-hidden">Typ</span></button>
-                            <button class="hotspot hs-name"        data-bs-toggle="modal" data-bs-target="#mdlName"        title="Name & URL"><span class="visually-hidden">Name & URL</span></button>
-                            <button class="hotspot hs-bidding"     data-bs-toggle="modal" data-bs-target="#mdlBidding"     title="Gebotsstrategie"><span class="visually-hidden">Bidding</span></button>
-                            <button class="hotspot hs-netz"        data-bs-toggle="modal" data-bs-target="#mdlNetz"        title="Netzwerke"><span class="visually-hidden">Netzwerke</span></button>
-                            <button class="hotspot hs-geo"         data-bs-toggle="modal" data-bs-target="#mdlGeo"         title="Standorte & Sprachen"><span class="visually-hidden">Geo & Sprachen</span></button>
-                            <button class="hotspot hs-zielgruppen" data-bs-toggle="modal" data-bs-target="#mdlZielgruppen" title="Zielgruppen"><span class="visually-hidden">Zielgruppen</span></button>
-                            <button class="hotspot hs-budget"      data-bs-toggle="modal" data-bs-target="#mdlBudget"      title="Budget & Publish"><span class="visually-hidden">Budget & Publish</span></button>
-                            <button class="hotspot hs-optional"    data-bs-toggle="modal" data-bs-target="#mdlOptional"    title="Optionale Einstellungen"><span class="visually-hidden">Optional</span></button>
-                        </div>
+                    <!-- (Optional) Zentrale Grafik -->
+                    <figure class="m-0 mb-3 text-center">
+                        <img src="images/plan-uebersicht.png"
+                             class="img-fluid rounded border"
+                             alt="Übersicht: Schritte der Kampagnenplanung">
                     </figure>
 
-                    <p class="small text-faint">Tipp: Hänge <code>?debug=1</code> an die URL, um die Hotspot-Boxen zum Einmessen sichtbar zu machen.</p>
+                    <p class="text-body-secondary small m-0">Tipp: Du kannst später Hotspots auf der Grafik setzen, die diese Modals ebenfalls öffnen.</p>
                 </div>
             </div>
         </main>
@@ -124,20 +71,20 @@
     </div>
     <div class="offcanvas-body">
         <ul class="list-unstyled m-0">
-            <li class="nav-item mt-2"><a class="nav-link" href="index.html">Start</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="index.html">Start</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="1_kampagnenplanung.html">Kampagnenplanung</a></li>
-            <li class="nav-item mt-2"><a class="nav-link" href="2_keyword_recherche.html">Keyword Recherche</a></li>
-            <li class="nav-item mt-2"><a class="nav-link" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
-            <li class="nav-item mt-2"><a class="nav-link" href="4_goals_tracken.html">Goals tracken</a></li>
-            <li class="nav-item mt-2"><a class="nav-link" href="5_performance_pruefen.html">Performance prüfen</a></li>
-            <li class="nav-item mt-2"><a class="nav-link" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
-            <li class="nav-item mt-2"><a class="nav-link" href="7_bonus.html">Bonus - Das aufgeräumte Konto</a></li>
-            <li class="nav-item mt-2"><a class="nav-link" href="8_quiz.html">Teste dein Wissen</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="2_keyword_recherche.html">Keyword Recherche</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="3_anzeige_schreiben.html">Anzeigen schreiben</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="4_goals_tracken.html">Goals tracken</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_pruefen.html">Performance prüfen</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="7_bonus.html">Bonus - Das aufgeräumte Konto</a></li>
+            <li class="nav-item mt-2"><a class="nav-link active" href="8_quiz.html">Teste dein Wissen</a></li>
         </ul>
     </div>
 </div>
 
-<!-- ========== ALLE SCHRITTE ALS MODALS (unverändert aus deiner Version) ========== -->
+<!-- ========== ALLE SCHRITTE ALS MODALS (mit Tooltips & Weiterführend) ========== -->
 
 <!-- 1 Ziel -->
 <div class="modal fade" id="mdlZiel" tabindex="-1" aria-labelledby="mdlZielLbl" aria-hidden="true">
@@ -170,7 +117,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
             </div>
             <div class="modal-body">
-                <!-- … (dein Inhalt unverändert) … -->
                 <div class="row g-4">
                     <div class="col-6 col-md-4">
                         <div class="card bg-transparent border-light text-light h-100">
@@ -360,24 +306,20 @@
     </div></div>
 </div>
 
+<!-- ========== /ALLE SCHRITTE ALS MODALS ========== -->
+
 <!-- Bootstrap Bundle + Init -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Tooltips global
+    // Globale Tooltips initialisieren
     document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
 
-    // Tooltips in geöffneten Modals (Failsafe)
+    // Failsafe: Wenn ein Modal geöffnet wird, Tooltips im Modal (re-)initialisieren
     document.addEventListener('shown.bs.modal', (e) => {
         e.target.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
             if (!bootstrap.Tooltip.getInstance(el)) new bootstrap.Tooltip(el);
         });
     });
-
-    // Debug-Overlay aktivieren bei ?debug=1
-    (function(){
-        const params = new URLSearchParams(location.search);
-        if (params.get('debug') === '1') document.getElementById('plan').classList.add('debug');
-    })();
 </script>
 </body>
 </html>
