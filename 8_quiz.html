@@ -308,7 +308,7 @@
     window.addEventListener('DOMContentLoaded', () => {
 
         // ====== Einstellungen ======
-        const TEMPLATE_URL = "images/zertifikat_new"; // Vorlage 2000x1414
+        const TEMPLATE_URL = "images/zertifikat_new.png"; // Vorlage 2000x1414
         const PASS_THRESHOLD = 80;
 
         // Richtige Antworten (15)
@@ -455,6 +455,7 @@
             doc.setFont("times", "bold");
             let size = H * 0.085;     // Startgröße
             doc.setFontSize(size);
+            doc.setTextColor("#cdcbcc");
 
             const maxWidth = W - pxX(240); // Rand links/rechts
             while (doc.getTextWidth(name) > maxWidth && size > 16) {
