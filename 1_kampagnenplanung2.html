@@ -1,5 +1,86 @@
-<!DOCTYPE html>
+funktioniert nicht. schau: <!DOCTYPE html>
 <html lang="de" data-bs-theme="dark">
+<script>
+    (() => {
+        // Pro Seite eigener Key (Fortschritt nur innerhalb des aktuellen Kapitels)
+        const PAGEKEY = 'ads101_sections_' + (decodeURIComponent(location.pathname.split('/').pop() || 'index.html').toLowerCase());
+
+        // Welche Abschnitte zählen?
+        // -> Alle .accordion-collapse mit ID im sichtbaren Hauptbereich
+        const main = document.querySelector('main') || document;
+        const panels = [...main.querySelectorAll('.accordion .accordion-collapse[id]')];
+
+        // Fallback: wenn nix gefunden wurde, sauber abbrechen
+        if (!panels.length) return;
+
+        // Reihenfolge + Labels (Heading-Text, wenn vorhanden)
+        const sections = panels.map(p => {
+            // Heading-Text finden: das nächste .accordion-header davor
+            let label = '';
+            const header = p.parentElement?.querySelector('.accordion-header');
+            if (header) label = header.textContent.trim().replace(/\s+/g,' ');
+            return { id: p.id, el: p, label };
+        });
+
+        // Gelesene Abschnitte laden + auf aktuelle Seite filtern
+        const saved = JSON.parse(localStorage.getItem(PAGEKEY) || '[]');
+        const visited = new Set(saved.filter(id => sections.some(s => s.id === id)));
+
+        // UI-Elemente
+        const dotsWrap = document.getElementById('spDots');
+        const countEl  = document.getElementById('spCount');
+
+        function updateUI(){
+            const total = sections.length;
+            const done  = [...visited].length;
+            if (countEl) countEl.textContent = `${done}/${total}`;
+
+            if (dotsWrap) {
+                dotsWrap.innerHTML = '';
+                sections.forEach((s, i) => {
+                    const dot = document.createElement('span');
+                    dot.className = 'dot d-block' + (visited.has(s.id) ? ' done' : '');
+                    dot.title = `${i+1}/${total}${s.label ? ' – '+s.label : ''}`;
+                    dot.tabIndex = 0; // erreichbar per Tastatur
+                    // Klick auf Punkt -> zu Abschnitt scrollen
+                    dot.addEventListener('click', () => {
+                        const target = document.getElementById(s.id);
+                        if (target) {
+                            const acc = new bootstrap.Collapse(target, { toggle: true });
+                            target.addEventListener('shown.bs.collapse', () => {
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, { once: true });
+                        }
+                    });
+                    dotsWrap.appendChild(dot);
+                });
+            }
+        }
+
+        function save(){
+            localStorage.setItem(PAGEKEY, JSON.stringify([...visited]));
+        }
+
+        // Wenn ein Panel geöffnet wird -> als "gesehen" markieren
+        panels.forEach(p => {
+            p.addEventListener('shown.bs.collapse', () => {
+                visited.add(p.id);
+                save();
+                updateUI();
+            });
+        });
+
+        // Falls beim Laden schon etwas offen ist (z.B. erste Section), sofort zählen
+        panels.forEach(p => { if (p.classList.contains('show')) visited.add(p.id); });
+        save();
+        updateUI();
+
+        // Optional: Reset-Helfer im Debug (einfach auskommentieren, wenn nicht gewünscht)
+        // window.resetSectionProgress = () => { localStorage.removeItem(PAGEKEY); location.reload(); };
+
+    })();
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,15 +88,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
-    <style>
-        /* Stepper-Buttons: kompakt & responsive */
-        #wizardNav .btn { white-space: nowrap; }
-        @media (max-width: 576px){ #wizardNav .btn span{ display:none; } } /* nur Zahlen/Icons auf XS */
-    </style>
 </head>
 <body>
 
-<!-- Topbar -->
 <div class="bg-tertiary p-2 sticky-top">
     <div class="container-fluid d-flex align-items-center justify-content-between">
         <button class="btn btn-outline-secondary btn-sm"
@@ -33,37 +108,530 @@
         <main class="col-12">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-8 p-4">
-                    <h2 class="mb-2">Ads Control: Der Bauplan für Kampagnen</h2>
-                    <p class="text-body-secondary mb-3">Klick auf einen Schritt öffnet ein kompaktes Popup. Lesen → schließen → weiter.</p>
+                    <h2 class="mb-3">Ads Control: Der Bauplan für Kampagnen</h2>
+                    <div class="accordion" id="campaign">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp1">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp1-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp1-body">Zielvorhaben wählen
+                                </button>
+                            </h2>
+                            <div id="camp1-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp1"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+                                    <p>
+                                        Wähle zuerst den <b>Initialisierungsmodus</b>:
+                                        Entweder vordefinierte Ziele (Umsatz, Lead
+                                        <i class="bi bi-info-circle text-secondary ms-1"
+                                           data-bs-toggle="tooltip"
+                                           data-bs-title="Lead = qualifizierte Kontaktanfrage (z. B. Formular oder Anruf)"></i>,
+                                        Website-Traffic, App, Bekanntheit, lokale Besuche) –
+                                        oder den „manuellen Modus“ („Ohne Vorgaben“).
+                                    </p>
 
-                    <!-- Zeitstrahl / Stepper (alle öffnen Modals) -->
-                    <nav id="wizardNav" class="d-flex gap-2 justify-content-between flex-wrap mb-4">
-                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlZiel"><span>1 </span>Ziel</button>
-                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlTypes"><span>2 </span>Typ</button>
-                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlName"><span>3 </span>Name/URL</button>
-                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlBidding"><span>4 </span>Bidding</button>
-                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlNetz"><span>5 </span>Netzwerke</button>
-                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlGeo"><span>6 </span>Geo/Sprachen</button>
-                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlZielgruppen"><span>7 </span>Zielgruppen</button>
-                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlBudget"><span>8 </span>Budget/Publish</button>
-                        <button class="btn btn-outline-secondary btn-sm flex-fill" data-bs-toggle="modal" data-bs-target="#mdlOptional"><span>➕ </span>Optional</button>
-                    </nav>
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
 
-                    <!-- (Optional) Zentrale Grafik -->
-                    <figure class="m-0 mb-3 text-center">
-                        <img src="images/plan-uebersicht.png"
-                             class="img-fluid rounded border"
-                             alt="Übersicht: Schritte der Kampagnenplanung">
-                    </figure>
+// Im "Manuellen Modus" ("Ohne Vorgaben") behältst du die maximale Kontrolle über alle Parameter und Untertypen.
+// Das ist der Modus der Wahl, wenn du den "Setup-Code" genau kennst. Mit Zielen führt dich Google stärker durch einen Standard-Pfad.
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp2">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp2-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp2-body">Kampagnentyp auswählen
+                                </button>
+                            </h2>
+                            <div id="camp2-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp2"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
 
-                    <p class="text-body-secondary small m-0">Tipp: Du kannst später Hotspots auf der Grafik setzen, die diese Modals ebenfalls öffnen.</p>
+                                    <div class="row g-4">
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Suchkampagnen
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">Textanzeigen in Google Search, präzise
+                                                        steuerbar über Keywords/Region/Zeit. Super für den Start!</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/such.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Demand Gen (Discovery)
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">Bild/Video in Feeds (YouTube-Start, Discover,
+                                                        Gmail). Reichweite/Upper Funnel.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/demand.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Display
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">Banner im Google-Display-Netzwerk.
+                                                        Sichtbarkeit/Remarketing, geringere Intent.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/display.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Shopping
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">Produktanzeigen mit Bild/Preis in Suche &
+                                                        Shopping-Tab. E-Commerce.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/shopping.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Video
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">YouTube-Ads (vor/während/neben Videos).
+                                                        Branding/Storytelling.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/video.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    App
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">App-Installationen & In-App-Aktionen, stark
+                                                        automatisiert.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/app.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                                                <div class="card-header">
+                                                    Performance Max
+                                                </div>
+                                                <div class="card-body flex-grow-1">
+                                                    <p class="card-text">Ein Kampagnentyp für alle besagten Kanäle, sehr
+                                                        KI-getrieben, wenig Hebel.</p>
+                                                </div>
+                                                <img class="card-img-bottom" src="images/performance.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
+
+// Starte mit Suchkampagnen. Die Nutzer suchen aktiv, du bekommst den höchsten Intent und hast feine Kontrolle (Keywords, Region, Zeit).
+
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp3">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp3-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp3-body">Kampagnennamen & Ziel-URL
+                                </button>
+                            </h2>
+                            <div id="camp3-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp3"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>Gib die URL der Zielseite an und wähle einen aussagekräftigen Namen.</p>
+
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
+
+// Um Reports schnell filtern zu können sollte er die 4 Unterscheidungsmerkmale in fester Reihenfolge enthalten
+// [Kampagnen-Typ] - [Zielgruppe/Produkt] - [Strategie] - [Geolokation]
+
+// <u>Beispiele:</u>
+    <ul><li>Kampagnentyp: SUCH (Search), DIS (Display), PMAX (Performance Max), SHOP (Shopping)</li>
+<li>Zielgruppe/Produkt: NEUKUNDEN, SCHUHE, BRAND, REMARKETING</li>
+<li>Strategie: TCPA, TROAS (Ziel-ROAS), MANUELL, MAX-KLICKS</li>
+<li>Geolokation: DE, BERLIN, DACH, EU-W (Westeuropa)</li></ul>
+
+// -> Über wichtigstes Ziel und Produkt nachdenken! Was ist der einzige Wert, den jeder Report sofort anzeigen soll?
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp4">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp4-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp4-body">Gebotsstrategie (Bidding)
+                                </button>
+                            </h2>
+                            <div id="camp4-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp4"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>Starte mit dem "Fallback-Szenario" ("Klicks maximieren mit
+                                        CPC-Limit
+                                        <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip" data-bs-title="CPC = Cost per Click. Betrag, den du pro Klick zahlst."></i>
+                                        "), wenn deine Conversion-Datenbank
+                                        <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip" data-bs-title="Conversion-Datenbank: Zentrale Sammlung aller erfassten Conversions (z. B. Käufe, Formulare, Anrufe) für Auswertungen in Ads/Analytics."></i>
+                                        noch leer ist. Später kannst du auf Ziel-CPA
+                                        <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip" data-bs-title="CPA (Cost per Action): Durchschnittlicher Betrag pro gewünschter Aktion (z. B. Kauf, Lead)."></i>
+                                        / Ziel-ROAS
+                                        <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip" data-bs-title="ROAS (Return on Ad Spend): Umsatz pro investiertem Euro. Beispiel: ROAS 5 = 5 € Umsatz je 1 € Einsatz."></i>
+                                        wechseln, wenn Daten stabil sind.</p>
+
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
+
+// Smart-Bidding ist ein mächtiger Algorithmus, aber er ist "datenabhängig".
+// Er funktioniert nur zuverlässig mit "stabilen, verlässlichen Conversions". Ohne diese Daten ist Smart-Bidding ein "unvorhersehbarer Prozess".
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp5">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp5-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp5-body">Netzwerke (Google-Suche vs. Suchnetzwerk-Partner)
+                                </button>
+                            </h2>
+                            <div id="camp5-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp5"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
+
+// In klassischen Suchkampagnen: Display-Netzwerk
+<i class="bi bi-info-circle text-secondary ms-1"
+   data-bs-toggle="tooltip"
+   data-bs-title="Display-Netzwerk: Googles Werbenetzwerk aus Websites, Apps und YouTube, auf denen grafische Anzeigen außerhalb der Suche laufen."></i> deaktivieren.
+// Suchnetzwerk-Partner
+<i class="bi bi-info-circle text-secondary ms-1"
+   data-bs-toggle="tooltip"
+   data-bs-title="Suchnetzwerk-Partner: Externe Websites, die Google-Suche eingebunden haben (zusätzliche Reichweite, Qualität schwankt)."></i>: für den Start eher deaktivieren (Kontrolle/Qualität), später gezielt testen. (Die Einstellung findest du in den Kampagneneinstellungen → Netzwerke.)
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp6">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp6-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp6-body">Standorte & Sprachen
+                                </button>
+                            </h2>
+                            <div id="camp6-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp6"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
+
+// Nur die Regionen/Sprachen, in denen du wirklich liefern kannst. Bei lokalen Services granular starten (z. B. Stadt + Umkreis), später ausweiten.
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp7">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp7-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp7-body">EU-Hinweis: politische Inhalte
+                                </button>
+                            </h2>
+                            <div id="camp7-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp7"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
+
+// Google führt im EWR neue Beschränkungen/Abfragen zu politischer Werbung ein (2025).
+// Du wirst ggf. gefragt, ob du politische Inhalte in der EU ausspielst.
+ <ul><li>Wenn nein, Option entsprechend auswählen → reduziert Rückfragen.</li><li><b><u>Achtung:</u></b> Änderungen/Neue Abfragen können Kampagnen pausieren, wenn nicht bestätigt. Mails im Blick behalten.</li></ul>
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp8">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp8-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp8-body">Zielgruppen
+                                </button>
+                            </h2>
+                            <div id="camp8-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp8"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>Für Suchkampagnen empfiehlt sich am Anfang das "Monitoring" ("Beobachten") statt des "Hard-Filtering" ("Ausrichten"). Du lässt deine Anzeigen an alle ausspielen, sammelst aber im Hintergrund, welche Zielgruppen "tatsächlich konvertieren".</p>
+
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
+
+// Nutze den "Beobachten"-Modus als "A/B-Test", um später Gebote für deine stärksten Zielgruppen gezielt zu erhöhen.
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp9">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp9-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp9-body">Weitere Einstellungen (Anzeigenrotation,
+                                    Start/Ende,
+                                    Zeitplan, URL-Optionen, Feeds)
+                                </button>
+                            </h2>
+                            <div id="camp9-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp9"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
+
+// Hier sind die "Nice-to-Have-Parameter" für dein Final Deployment:
+    <ul><li><b>Anzeigenrotation</b>: Anfangs "Optimieren" lassen, später auf "Gleichmäßig" wechseln, um selbst A/B-Tests durchzuführen.</li><li><b>Start-/Enddatum</b>: Setze das Startdatum. Ein Enddatum ist nur bei zeitlich befristeten Aktionen (Saison, Sale) notwendig.</li><li><b>Werbezeitplaner</b>: Beschränke die Laufzeit nur, wenn du weißt, dass außerhalb dieser Zeiten keine Conversions stattfinden (z.B. nur während der Geschäftszeiten).</li></ul>
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp10">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp10-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp10-body">KI/Text-Automatik (AI Max/ automatisch erstelle
+                                    Assets)
+                                </button>
+                            </h2>
+                            <div id="camp10-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp10"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>Der KI-Assistent ("AI Max / Text-Customizing") kann die Lücken in deinem "Anzeigen-Codeblock" füllen. Er generiert zusätzliche Anzeigentexte und erhöht die "Ad-Strength".</p>
+
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
+
+// Aktiviere diese Option, aber "auditiere" die generierten Texte regelmäßig im UI, um sicherzustellen, dass die Tonalität und Brand-Compliance eingehalten werden.
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp11">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp11-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp11-body">Keywords & Assets
+                                </button>
+                            </h2>
+                            <div id="camp11-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp11"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <p>Diesen Schritt kannst du im Wizard überspringen und auf deiner</p>
+
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
+
+// Diesen Schritt kannst du im Wizard überspringen und auf deiner Keywords/Anzeigen-Seite sauber ausarbeiten.
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="camp12">
+                                <button
+                                        class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#camp12-body"
+                                        aria-expanded="true"
+                                        aria-controls="camp12-body">Budget & Überprüfung
+                                </button>
+                            </h2>
+                            <div id="camp12-body"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="camp12"
+                                 data-bs-parent="#campaign">
+                                <div class="accordion-body">
+
+                                    <h6 class="mt-2">Final Deployment: Budget & Publish</h6>
+                                    <p>Starte in der "Daten-Sammel-Phase" ("Phase 1") konservativ. Erhöhe das Budget nur, wenn die "ROAS-Zahlen"
+                                        <i class="bi bi-info-circle text-secondary ms-1"
+                                           data-bs-toggle="tooltip"
+                                           data-bs-title="ROAS (Return on Ad Spend): Umsatz pro investiertem Euro. Beispiel: ROAS 5 = 5 € Umsatz je 1 € Einsatz."></i> stabil und positiv sind.</p>
+
+                                    <div class="col-12">
+                                        <div class="card bg-dark text-light">
+                                            <div class="card-body">
+<pre class="m-0 p-0 text-white"><code>// <b><u>Tipp</u></b>:
+
+// WICHTIG!
+// Finalisiere den Prozess, indem du alle Einstellungen "vor dem Klick auf 'Publish'" im Überprüfungsfenster checkst.
+// Der "Deployment-Prozess" ist erst abgeschlossen, wenn der Traffic fließt und die ersten Conversion-Daten ankommen!
+</code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
     </div>
 </div>
 
-<!-- Offcanvas -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="mobileSidebarLabel">Navigation</h5>
@@ -79,247 +647,44 @@
             <li class="nav-item mt-2"><a class="nav-link active" href="5_performance_pruefen.html">Performance prüfen</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="6_begriffe.html">Begriffe die man kennen sollte</a></li>
             <li class="nav-item mt-2"><a class="nav-link active" href="7_bonus.html">Bonus - Das aufgeräumte Konto</a></li>
-            <li class="nav-item mt-2"><a class="nav-link active" href="8_quiz.html">Teste dein Wissen</a></li>
         </ul>
     </div>
 </div>
 
-<!-- ========== ALLE SCHRITTE ALS MODALS (mit Tooltips & Weiterführend) ========== -->
-
-<!-- 1 Ziel -->
-<div class="modal fade" id="mdlZiel" tabindex="-1" aria-labelledby="mdlZielLbl" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="mdlZielLbl">Ziel definieren</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-        </div>
-        <div class="modal-body">
-            <p>
-                Wähle ein <strong>Ziel</strong> (Umsatz,
-                Leads <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip"
-                         data-bs-title="Lead = qualifizierte Kontaktanfrage, z. B. Formular oder Anruf."></i>,
-                Traffic, App, Bekanntheit, lokal) – oder <strong>„Ohne Vorgaben“</strong> für volle Kontrolle.
-            </p>
-            <div class="alert alert-secondary small mb-2">
-                <strong>Merksatz:</strong> Weißt du genau, was du tust → <em>Ohne Vorgaben</em>. Sonst Ziel wählen und führen lassen.
-            </div>
-            <p class="text-body-secondary small mb-0"><strong>Weiterführend:</strong> Tracking-Ziele sauber aufsetzen → <a href="4_goals_tracken.html">Goals tracken</a>.</p>
-        </div>
-    </div></div>
-</div>
-
-<!-- 2 Kampagnentypen -->
-<div class="modal fade" id="mdlTypes" tabindex="-1" aria-labelledby="mdlTypesLbl" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content bg-body">
-            <div class="modal-header">
-                <h5 class="modal-title" id="mdlTypesLbl">Kampagnentypen</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-            </div>
-            <div class="modal-body">
-                <div class="row g-4">
-                    <div class="col-6 col-md-4">
-                        <div class="card bg-transparent border-light text-light h-100">
-                            <div class="card-header">Search</div>
-                            <div class="card-body"><p class="mb-0 small">Textanzeigen in der Suche. Höchster Intent, beste Steuerbarkeit.</p></div>
-                            <img class="card-img-bottom" src="images/such.png" alt="Suchkampagnen: Textanzeigen in Google Search">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="card bg-transparent border-light text-light h-100">
-                            <div class="card-header">Display</div>
-                            <div class="card-body"><p class="mb-0 small">Banner im GDN. Sichtbarkeit/Remarketing.</p></div>
-                            <img class="card-img-bottom" src="images/display.png" alt="Display: Banner im Google Display Netzwerk">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="card bg-transparent border-light text-light h-100">
-                            <div class="card-header">Shopping</div>
-                            <div class="card-body"><p class="mb-0 small">Produktanzeigen mit Bild/Preis. E-Commerce.</p></div>
-                            <img class="card-img-bottom" src="images/shopping.png" alt="Shopping: Produktanzeigen mit Bild und Preis">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="card bg-transparent border-light text-light h-100">
-                            <div class="card-header">Video</div>
-                            <div class="card-body"><p class="mb-0 small">YouTube-Ads. Branding/Storytelling.</p></div>
-                            <img class="card-img-bottom" src="images/video.png" alt="Video: YouTube-Anzeigen">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="card bg-transparent border-light text-light h-100">
-                            <div class="card-header">Demand Gen</div>
-                            <div class="card-body"><p class="mb-0 small">Feeds (YouTube-Start, Discover, Gmail). Upper Funnel.</p></div>
-                            <img class="card-img-bottom" src="images/demand.png" alt="Demand Gen: Bild/Video in Feeds">
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-4">
-                        <div class="card bg-transparent border-light text-light h-100">
-                            <div class="card-header">Performance Max</div>
-                            <div class="card-body"><p class="mb-0 small">Ein Typ für alle Kanäle. Sehr KI-getrieben.</p></div>
-                            <img class="card-img-bottom" src="images/performance.png" alt="Performance Max: kanalübergreifende Ausspielung">
-                        </div>
-                    </div>
-                </div>
-                <div class="alert alert-secondary small mt-3 mb-2">
-                    <strong>Start-Empfehlung:</strong> <em>Mit Search beginnen.</em> Andere Typen später testen, wenn Tracking sitzt.
-                </div>
-                <p class="text-body-secondary small mb-0"><strong>Weiterführend:</strong> Keywords & Anzeigen → <a href="2_keyword_recherche.html">Keyword-Recherche</a> · <a href="3_anzeige_schreiben.html">Anzeigen schreiben</a></p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 3 Name/URL -->
-<div class="modal fade" id="mdlName" tabindex="-1" aria-labelledby="mdlNameLbl" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="mdlNameLbl">Name & Ziel-URL</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-        </div>
-        <div class="modal-body">
-            <p>Nutze ein <strong>klares Schema</strong>: <code>[TYP]-[Thema]-[Strategie]-[Geo]</code> → z. B. <code>SUCH-BRAND-TCPA-DE</code>.</p>
-            <div class="alert alert-secondary small mb-0">
-                <strong>Merksatz:</strong> Saubere Namen sparen später Reports-Zeit.
-            </div>
-        </div>
-    </div></div>
-</div>
-
-<!-- 4 Bidding -->
-<div class="modal fade" id="mdlBidding" tabindex="-1" aria-labelledby="mdlBiddingLbl" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="mdlBiddingLbl">Gebotsstrategie</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-        </div>
-        <div class="modal-body">
-            <ul class="small mb-2">
-                <li><strong>Kein Datenfundament:</strong> „Max. Klicks“ + <span class="text-nowrap">
-                    CPC-Limit <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip"
-                                 data-bs-title="CPC = Cost per Click: Betrag, den du pro Klick zahlst."></i></span>.
-                </li>
-                <li><strong>Stabile Conversions:</strong> Ziel-<span class="text-nowrap">
-                    CPA <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip"
-                           data-bs-title="CPA = Cost per Action: Ø-Kosten pro gewünschter Aktion (z. B. Lead/Kauf)."></i></span>
-                    oder Ziel-<span class="text-nowrap">
-                    ROAS <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip"
-                            data-bs-title="ROAS = Return on Ad Spend: Umsatz je 1 € Werbekosten (z. B. ROAS 5 = 5 € Umsatz pro 1 €)."></i></span>.
-                </li>
-            </ul>
-            <div class="alert alert-secondary small mb-2">
-                <strong>Merksatz:</strong> Smart Bidding nur mit verlässlichen, korrekt gemessenen Conversions.
-            </div>
-            <p class="text-body-secondary small mb-0"><strong>Weiterführend:</strong> <a href="4_goals_tracken.html">Goals tracken</a> · <a href="5_performance_pruefen.html">Performance prüfen</a></p>
-        </div>
-    </div></div>
-</div>
-
-<!-- 5 Netzwerke -->
-<div class="modal fade" id="mdlNetz" tabindex="-1" aria-labelledby="mdlNetzLbl" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="mdlNetzLbl">Netzwerke</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-        </div>
-        <div class="modal-body">
-            <ul class="small mb-2">
-                <li><strong>Display bei Search:</strong> <em>aus</em>
-                    <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip"
-                       data-bs-title="Display-Netzwerk: Websites, Apps & YouTube außerhalb der Suche."></i>
-                </li>
-                <li><strong>Suchnetzwerk-Partner:</strong> zum Start <em>aus</em>, später testen
-                    <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip"
-                       data-bs-title="Suchnetzwerk-Partner: Externe Websites mit eingebundener Google-Suche; Qualität schwankt."></i>
-                </li>
-            </ul>
-            <div class="alert alert-secondary small mb-0">
-                <strong>Merksatz:</strong> Erst Kontrolle, dann Reichweite.
-            </div>
-        </div>
-    </div></div>
-</div>
-
-<!-- 6 Geo/Sprachen -->
-<div class="modal fade" id="mdlGeo" tabindex="-1" aria-labelledby="mdlGeoLbl" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="mdlGeoLbl">Standorte & Sprachen</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-        </div>
-        <div class="modal-body">
-            <div class="alert alert-secondary small mb-0">
-                <strong>Merksatz:</strong> Präzise starten (nur belieferbare Regionen/Sprachen), dann skalieren.
-            </div>
-        </div>
-    </div></div>
-</div>
-
-<!-- 7 Zielgruppen -->
-<div class="modal fade" id="mdlZielgruppen" tabindex="-1" aria-labelledby="mdlZielgruppenLbl" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="mdlZielgruppenLbl">Zielgruppen</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-        </div>
-        <div class="modal-body">
-            <div class="alert alert-secondary small mb-0">
-                <strong>Merksatz:</strong> In Search zuerst „Beobachten“, nicht „Ausrichten“ – erst lernen, dann steuern.
-            </div>
-        </div>
-    </div></div>
-</div>
-
-<!-- 8 Budget/Publish -->
-<div class="modal fade" id="mdlBudget" tabindex="-1" aria-labelledby="mdlBudgetLbl" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="mdlBudgetLbl">Budget & Überprüfung</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-        </div>
-        <div class="modal-body">
-            <ul class="small mb-2">
-                <li>Start konservativ; erhöhen nur bei stabiler ROAS/CPA.</li>
-                <li>Vor Publish: Netzwerke, Geo, Bidding, Tracking, Startdatum checken.</li>
-            </ul>
-            <p class="text-body-secondary small mb-0"><strong>Hinweis:</strong> EU/EWR-Politik-Abfragen ggf. bestätigen, sonst pausiert Google.</p>
-        </div>
-    </div></div>
-</div>
-
-<!-- Optional -->
-<div class="modal fade" id="mdlOptional" tabindex="-1" aria-labelledby="mdlOptionalLbl" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="mdlOptionalLbl">Optionale Einstellungen</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
-        </div>
-        <div class="modal-body">
-            <ul class="small mb-2">
-                <li>Anzeigenrotation „Optimieren“. Zeitplan nur einschränken, wenn klar.</li>
-                <li>KI-Texte/Assets aktivierbar, aber regelmäßig auditieren (Brand/Ton).</li>
-            </ul>
-            <div class="alert alert-secondary small mb-0">
-                <strong>Merksatz:</strong> Nice-to-have erst nach dem Grundsetup.
-            </div>
-        </div>
-    </div></div>
-</div>
-
-<!-- ========== /ALLE SCHRITTE ALS MODALS ========== -->
-
-<!-- Bootstrap Bundle + Init -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Globale Tooltips initialisieren
-    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
-
-    // Failsafe: Wenn ein Modal geöffnet wird, Tooltips im Modal (re-)initialisieren
-    document.addEventListener('shown.bs.modal', (e) => {
-        e.target.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
-            if (!bootstrap.Tooltip.getInstance(el)) new bootstrap.Tooltip(el);
-        });
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el=>{
+        new bootstrap.Tooltip(el);
     });
 </script>
+
+
+<!-- Mini-Progress rechts (seitenweiser Abschnitts-Fortschritt) -->
+<div id="sectionProgress" class="section-progress d-none d-md-block" aria-label="Kapitel-Fortschritt">
+    <button class="btn btn-dark btn-sm w-100" type="button">
+        <small><span id="spCount">0/0</span></small>
+    </button>
+    <div class="p-2 text-center" id="spDots"></div>
+</div>
+<style>
+    .section-progress{
+        position: fixed;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 56px;
+        z-index: 1040;
+    }
+    .section-progress .dot{
+        width: 8px; height: 8px; border-radius: 50%;
+        display: inline-block; margin: .28rem auto; opacity: .35;
+        background-color: currentColor; cursor: pointer;
+        transition: opacity .25s ease, transform .2s ease;
+    }
+    .section-progress .dot.done{ opacity: 1; transform: scale(1.1); }
+    .section-progress .dot:focus{ outline: 2px solid rgba(255,255,255,.25); }
+</style>
+
+
 </body>
 </html>
