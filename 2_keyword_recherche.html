@@ -7,6 +7,56 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"/>
+    <style>
+        /* ===== Hotspot-Overlay ===== */
+        .plan-wrap { position: relative; }
+        .plan-wrap img { width: 100%; height: auto; display: block; }
+
+        .hotspot {
+            position: absolute;
+            display: block;
+            /* unsichtbar, aber klickbar */
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+        }
+        /* Tastatur-Fokus sichtbar */
+        .hotspot:focus-visible {
+            outline: 2px dashed rgba(255,255,255,.6);
+            outline-offset: 2px;
+            border-radius: .5rem;
+        }
+        /* Optionale sanfte Hover-Markierung (kaum sichtbar) */
+        .hotspot:hover {
+            box-shadow: 0 0 0 2px rgba(255,255,255,.15) inset;
+            border-radius: .5rem;
+        }
+
+        /* Debug-Helfer: Umrisse anzeigen (aktiv per ?debug=1) */
+        .debug .hotspot {
+            background: rgba(255,255,255,.08);
+            box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset;
+        }
+
+        /* ---- Hotspot-Positionen (Prozent relativ zum Bild) ----
+
+        */
+        /* 1 Tipps zur Keyword-Recherche */
+        .hs-tipps         { left: 60%;   top: 2.5%;  width: 25%; height: 10%; }
+        /* 2 Google Ads Anzeigen erkennen */
+        .hs-ads          { left: 32%; top: 11%;  width: 25%; height: 10%; }
+        /* 3 Beispiele für positive Keywords */
+        .hs-positive         { left: 14.5%;  top: 23.5%;  width: 25%; height: 10%; }
+        /* 4 Beispiele für negative Keywords */
+        .hs-negative      { left: 53.5%;  top: 29%;  width: 25%; height: 10%; }
+        /* 5 Recherche mit externen Tools */
+        .hs-tools         { left: 8%;  top: 61%;  width: 25%; height: 10%; }
+
+        /* kleine Helfer */
+        .text-faint { color: var(--bs-secondary-color); }
+    </style>
 </head>
 <body>
 
@@ -25,347 +75,28 @@
     <div class="row">
         <main class="col-12">
             <div class="row justify-content-center">
-                <div class="col-md-12 col-lg-8 p-4">
-                    <div class="accordion" id="keywords">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="key1">
-                                <button
-                                        class="accordion-button"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#key1-body"
-                                        aria-expanded="true"
-                                        aria-controls="key1-body">Tipps zur Keyword-Recherche
-                                </button>
-                            </h2>
-                            <div id="key1-body"
-                                 class="accordion-collapse collapse"
-                                 aria-labelledby="key1"
-                                 data-bs-parent="#keywords">
-                                <div class="accordion-body">
-                                    <div class="row row-cols-1 row-cols-md-2 g-3 align-items-stretch">
+                <div class="col-md-12 col-lg-10 p-4">
+                    <h2 class="mb-2">Der Keyword-Radar</h2>
+                    <p>Blablabla.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus amet asperiores culpa dolor,
+                        explicabo incidunt iste magni molestiae quam quibusdam, ratione repellat saepe voluptates!
+                        Architecto blanditiis eius fugiat officiis quisquam?</p>
 
-                                        <div class="col d-flex">
-                                            <div class="card shadow-sm flex-fill h-100 d-flex flex-column">
-                                                <div class="card-body flex-grow-1">
-                                                    <h5 class="card-title">1. Google als Spion (Kostenlose Recherche)</h5>
-                                                    <p class="card-text">
-                                                        Hier holen wir uns die ersten Ideen und analysieren die Konkurrenz:
-                                                    </p>
-                                                    <ul>
-                                                        <li><b>Konkurrenz knacken:</b> Gib Suchbegriffe ein, die zu unseren Kunden passen. Schau dir genau die Anzeigentexte der Wettbewerber an – da stehen oft die wichtigsten gebuchten Keywords drin.</li>
-                                                        <li><b>Ideen-Booster:</b> Scrolle ganz nach unten zu den „Verwandten Suchanfragen“. Google liefert hier oft Gold.</li>
-                                                    </ul>
-                                                </div>
-                                                <img class="card-img-bottom" src="images/spion.png" alt="">
-                                            </div>
-                                        </div>
+                    <p class="text-body-secondary mb-3"><h4>Klick auf die Bereiche im Radar öffnet ein kurzes Popup. Lesen → schließen → weiter.</h4></p>
 
-                                        <div class="col d-flex">
-                                            <div class="card shadow-sm flex-fill h-100 d-flex flex-column">
-                                                <div class="card-body flex-grow-1">
-                                                    <h5 class="card-title">2. Google Keyword Planner (Das Herzstück)</h5>
-                                                    <p class="card-text">
-                                                        Das Tool ist kostenlos, wenn ein Google Ads Konto existiert, und liefert die harten Fakten:
-                                                    </p>
-                                                    <ul>
-                                                        <li><b>Daten-Check:</b> Suchvolumen, CPC
-                                                            <i class="bi bi-info-circle text-secondary ms-1"
-                                                               data-bs-toggle="tooltip"
-                                                               data-bs-title="CPC = Cost per Click. Betrag, den du pro Klick zahlst."></i>
-                                                            und Wettbewerbsniveau.
-                                                        </li>
-                                                        <li><b>URL-Scan:</b> Du kannst eine Konkurrenz-Website eingeben, um Keyword-Ideen zu bekommen.</li>
-                                                    </ul>
+                    <!-- Zentrale Grafik mit Hotspot-Overlay -->
+                    <figure class="m-0 mb-2">
+                        <div id="plan" class="plan-wrap rounded border overflow-hidden">
+                            <img src="images/key_radar.png" alt="Radar: Finde das passende Keyword">
 
-                                                    <h6 class="mt-3">Keywords richtig buchen (Match-Types)</h6>
-                                                </div>
-                                                <img class="card-img-bottom" src="images/matchtype.png" alt="">
-                                            </div>
-                                        </div>
-
-                                        <div class="col d-flex">
-                                            <div class="card shadow-sm flex-fill h-100 d-flex flex-column">
-                                                <div class="card-body flex-grow-1">
-                                                    <h5 class="card-title">3. SEO
-                                                        <i class="bi bi-info-circle text-secondary ms-1"
-                                                           data-bs-toggle="tooltip"
-                                                           data-bs-title="SEO (Search Engine Optimization): Maßnahmen, um eine Website in organischen Google-Suchergebnissen besser zu platzieren."></i>
-                                                        / SEA
-                                                        <i class="bi bi-info-circle text-secondary ms-1"
-                                                           data-bs-toggle="tooltip"
-                                                           data-bs-title="SEA (Search Engine Advertising): Bezahlte Suchmaschinenwerbung wie Google Ads (Zahlung pro Klick)."></i>
-                                                        -Tools (Der Profi-Blick)
-                                                    </h5>
-                                                    <p class="card-text">
-                                                        Mit Tools wie <b>SEMrush</b> oder <b>Sistrix</b> können wir tiefer spionieren (oft kostenpflichtig):
-                                                    </p>
-                                                    <ul>
-                                                        <li><b>Einsicht in Budgets:</b> Zeigt, für welche Keywords die Konkurrenz am meisten ausgibt und welche Anzeigen am besten laufen.</li>
-                                                        <li><b>Strategie-Ableitung:</b> Wir übernehmen die wichtigsten Begriffe der Konkurrenz und prüfen sie im Keyword Planner auf Relevanz.</li>
-                                                    </ul>
-                                                </div>
-                                                <img class="card-img-bottom" src="images/seo.png" alt="">
-                                            </div>
-                                        </div>
-
-                                        <div class="col d-flex">
-                                            <div class="card shadow-sm flex-fill h-100 d-flex flex-column">
-                                                <div class="card-body flex-grow-1">
-                                                    <h5 class="card-title">4. Der wichtigste Schritt: Negative Keywords</h5>
-                                                    <p class="card-text">
-                                                        Wir kombinieren allgemeine Keywords (z.&nbsp;B. <em>„Taubenabwehr Frankfurt“</em>) mit Long-Tail-Keywords (z.&nbsp;B. <em>„effektive Abwehr gegen Tauben“</em>).
-                                                    </p>
-                                                    <p class="card-text">
-                                                        <b>Aber das A und O:</b> Eine saubere Liste negativer Keywords sorgt dafür, dass kein Geld für irrelevante Klicks verschwendet wird.
-                                                    </p>
-                                                    <p class="card-text">
-                                                        Typische Ausschlüsse: <code>kostenlos</code>, <code>Vorlage</code>, <code>Jobs</code>, <code>gebraucht</code>, etc.
-                                                    </p>
-                                                </div>
-                                                <img class="card-img-bottom" src="images/negativ_liste.png" alt="">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Hotspots (unsichtbare Buttons) -->
+                            <button class="hotspot hs-tipps"       data-bs-toggle="modal" data-bs-target="#mdltipps"        title="Tipps zur Keyword-Recherche"><span class="visually-hidden">Tipps zur Keyword-Recherche</span></button>
+                            <button class="hotspot hs-ads"         data-bs-toggle="modal" data-bs-target="#mdlAds"       title="Google Ads Anzeigen erkennen"><span class="visually-hidden">Google Ads Anzeigen erkennen</span></button>
+                            <button class="hotspot hs-positive"    data-bs-toggle="modal" data-bs-target="#mdlPositive"        title="Beispiele für positive Keywords"><span class="visually-hidden">Beispiele für positive Keywords</span></button>
+                            <button class="hotspot hs-negative"     data-bs-toggle="modal" data-bs-target="#mdlNegative"     title="Beispiele für negative Keywords"><span class="visually-hidden">Beispiele für negative Keywords</span></button>
+                            <button class="hotspot hs-tools"        data-bs-toggle="modal" data-bs-target="#mdlTools"        title="Recherche mit externen Tools"><span class="visually-hidden">Recherche mit externen Tools</span></button>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="key2">
-                                <button
-                                        class="accordion-button"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#key2-body"
-                                        aria-expanded="true"
-                                        aria-controls="key2-body">Wie man eine Anzeige auf Google erkennt
-                                </button>
-                            </h2>
-                            <div id="key2-body"
-                                 class="accordion-collapse collapse"
-                                 aria-labelledby="key2"
-                                 data-bs-parent="#keywords">
-                                <div class="accordion-body">
-                                    <div class="p-3">
-
-                                        <p><strong>Früher</strong> stand da fett „Anzeige“, inzwischen ist es etwas subtiler:</p>
-
-                                        <p>Über den Suchergebnissen (ganz oben) und manchmal auch unten siehst du kleine Hinweise wie „Gesponsert“ oder „Sponsored“.</p>
-
-                                        <p>Direkt daneben bzw. darunter sind dann die Ad-Texte.</p>
-
-                                        <p>Meist sind die Ads auch in einem eigenen Block formatiert (mehr Extensions: Telefonnummern, Standort, Sitelinks etc.).</p>
-
-                                        <p><strong>Merkmale, woran du Ads erkennst:</strong></p>
-                                        <ul>
-                                            <li>Steht „Gesponsert“ ganz klein über oder neben der URL.</li>
-                                            <li>Sie erscheinen oberhalb der normalen Suchergebnisse (SEO
-                                                <i class="bi bi-info-circle text-secondary ms-1"
-                                                   data-bs-toggle="tooltip"
-                                                   data-bs-title="SEO (Search Engine Optimization): Maßnahmen, um eine Website in organischen Google-Suchergebnissen besser zu platzieren."></i>) – meistens die ersten 3–4.
-                                            </li>
-                                            <li>Manchmal gibt es auch Ads im Shopping-Bereich (Bilder mit Preisangaben) oder in der Maps-Sektion.</li>
-                                        </ul>
-                                        <img class="card-img-bottom img-fluid" src="images/ads_bsp.png" alt="">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="key3">
-                                <button
-                                        class="accordion-button"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#key3-body"
-                                        aria-expanded="true"
-                                        aria-controls="key3-body">Beispiele für positive Keywords
-                                </button>
-                            </h2>
-                            <div id="key3-body"
-                                 class="accordion-collapse collapse"
-                                 aria-labelledby="key3"
-                                 data-bs-parent="#keywords">
-                                <div class="accordion-body">
-                                    <img class="img-fluid" src="images/keyword_bsp.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="key4">
-                                <button
-                                        class="accordion-button"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#key4-body"
-                                        aria-expanded="true"
-                                        aria-controls="key4-body">Beispiele für negative Keywords
-                                </button>
-                            </h2>
-                            <div id="key4-body"
-                                 class="accordion-collapse collapse"
-                                 aria-labelledby="key4"
-                                 data-bs-parent="#keywords">
-                                <div class="accordion-body">
-
-                                    <div class="row g-4">
-                                        <div class="col-md-3">
-                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
-                                                <div class="card-header">
-                                                    DIY & Bastellösungen
-                                                </div>
-                                                <div class="card-body flex-grow-1">
-                                                    <p class="card-text">
-                                                    <ul>
-                                                        <li>selber</li>
-                                                        <li>hausmittel</li>
-                                                        <li>tipps</li>
-                                                        <li>tricks</li>
-                                                        <li>anleitung</li>
-                                                        <li>bauanleitung</li>
-                                                        <li>selber machen</li>
-                                                        <li>do it yourself / diy</li>
-                                                        <li>ultraschallgerät</li>
-                                                    </ul>
-                                                    </p>
-                                                </div>
-                                                <img class="card-img-bottom" src="images/diy.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
-                                                <div class="card-header">
-                                                    Schnäppchenjäger & Kostenlos
-                                                </div>
-                                                <div class="card-body flex-grow-1">
-                                                    <p class="card-text">
-                                                    <ul>
-                                                        <li>gratis</li>
-                                                        <li>kostenlos</li>
-                                                        <li>billig</li>
-                                                        <li>günstig</li>
-                                                    </ul>
-                                                    </p>
-                                                </div>
-                                                <img class="card-img-bottom" src="images/gratis.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
-                                                <div class="card-header">
-                                                    Uninteressant für Werbemaßnahmen
-                                                </div>
-                                                <div class="card-body flex-grow-1">
-                                                    <p class="card-text">
-                                                    <ul>
-                                                        <li>job</li>
-                                                        <li>jobs</li>
-                                                        <li>stellenangebote</li>
-                                                        <li>ausbildung</li>
-                                                        <li>gehalt</li>
-                                                        <li>schule</li>
-                                                        <li>kurs</li>
-                                                    </ul>
-                                                    </p>
-                                                </div>
-                                                <img class="card-img-bottom" src="images/uninteressant.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
-                                                <div class="card-header">
-                                                    Allgemeinwissen & Schule
-                                                </div>
-                                                <div class="card-body flex-grow-1">
-                                                    <p class="card-text">
-                                                    <ul>
-                                                        <li>bilder</li>
-                                                        <li>fotos</li>
-                                                        <li>pics</li>
-                                                        <li>wikipedia</li>
-                                                        <li>steckbrief</li>
-                                                        <li>referat</li>
-                                                        <li>biologie</li>
-                                                    </ul>
-                                                    </p>
-                                                </div>
-                                                <img class="card-img-bottom" src="images/bildung.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="card bg-dark text-light">
-                                                <div class="card-body">
-<pre class="m-0 p-0 text-white"><code>// <b><u>Info</u></b>:
-
-// Interessenten die nach Abwehrfirmen suchen, bekommen die Anzeige weiterhin angezeigt, während Schnäppchenjäger und Informationssuchende rausfallen.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="key5">
-                                <button
-                                        class="accordion-button"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target="#key5-body"
-                                        aria-expanded="true"
-                                        aria-controls="key5-body">Recherche Ergebnis externer Tools
-                                </button>
-                            </h2>
-                            <div id="key5-body"
-                                 class="accordion-collapse collapse"
-                                 aria-labelledby="key5"
-                                 data-bs-parent="#keywords">
-                                <div class="accordion-body">
-                                    <div class="row justify-content-center d-flex align-items-strech">
-                                        <div class="col-md-3">
-                                            <div class="card text-center h-100">
-                                                <div class="card-body">
-                                                    <p class="card-text"><a
-                                                            href="https://www.sistrix.de/kostenlose-tools/"
-                                                            target="_blank"
-                                                            class="link-primary text-decoration-underline">Hier</a> geht
-                                                        es zu den kostenlosen Recherche-Tools von Sistrix. Das Keyword-Tool findest
-                                                        du unten auf der Seite.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <div class="card text-center h-100">
-                                                <div class="card-body">
-                                                    <p class="card-text">Klicke den Button unten, um eine Beispiel CSV
-                                                        mit den Keywords herunterzuladen!</p>
-                                                    <a href="files/taubenabwehr.csv" download class="btn btn-primary">
-                                                        <i class="bi bi-download"></i> Download CSV!
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <div class="card text-center h-100">
-                                                <div class="card-body">
-                                                    <p class="card-text">Klicke unten, um dir ein Suchergebnis anzusehen</p>
-                                                    <a href="images/whole_capture.png" target="_blank"
-                                                       class="btn btn-outline-primary">
-                                                        <i class="bi bi-image"></i>
-                                                    </a>
-                                                    <p class="mt-3">(öffnet in neuem Tab).</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </figure>
                 </div>
             </div>
         </main>
@@ -390,6 +121,291 @@
             <li class="nav-item mt-2"><a class="nav-link active" href="8_quiz.html">Teste dein Wissen</a></li>
         </ul>
     </div>
+</div>
+
+<!-- 1 Tipps zur Keyword-Recherche -->
+<div class="modal fade" id="mdltipps" tabindex="-1" aria-labelledby="mdltippsLbl" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="mdltippsLbl">Ziel definieren</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+        </div>
+        <div class="modal-body">
+            <div class="col-md-3">
+                <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                    <div class="card-header">
+                        Suchkampagnen
+                    </div>
+                    <div class="card-body flex-grow-1">
+                        <p class="card-text">Textanzeigen in Google Search, präzise
+                            steuerbar über Keywords/Region/Zeit. Super für den Start!</p>
+                    </div>
+                    <img class="card-img-bottom" src="images/such.png" alt="">
+                </div>
+
+
+                <div class="col d-flex">
+                    <div class="card shadow-sm flex-fill h-100 d-flex flex-column">
+                        <div class="card-body flex-grow-1">
+                            <h5 class="card-title">1. Google als Spion (Kostenlose Recherche)</h5>
+                            <p class="card-text">
+                                Hier holen wir uns die ersten Ideen und analysieren die Konkurrenz:
+                            </p>
+                            <ul>
+                                <li><b>Konkurrenz knacken:</b> Gib Suchbegriffe ein, die zu unseren Kunden passen. Schau dir genau die Anzeigentexte der Wettbewerber an – da stehen oft die wichtigsten gebuchten Keywords drin.</li>
+                                <li><b>Ideen-Booster:</b> Scrolle ganz nach unten zu den „Verwandten Suchanfragen“. Google liefert hier oft Gold.</li>
+                            </ul>
+                        </div>
+                        <img class="card-img-bottom" src="images/spion.png" alt="">
+                    </div>
+                </div>
+
+                <div class="col d-flex">
+                    <div class="card shadow-sm flex-fill h-100 d-flex flex-column">
+                        <div class="card-body flex-grow-1">
+                            <h5 class="card-title">2. Google Keyword Planner (Das Herzstück)</h5>
+                            <p class="card-text">
+                                Das Tool ist kostenlos, wenn ein Google Ads Konto existiert, und liefert die harten Fakten:
+                            </p>
+                            <ul>
+                                <li><b>Daten-Check:</b> Suchvolumen, CPC
+                                    <i class="bi bi-info-circle text-secondary ms-1"
+                                       data-bs-toggle="tooltip"
+                                       data-bs-title="CPC = Cost per Click. Betrag, den du pro Klick zahlst."></i>
+                                    und Wettbewerbsniveau.
+                                </li>
+                                <li><b>URL-Scan:</b> Du kannst eine Konkurrenz-Website eingeben, um Keyword-Ideen zu bekommen.</li>
+                            </ul>
+
+                            <h6 class="mt-3">Keywords richtig buchen (Match-Types)</h6>
+                        </div>
+                        <img class="card-img-bottom" src="images/matchtype.png" alt="">
+                    </div>
+                </div>
+
+                <div class="col d-flex">
+                    <div class="card shadow-sm flex-fill h-100 d-flex flex-column">
+                        <div class="card-body flex-grow-1">
+                            <h5 class="card-title">3. SEO
+                                <i class="bi bi-info-circle text-secondary ms-1"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-title="SEO (Search Engine Optimization): Maßnahmen, um eine Website in organischen Google-Suchergebnissen besser zu platzieren."></i>
+                                / SEA
+                                <i class="bi bi-info-circle text-secondary ms-1"
+                                   data-bs-toggle="tooltip"
+                                   data-bs-title="SEA (Search Engine Advertising): Bezahlte Suchmaschinenwerbung wie Google Ads (Zahlung pro Klick)."></i>
+                                -Tools (Der Profi-Blick)
+                            </h5>
+                            <p class="card-text">
+                                Mit Tools wie <b>SEMrush</b> oder <b>Sistrix</b> können wir tiefer spionieren (oft kostenpflichtig):
+                            </p>
+                            <ul>
+                                <li><b>Einsicht in Budgets:</b> Zeigt, für welche Keywords die Konkurrenz am meisten ausgibt und welche Anzeigen am besten laufen.</li>
+                                <li><b>Strategie-Ableitung:</b> Wir übernehmen die wichtigsten Begriffe der Konkurrenz und prüfen sie im Keyword Planner auf Relevanz.</li>
+                            </ul>
+                        </div>
+                        <img class="card-img-bottom" src="images/seo.png" alt="">
+                    </div>
+                </div>
+
+                <div class="col d-flex">
+                    <div class="card shadow-sm flex-fill h-100 d-flex flex-column">
+                        <div class="card-body flex-grow-1">
+                            <h5 class="card-title">4. Der wichtigste Schritt: Negative Keywords</h5>
+                            <p class="card-text">
+                                Wir kombinieren allgemeine Keywords (z.&nbsp;B. <em>„Taubenabwehr Frankfurt“</em>) mit Long-Tail-Keywords (z.&nbsp;B. <em>„effektive Abwehr gegen Tauben“</em>).
+                            </p>
+                            <p class="card-text">
+                                <b>Aber das A und O:</b> Eine saubere Liste negativer Keywords sorgt dafür, dass kein Geld für irrelevante Klicks verschwendet wird.
+                            </p>
+                            <p class="card-text">
+                                Typische Ausschlüsse: <code>kostenlos</code>, <code>Vorlage</code>, <code>Jobs</code>, <code>gebraucht</code>, etc.
+                            </p>
+                        </div>
+                        <img class="card-img-bottom" src="images/negativ_liste.png" alt="">
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div></div>
+</div>
+
+<!-- 2 Google Ads Anzeigen erkennen -->
+<div class="modal fade" id="mdlTypes" tabindex="-1" aria-labelledby="mdlTypesLbl" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-body">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mdlTypesLbl">Kampagnentypen</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-4">
+                    <div class="col-md-3">
+                        <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                            <div class="card-header">
+                                Suchkampagnen
+                            </div>
+                            <div class="card-body flex-grow-1">
+                                <p class="card-text">Textanzeigen in Google Search, präzise
+                                    steuerbar über Keywords/Region/Zeit. Super für den Start!</p>
+                            </div>
+                            <img class="card-img-bottom" src="images/such.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                            <div class="card-header">
+                                Demand Gen (Discovery)
+                            </div>
+                            <div class="card-body flex-grow-1">
+                                <p class="card-text">Bild/Video in Feeds (YouTube-Start, Discover,
+                                    Gmail). Reichweite/Upper Funnel.</p>
+                            </div>
+                            <img class="card-img-bottom" src="images/demand.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                            <div class="card-header">
+                                Display
+                            </div>
+                            <div class="card-body flex-grow-1">
+                                <p class="card-text">Banner im Google-Display-Netzwerk.
+                                    Sichtbarkeit/Remarketing, geringere Intent.</p>
+                            </div>
+                            <img class="card-img-bottom" src="images/display.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                            <div class="card-header">
+                                Shopping
+                            </div>
+                            <div class="card-body flex-grow-1">
+                                <p class="card-text">Produktanzeigen mit Bild/Preis in Suche &
+                                    Shopping-Tab. E-Commerce.</p>
+                            </div>
+                            <img class="card-img-bottom" src="images/shopping.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                            <div class="card-header">
+                                Video
+                            </div>
+                            <div class="card-body flex-grow-1">
+                                <p class="card-text">YouTube-Ads (vor/während/neben Videos).
+                                    Branding/Storytelling.</p>
+                            </div>
+                            <img class="card-img-bottom" src="images/video.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                            <div class="card-header">
+                                App
+                            </div>
+                            <div class="card-body flex-grow-1">
+                                <p class="card-text">App-Installationen & In-App-Aktionen, stark
+                                    automatisiert.</p>
+                            </div>
+                            <img class="card-img-bottom" src="images/app.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-transparent border-light text-light d-flex flex-column h-100">
+                            <div class="card-header">
+                                Performance Max
+                            </div>
+                            <div class="card-body flex-grow-1">
+                                <p class="card-text">Ein Kampagnentyp für alle besagten Kanäle, sehr
+                                    KI-getrieben, wenig Hebel.</p>
+                            </div>
+                            <img class="card-img-bottom" src="images/performance.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-secondary small mt-3 mb-2">
+                    <strong>Start-Empfehlung:</strong> <em>Mit Suchkampagnen beginnen.</em> Andere Typen später testen, wenn das Tracking sitzt.
+                </div>
+                <p class="text-body-secondary small mb-0"><strong>Weiterführend:</strong> Keywords & Anzeigen → <a href="2_keyword_recherche.html">Keyword-Recherche</a> · <a href="3_anzeige_schreiben.html">Anzeigen schreiben</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Beispiele für positive Keywords -->
+<div class="modal fade" id="mdlName" tabindex="-1" aria-labelledby="mdlNameLbl" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="mdlNameLbl">Name & Ziel-URL</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+        </div>
+        <div class="modal-body">
+            <p>Nutze ein <strong>klares Schema</strong>: <b><code>[TYP]-[PRODUKT]-[STRATEGIE]-[GEO]</code></b></p>
+            <p class="mt-3"><ul><li>Kampagnentyp: <p>SUCH (Search), DIS (Display), PMAX (Performance Max), SHOP (Shopping)</p></li>
+            <li>Zielgruppe/Produkt: <p>NEUKUNDEN, SCHUHE, BRAND, REMARKETING</p></li>
+            <li>Strategie: <p>TCPA, TROAS (Ziel-ROAS), MANUELL, MAX-KLICKS</p></li>
+            <li>Geolokation: <p>E, BERLIN, DACH, EU-W (Westeuropa), D</p></li></ul></p>
+            <div class="alert alert-secondary small mb-0">
+                <strong>Tipp</strong>:</strong> Saubere Namen sparen dir später Reports-Zeit.
+            </div>
+        </div>
+    </div></div>
+</div>
+
+<!-- 4 Beispiele für negative Keywords -->
+<div class="modal fade" id="mdlBidding" tabindex="-1" aria-labelledby="mdlBiddingLbl" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="mdlBiddingLbl">Gebotsstrategie</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+        </div>
+        <div class="modal-body">
+
+            <p><strong>Ohne Datenfundament:</strong> „Max. Klicks“ + <span class="text-nowrap">
+                    CPC-Limit <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip"
+                                 data-bs-title="CPC = Cost per Click: Betrag, den du pro Klick zahlst."></i></span>.</p>
+            <p><strong>Stabile Conversions:</strong> Ziel-<span class="text-nowrap">
+                    CPA <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip"
+                           data-bs-title="CPA = Cost per Action: Ø-Kosten pro gewünschter Aktion (z. B. Lead/Kauf)."></i></span>
+                oder Ziel-<span class="text-nowrap">
+                    ROAS <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip"
+                            data-bs-title="ROAS = Return on Ad Spend: Umsatz je 1 € Werbekosten (z. B. ROAS 5 = 5 € Umsatz pro 1 €)."></i></span>.
+            </p>
+            </ul>
+            <div class="alert alert-secondary small mb-2">
+                <strong>Tipp:</strong> Smart Bidding funktioniert nur zuverlässig, wenn verlässliche, korrekt gemessenen Conversions vorliegen.
+            </div>
+            <p class="text-body-secondary small mb-0"><strong>Weiterführend:</strong> <a href="4_goals_tracken.html">Goals tracken</a> · <a href="5_performance_pruefen.html">Performance prüfen</a></p>
+        </div>
+    </div></div>
+</div>
+
+<!-- 5 Recherche mit externen Tools -->
+<div class="modal fade" id="mdlNetz" tabindex="-1" aria-labelledby="mdlNetzLbl" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="mdlNetzLbl">Netzwerke</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Schließen"></button>
+        </div>
+        <div class="modal-body">
+            <ul class="small mb-2">
+                <li><strong>Display bei Search:</strong> <em>aus</em>
+                    <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip"
+                       data-bs-title="Display-Netzwerk: Websites, Apps & YouTube außerhalb der Suche."></i>
+                </li>
+                <li><strong>Suchnetzwerk-Partner:</strong> zum Start <em>aus</em>, später testen
+                    <i class="bi bi-info-circle text-secondary ms-1" data-bs-toggle="tooltip"
+                       data-bs-title="Suchnetzwerk-Partner: Externe Websites mit eingebundener Google-Suche; Qualität schwankt."></i>
+                </li>
+            </ul>
+            <div class="alert alert-secondary small mb-0">
+                <strong>Tipp:</strong> Erst Kontrolle, dann Reichweite.
+            </div>
+        </div>
+    </div></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
